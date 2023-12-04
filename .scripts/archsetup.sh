@@ -61,9 +61,10 @@ dotfiles() {
     sudo pacman -S stow
     git clone https://github.com/holykremowka2137/dotfiles.git ~/.git/dotfiles/ --depth 1
     cd ~/.git/dotfiles/.config/
-    stow --target=${HOME}/.config/ .
+    stow -v --target=${HOME}/.config/ .
+    mkdir ~/.scripts/
     cd ~/.git/dotfiles/.scripts/
-    stow --target=${HOME}/.scripts/ .
+    stow -v --target=${HOME}/.scripts/ .
     echo "Dotfiles are done."
   elif [ "$dtfls" == "n" ]; then
     echo "Skipping."
