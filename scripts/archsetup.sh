@@ -54,6 +54,23 @@ install_paru() {
   fi
 }
 
+dotfiles() {
+  echo 
+  read -p "Do you want to download your dotfiles from GitHub? [y/n]: " dtfls
+  if [ "$dtfls" == "y" ]; then
+    sudo pacman -S stow
+    git clone https://github.com/holykremowka2137/.dotfiles.git 
+    cd ~/.dotfiles
+    stow --target={$HOME}/.config/ .
+    cd ..
+    echo "Dotfiles done."
+  elif [ "$dtfls" == "n" ]; then
+    echo "Skipping."
+  else 
+    echo "Are you sure?"
+    dotfiles
+}
+
 install_flatpak() {
   echo 
   read -p "Do you want to install Flatpak? [y/n]: " fltpk
@@ -134,6 +151,7 @@ rebooting() {
 xvswl
 which_cpu
 install_paru
+dotfiles
 install_flatpak
 install_nvchad
 install_aur
