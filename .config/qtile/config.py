@@ -224,7 +224,7 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.run('/home/victoria/.config/scripts/autostart.sh')
+    subprocess.run('/home/victoria/.scripts/autostart.sh')
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

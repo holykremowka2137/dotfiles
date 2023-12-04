@@ -59,11 +59,12 @@ dotfiles() {
   read -p "Do you want to download your dotfiles from GitHub? [y/n]: " dtfls
   if [ "$dtfls" == "y" ]; then
     sudo pacman -S stow
-    git clone https://github.com/holykremowka2137/.dotfiles.git 
-    cd ~/.dotfiles
-    stow --target={$HOME}/.config/ .
-    cd ..
-    echo "Dotfiles done."
+    git clone https://github.com/holykremowka2137/dotfiles.git ~/.git/dotfiles/ --depth 1
+    cd ~/.git/dotfiles/.config/
+    stow --target=${HOME}/.config/ .
+    cd ~/.git/dotfiles/.scripts/
+    stow --target=${HOME}/.scripts/ .
+    echo "Dotfiles are done."
   elif [ "$dtfls" == "n" ]; then
     echo "Skipping."
   else 

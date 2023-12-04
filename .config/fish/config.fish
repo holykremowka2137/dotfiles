@@ -5,12 +5,12 @@ set fish_greeting
 ### ABBR ###
 abbr alaconf 'nvim ~/.config/alacritty/alacritty.yml'
 abbr autostart 'nvim ~/.config/qtile/autostart.sh'
-abbr v nvim
 abbr fishconf 'nvim ~/.config/fish/config.fish'
 abbr qconf 'nvim ~/.config/qtile/config.py'
-abbr roficonf 'nvim ~/.config/rofi/config.rasi'
 abbr rns 'paru -Rns'
+abbr roficonf 'nvim ~/.config/rofi/config.rasi'
 abbr s 'paru -S'
+abbr v nvim
 
 ### ALIASES ###
 alias cpu 'sudo auto-cpufreq --stats'
