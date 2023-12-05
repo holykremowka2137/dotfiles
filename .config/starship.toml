@@ -10,5 +10,9 @@ style = 'bold blue'
 fish_style_pwd_dir_length = 1
 
 [character]
-success_symbol = '[❯](red)[❯](yellow)[❯](green)' 
-error_symbol = '[✖](red)[✖](red)[✖](red)' 
+error_symbol              = '[✖✖✖](red)' 
+success_symbol            = '[❯](red)[❯](yellow)[❯](green)' 
+vimcmd_replace_one_symbol = '[❮❮❮](bold purple)' 	
+vimcmd_replace_symbol     = '[❮❮❮](bold purple)' 	
+vimcmd_symbol             = '[](red)' 
+vimcmd_visual_symbol      = '[](yellow)' 

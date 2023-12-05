@@ -94,6 +94,7 @@ install_nvchad() {
     rm -rf ~/.local/share/nvim
     sudo pacman -S --needed nvim fd ripgrep npm 
     git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+    ln -s .local/state/nvim/swap/ ~/nvim-swap
     echo "NvChad installed!"
     echo "All official packages installed."
   elif [ "$nvim" == "n" ]; then
