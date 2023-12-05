@@ -91,6 +91,7 @@ layouts = [
         border_normal = colors[0], 
         border_on_single = True, 
         border_width = 1, 
+        fair = True,
         margin = 5, 
         wrap_focus_stack = False,
     ),
