@@ -1,7 +1,7 @@
 #! /bin/bash
 
 sudo pacman -Syu
-sudo pacman -S ttf-jetbrains-mono-nerd noto-fonts-extra noto-fonts-emoji noto-fonts-cjk vivaldi neovim yt-dlp mpv python-pip python-pygame p7zip man-db htop sagemath ufw neofetch ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk lightdm-gtk-greeter-settings psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US alsa-utils reflector plocate bluez bluez-utils signal-desktop unzip zip dunst cmatrix cython python-jupymake 
+sudo pacman -S ttf-jetbrains-mono-nerd noto-fonts-extra noto-fonts-emoji noto-fonts-cjk vivaldi neovim yt-dlp mpv python-pip python-pygame p7zip man-db htop sagemath ufw neofetch ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk lightdm-gtk-greeter-settings psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US alsa-utils reflector plocate bluez bluez-utils signal-desktop unzip zip dunst cmatrix cython python-jupymake totem
 
 echo "Finished!"
 
