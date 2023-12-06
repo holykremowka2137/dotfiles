@@ -1,7 +1,8 @@
 import:
- - ~/.config/alacritty/themes/cyberneon.yml
+ # - ~/.config/alacritty/themes/cyberneon.yml
  # - ~/.config/alacritty/themes/decayce.yml
  # - ~/.config/alacritty/themes/ayu-dark.yml
+ - ~/.config/alacritty/themes/solarized-dark.yml
 
 window:
   # padding:

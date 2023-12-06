@@ -74,20 +74,21 @@ for i in groups:
     )
 
 colors = [
-    ["#171717", "#171717"], #0
-    ["#ff0000", "#ff0000"], #1 
-    ["#97d01a", "#97d01a"], #2
-    ["#ffa800", "#ffa800"], #3
-    ["#16b1fb", "#16b1fb"], #4
-    ["#ff2491", "#ff2491"], #5
-    ["#0fdcb6", "#0fdcb6"], #6
-    ["#ebebeb", "#ebebeb"], #7
-    ["#000000", "#000000"], #8
+    ["#002b36", "#002b36"], #0
+    ["#073642", "#073642"], #1
+    ["#dc322f", "#dc322f"], #2
+    ["#859900", "#859900"], #3
+    ["#b58900", "#b58900"], #4
+    ["#268bd2", "#268bd2"], #5
+    ["#d33682", "#d33682"], #6
+    ["#2aa198", "#2aa198"], #7
+    ["#586e75", "#586e75"], #8
+    ["#fdf6e3", "#fdf6e3"], #9
 ]
 
 layouts = [
     layout.Columns(
-        border_focus = colors[6], 
+        border_focus = colors[7], 
         border_normal = colors[0], 
         border_on_single = True, 
         border_width = 1, 
@@ -114,7 +115,7 @@ screens = [
             [
                 widget.GroupBox(
                     # hide_unused = True,
-                    active = colors[6],
+                    active = colors[7],
                     highlight_method = 'block',
                     fontsize = 20,
                     font = 'JetBrains Mono NF'
@@ -124,15 +125,15 @@ screens = [
                     icon_size = 0,
                     font = "JetBrains Mono NF",
                     fontsize = 17,
-                    foreground = colors[7],
-                    background = colors[8],
+                    foreground = colors[9],
+                    background = colors[1],
                     borderwidth = 0,
-                    border = colors[6],
+                    border = colors[0],
                     highlight_method = "block",
                     title_width_method = "uniform",
                     urgent_alert_method = "border",
-                    urgent_border = colors[1],
-                    rounded = False,
+                    urgent_border = colors[2],
+                    rounded = True,
                     txt_floating = "🗗 ",
                     txt_maximized = "🗖 ",
                     txt_minimized = "🗕 ",
