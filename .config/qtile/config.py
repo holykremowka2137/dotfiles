@@ -3,7 +3,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 # from qtile_extras import widget
 # from qtile_extras.widget import BorderDecoration
-import os, subprocess   
+import os, subprocess, colors   
 
 mod = "mod1"
 
@@ -73,18 +73,7 @@ for i in groups:
         ]
     )
 
-colors = [
-    ["#002b36", "#002b36"], #0
-    ["#073642", "#073642"], #1
-    ["#dc322f", "#dc322f"], #2
-    ["#859900", "#859900"], #3
-    ["#b58900", "#b58900"], #4
-    ["#268bd2", "#268bd2"], #5
-    ["#d33682", "#d33682"], #6
-    ["#2aa198", "#2aa198"], #7
-    ["#586e75", "#586e75"], #8
-    ["#fdf6e3", "#fdf6e3"], #9
-]
+colors = colors.Solarized_dark
 
 layouts = [
     layout.Columns(

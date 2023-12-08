@@ -26,7 +26,7 @@ xvswl() {
     echo 
     read -p "Do you want X11 or Wayland? [x/w]: " xvswl
     if [ "$xvswl" == "x" ]; then
-        sudo pacman -S xorg xorg-xinit xclip picom redshift 
+        sudo pacman -S xorg xorg-xinit xclip picom redshift xdotool 
         echo "Xorg installed!"
     elif [ "$xvswl" == "w" ]; then
         sudo pacman -S wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool
@@ -139,7 +139,6 @@ install_aur() {
   fi
 }
 
-# enabling what is to enable
 enabling () {
     echo "Enabling LightDM..."
     sudo systemctl enable lightdm
@@ -147,6 +146,19 @@ enabling () {
     echo "Enabling Bluetooh..."
     sudo systemctl enable bluetooth
     echo "Bluetooch enabled!"
+    echo "Enabling `locate` & adding user to groups..."
+    sudo updatedb
+    sudo usermod -aG locate,wheel,video,tty,dbus $USER
+    echo "`locate` & adding user to groups finished!"
+    echo "Remapping caps lock..."
+    setxkbmap -option "caps:escape_shifted_capslock"
+    sudo localectl set-x11-keymap us '' '' caps:escape_shifted_capslock
+    echo "Finished remapping caps lock!"
+    echo "Exporting variables..."
+    export SUDO_EDITOR
+    export EDITOR
+    export VISUAL
+    echo "Finished exporting variables!"
 }
 
 rebooting() {
