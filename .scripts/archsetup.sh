@@ -159,6 +159,9 @@ enabling () {
     export EDITOR
     export VISUAL
     echo "Finished exporting variables!"
+    echo "Enabling autostart.sh..."
+    chmod +x ~/.scripts/autostart.sh
+    echo "Finished enabling autostart.sh!"
 }
 
 rebooting() {

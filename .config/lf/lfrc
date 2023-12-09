@@ -1,3 +1,6 @@
+# set previewer ~/.config/lf/lf_kitty_preview
+# set cleaner ~/.config/lf/lf_kitty_clean
+
 # Basic Settings
 set hidden true
 set ignorecase true
@@ -16,6 +19,10 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
+cmd setwallpaper ${{
+    setwallpaper "$f"
+}}
+
 # Archive bindings
 cmd unarchive ${{
   case "$f" in
@@ -27,17 +34,38 @@ cmd unarchive ${{
   esac
 }}
 
+# Trash bindings
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
 # Bindings
 map d
 map m
 
-map c $vscodium "$f"
+map e $nvim "$f"
 
 map au unarchive
 map ae $wine "$f"
 
 # Basic Functions
 map . set hidden!
+map dd trash
+map dr restore_trash
 map p paste
 map x cut
 map y copy
@@ -45,14 +73,17 @@ map <enter> open
 map R reload
 map mf mkfile
 map md mkdir
+map bg setwallpaper
 map C clear
 
 # Movement
-map gD cd ~/documents
-map gd cd ~/downloads
-map gp cd ~/pictures
+map gg cd ~/
+map gD cd ~/Documents
+map gd cd ~/Downloads
+map gm cd ~/Music
+map gp cd ~/Pictures
 map gc cd ~/.config
-map gr cd ~/repos
-map gv cd ~/videos
+map gr cd ~/.gitfiles/
+map gv cd ~/Videos
 map gs cd ~/.local/bin
 map gt cd ~/.local/share/Trash/files

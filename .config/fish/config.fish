@@ -30,7 +30,9 @@ abbr fishconf "nvim ~/.config/fish/config.fish"
 abbr qconf "nvim ~/.config/qtile/config.py"
 abbr roficonf "nvim ~/.config/rofi/config.rasi"
 abbr v "nvim"
-alias passwords "nvim ~/Documents/passwords.txt"
+abbr passwords "nvim ~/Documents/passwords.txt"
+abbr starconf "nvim ~/.config/starship.toml"
+abbr lfrc "nvim ~/.config/lf/lfrc"
 
 # cd
 alias .. "cd .."
@@ -79,9 +81,9 @@ alias cnew "cargo new"
 alias ccheck "cargo check"
 
 # lf
-alias eblf "lf ~/Music/Eurobeat"
-alias lplf "lf ~/Music/Luzne_Piosenki"
-alias msclf "lf ~/Music"
+alias lfeb "lf ~/Music/Eurobeat"
+alias lflp "lf ~/Music/Luzne_Piosenki"
+alias lfmsc "lf ~/Music"
 
 # yt-dlp
 alias ytm "yt-dlp -f "bestaudio/best" --embed-thumbnail --add-metadata --extract-audio --audio-format best"

@@ -14,7 +14,7 @@ error_symbol              = '[✖✖✖](red)'
 success_symbol            = '[❯](red)[❯](yellow)[❯](green)' 
 vimcmd_replace_one_symbol = '[❮❮❮](bold purple)' 	
 vimcmd_replace_symbol     = '[❮❮❮](bold purple)' 	
-vimcmd_symbol             = '[󱨇󱨇󱨇](blue)'
+vimcmd_symbol             = '[](purple)'
 vimcmd_visual_symbol      = '[](yellow)' 
 
 [package]
