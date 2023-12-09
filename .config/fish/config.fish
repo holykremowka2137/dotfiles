@@ -44,12 +44,14 @@ alias .4 "cd ../../../.."
 alias ..... "cd ../../../.."
 
 # git
+alias gadd "git add"
 alias gaddA "git add -A"
 alias gcommit "git commit -m"
 alias gpush "git push"
 alias gpull "git pull"
 alias gmerge "git merge"
 alias gstatus "git status"
+alias glog "git log"
 
 # mirrors
 alias mirror "sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
