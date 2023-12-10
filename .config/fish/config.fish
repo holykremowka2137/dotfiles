@@ -24,15 +24,16 @@ end
 
 ### ABBR & ALIASES ###
 # nvim
-abbr alaconf "nvim ~/.config/alacritty/alacritty.yml"
-abbr autostart "nvim ~/.config/qtile/autostart.sh"
-abbr fishconf "nvim ~/.config/fish/config.fish"
-abbr qconf "nvim ~/.config/qtile/config.py"
-abbr roficonf "nvim ~/.config/rofi/config.rasi"
-abbr v "nvim"
 abbr passwords "nvim ~/Documents/passwords.txt"
-abbr starconf "nvim ~/.config/starship.toml"
-abbr lfrc "nvim ~/.config/lf/lfrc"
+abbr v "nvim"
+abbr valac "nvim ~/.config/alacritty/alacritty.yml"
+abbr vautostart "nvim ~/.config/qtile/autostart.sh"
+abbr vcol "nvim ~/.config/qtile/colors.py"
+abbr qconf "nvim ~/.config/qtile/config.py"
+abbr vfish "nvim ~/.config/fish/config.fish"
+abbr vlf "nvim ~/.config/lf/lfrc"
+abbr vrofi "nvim ~/.config/rofi/config.rasi"
+abbr vstar "nvim ~/.config/starship.toml"
 
 # cd
 alias .. "cd .."
@@ -46,30 +47,31 @@ alias ..... "cd ../../../.."
 # git
 alias gadd "git add"
 alias gaddA "git add -A"
+alias gclone "git clone"
 alias gcommit "git commit -m"
-alias gpush "git push"
-alias gpull "git pull"
-alias gmerge "git merge"
-alias gstatus "git status"
 alias glog "git log"
+alias gmerge "git merge"
+alias gpull "git pull"
+alias gpush "git push"
+alias gstatus "git status"
 
 # mirrors
 alias mirror "sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrora "sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 alias mirrord "sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors "sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora "sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # mpv
 alias eb "mpv --no-video --term-osd-bar --shuffle ~/Music/Eurobeat"
 alias lp "mpv --no-video --term-osd-bar --shuffle ~/Music/Luzne_Piosenki"
-alias music "mpv --no-video --term-osd-bar --shuffle"
 alias msc "mpv --no-video --term-osd-bar --shuffle ~/Music"
+alias music "mpv --no-video --term-osd-bar --shuffle"
 
 # paru
 abbr p "paru"
+abbr pos "paru && sudo flatpak update"
 abbr rns "paru -Rns"
 abbr s "paru -S"
-abbr pos "paru && sudo flatpak update"
 
 alias cpu "sudo auto-cpufreq --stats"
 alias grep "grep --color=auto"
@@ -77,10 +79,10 @@ alias ls "ls --color=auto"
 alias rmv "rm -Rf"
 
 # cargo
-alias crun "cargo run"
 alias cbuild "cargo build"
-alias cnew "cargo new"
 alias ccheck "cargo check"
+alias cnew "cargo new"
+alias crun "cargo run"
 
 # lf
 alias lfeb "lf ~/Music/Eurobeat"

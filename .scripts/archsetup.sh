@@ -76,7 +76,7 @@ dotfiles() {
     read -p "Do you want to download your dotfiles from GitHub? [y/n]: " dtfls
     if [ "$dtfls" == "y" ]; then
         sudo pacman -S stow
-        git clone https://github.com/holykremowka2137/dotfiles.git ~/.gitfiles/dotfiles/ --depth 1
+        git clone git@github.com:holykremowka2137/dotfiles.git ~/.gitfiles/dotfiles/
         cd ~/.gitfiles/dotfiles/.config/
         stow -v --target=${HOME}/.config/ .
         mkdir ~/.scripts/

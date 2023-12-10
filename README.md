@@ -4,7 +4,7 @@ Nothing much, just a bunch of my config files and scripts. In the future i will 
 # Installation
 Just paste this link in your shell (ofc change where u want this directory, I just copied this from my archsetup.sh script).
 ```shell
-git clone https://github.com/holykremowka2137/dotfiles.git ~/.gitfiles/dotfiles/ --depth 1
+git clone https://github.com/holykremowka2137/dotfiles.git ~/.gitfiles/dotfiles/ 
 ```
 
 U can also use `stow` to quickly paste them where u want. It's really useful and overall, it saves a lot of hassle.
