@@ -77,7 +77,7 @@ colors = colors.Solarized_dark
 
 layouts = [
     layout.Columns(
-        border_focus = colors[7], 
+        border_focus = colors[9], 
         border_normal = colors[0], 
         border_on_single = True, 
         border_width = 1, 
@@ -88,7 +88,7 @@ layouts = [
     layout.Max(),
     layout.Floating(
         border_width = 1,
-        border_focus = colors[4],
+        border_focus = colors[5],
         border_normal = colors[0],
     )
 ]
@@ -110,20 +110,20 @@ screens = [
                 widget.GroupBox(
                     disable_drag = True,
                     # hide_unused = True,
-                    active = colors[7],
+                    active = colors[9],
                     highlight_method = 'block',
                     fontsize = 20,
                     font = 'JetBrains Mono NF'
                 ),
                 widget.Spacer(length = 10),
                 widget.TaskList(
-                    icon_size = 0,
+                    icon_size = 25,
                     font = "JetBrains Mono NF",
                     fontsize = 17,
-                    foreground = colors[9],
-                    background = colors[1],
+                    foreground = colors[11],
+                    background = colors[0],
                     borderwidth = 0,
-                    border = colors[0],
+                    border = colors[9],
                     highlight_method = "block",
                     title_width_method = "uniform",
                     urgent_alert_method = "border",
