@@ -11,7 +11,7 @@ packages () {
     echo "Fonts installed!"
     echo  "Installing apps..."
     echo
-    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk lightdm-gtk-greeter-settings psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem
+    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk ly psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem
     echo
     echo "Apps installed!"
     echo "Installing command-line apps..."
@@ -140,9 +140,9 @@ install_aur() {
 }
 
 enabling () {
-    echo "Enabling LightDM..."
-    sudo systemctl enable lightdm
-    echo "LightDM enabled!"
+    echo "Enabling Ly..."
+    sudo systemctl enable ly
+    echo "Ly enabled!"
     echo "Enabling Bluetooh..."
     sudo systemctl enable bluetooth
     echo "Bluetooch enabled!"
