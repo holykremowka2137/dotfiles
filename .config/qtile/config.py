@@ -82,7 +82,7 @@ layouts = [
         border_on_single = True, 
         border_width = 1, 
         fair = True,
-        margin = 5, 
+        margin = 10, 
         wrap_focus_stack = False,
     ),
     layout.Max(),

@@ -8,43 +8,43 @@ set icons true
 
 # Custom Functions
 cmd mkdir ${{
-  printf "Directory Name: "
+  printf Directory Name:  
   read ans
   mkdir $ans
 }}
 
 cmd mkfile ${{
-  printf "File Name: "
+  printf File Name:  
   read ans
   $EDITOR $ans
 }}
 
 cmd setwallpaper ${{
-    setwallpaper "$f"
+    setwallpaper $f 
 }}
 
 # Archive bindings
 cmd unarchive ${{
-  case "$f" in
-      *.zip) unzip "$f" ;;
-      *.tar.gz) tar -xzvf "$f" ;;
-      *.tar.bz2) tar -xjvf "$f" ;;
-      *.tar) tar -xvf "$f" ;;
-      *) echo "Unsupported format" ;;
+  case $f  in
+      *.zip) unzip $f  ;;
+      *.tar.gz) tar -xzvf $f  ;;
+      *.tar.bz2) tar -xjvf $f  ;;
+      *.tar) tar -xvf $f  ;;
+      *) echo Unsupported format  ;;
   esac
 }}
 
 # Trash bindings
 cmd trash ${{
-  files=$(printf "$fx" | tr '\n' ';')
-  while [ "$files" ]; do
+  files=$(printf $fx  | tr '\n' ';')
+  while [ $files  ]; do
     file=${files%%;*}
 
-    trash-put "$(basename "$file")"
-    if [ "$files" = "$file" ]; then
+    trash-put $(basename  $file")"
+    if [ $files  = "$file" ]; then
       files=''
     else
-      files="${files#*;}"
+      files= ${files#*;}"
     fi
   done
 }}
@@ -57,10 +57,10 @@ cmd restore_trash ${{
 map d
 map m
 
-map e $nvim "$f"
+map e $nvim $f 
 
 map au unarchive
-map ae $wine "$f"
+map ae $wine $f 
 
 # Basic Functions
 map . set hidden!
@@ -77,13 +77,14 @@ map bg setwallpaper
 map C clear
 
 # Movement
-map gg cd ~/
-map gD cd ~/Documents
-map gd cd ~/Downloads
-map gm cd ~/Music
-map gp cd ~/Pictures
+map cd cd ~/
+map gd cd ~/Documents/ 
+map gm cd ~/Music/ 
+map glp cd ~/Music/Luzne_Piosenki/ 
+map geb cd ~/Music/Eurobeat/ 
+map gpi cd ~/Pictures/ 
+map gpr cd ~/Projects/ 
+map gv cd ~/Videos/ 
 map gc cd ~/.config
-map gr cd ~/.gitfiles/
-map gv cd ~/Videos
-map gs cd ~/.local/bin
-map gt cd ~/.local/share/Trash/files
+map gg cd ~/.gitfiles/
+map gdo cd ~/.gitfiles/dotfiles/
