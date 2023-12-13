@@ -12,22 +12,19 @@ keys = [
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
-
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
-    
     Key([mod, "control"], "j", lazy.layout.grow_down()),
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     Key([mod, "control"], "h", lazy.layout.grow_left()),
     Key([mod, "control"], "l", lazy.layout.grow_right()),
-    
-    Key([mod, "mod4"], "h", lazy.layout.swap_column_left()),
-    Key([mod, "mod4"], "l", lazy.layout.swap_column_right()),
+    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
+    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "n", lazy.layout.normalize()),
-    
+
     Key([mod], "Return", lazy.spawn("alacritty")),
     Key([mod], "e", lazy.spawn("nemo")),
     Key([mod], "b", lazy.spawn("librewolf")),
@@ -86,11 +83,11 @@ layouts = [
         wrap_focus_stack = False,
     ),
     layout.Max(),
-    layout.Floating(
-        border_width = 1,
-        border_focus = colors[5],
-        border_normal = colors[0],
-    )
+    # layout.Floating(
+    #     border_width = 1,
+    #     border_focus = colors[5],
+    #     border_normal = colors[0],
+    # )
 ]
 
 widget_defaults = dict(
@@ -102,7 +99,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper = '/home/victoria/.config/qtile/wallpapers/wallpaperflare.com_wallpaper2.png',
+        wallpaper = '~/.config/qtile/wallpapers/wallpaperflare.com_wallpaper2.png',
         wallpaper_mode = 'fill',
 
         top = bar.Bar(
@@ -221,7 +218,7 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.run('/home/victoria/.scripts/autostart.sh')
+    subprocess.run('~/.local/bin/autostart')
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
