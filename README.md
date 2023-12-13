@@ -10,10 +10,10 @@ git clone https://github.com/holykremowka2137/dotfiles.git ~/.gitfiles/dotfiles/
 U can also use `stow` to quickly paste them where u want. It's really useful and overall, it saves a lot of hassle.
 ```shell
 cd ~/.gitfiles/dotfiles/.config/
-stow -v --target=${HOME}/.config/ .
-mkdir ~/.scripts/
-cd ~/.gitfiles/dotfiles/.scripts/
-stow -v --target=${HOME}/.scripts/ .
+stow -v --target=$HOME/.config/ .
+mkdir ~/.local/bin
+cd ~/.gitfiles/dotfiles/.local/bin
+stow -v --target=$HOME/.local/bin/ .
 ```
 
 If u want to run Qtile off my config, then remember to make autostart.sh executable.
