@@ -16,9 +16,9 @@ cd ~/.gitfiles/dotfiles/.local/bin
 stow -v --target=$HOME/.local/bin/ .
 ```
 
-If u want to run Qtile off my config, then remember to make autostart.sh executable.
+If u want to run Qtile off my config, then remember to make `autostart` script executable.
 ```shell
-chmod +x ~/.scripts/autostart.sh
+chmod +x ~/.local/bin/autostart
 ```
 
 # Credits
