@@ -2,8 +2,8 @@
 
 set fish_greeting
 
-set -gx VISUAL "/usr/bin/nvim"
-set -gx EDITOR "/usr/bin/nvim"
+set -gx VISUAL "emacsclient -c -a emacs "
+set -gx EDITOR "emacsclient -t -a '' "
 set -gx SUDO_EDITOR "/usr/bin/nvim"
 set -gx TERM "alacritty"
 set -gx TERMINAL "alacritty"
@@ -14,7 +14,7 @@ set -gx XMODIFIERS "@im=fcitx"
 
 set USB32 "/run/media/victoria/0012-D687/"
 set USB16 "/run/media/victoria/3FAC-3165/"
-set -x MANPAGER "nvim +Man!"
+set -x MANPAGER "emacsclient -c -a emacs +Man!"
 
 function fish_user_key_bindings
   fish_vi_key_bindings
@@ -37,13 +37,13 @@ alias .3 "cd ../../.."
 alias .4 "cd ../../../.."
 
 abbr v "nvim"
-abbr valac "nvim ~/.config/alacritty/alacritty.yml"
-abbr vautostart "nvim ~/.config/qtile/autostart.sh"
-abbr vcol "nvim ~/.config/qtile/colors.py"
-abbr qconf "nvim ~/.config/qtile/config.py"
-abbr vfish "nvim ~/.config/fish/config.fish"
-abbr vlf "nvim ~/.config/lf/lfrc"
-abbr vrofi "nvim ~/.config/rofi/config.rasi"
+abbr valac "$VISUAL ~/.config/alacritty/alacritty.yml"
+abbr vautostart "$VISUAL ~/.config/qtile/autostart.sh"
+abbr vcol "$VISUAL ~/.config/qtile/colors.py"
+abbr qconf "$VISUAL ~/.config/qtile/config.py"
+abbr vfish "$VISUAL ~/.config/fish/config.fish"
+abbr vlf "$VISUAL ~/.config/lf/lfrc"
+abbr vrofi "$VISUAL ~/.config/rofi/config.rasi"
 abbr vstar "starship config"
 
 alias gadd "git add"

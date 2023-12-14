@@ -12,8 +12,8 @@ fish_style_pwd_dir_length = 1
 [character]
 error_symbol              = '[✖✖✖](bold red)' 
 success_symbol            = '[❯](bold red)[❯](bold yellow)[❯](bold green)' 
-vimcmd_replace_one_symbol = '[❮❮❮](bold purple)' 	
-vimcmd_replace_symbol     = '[❮❮❮](bold purple)' 	
+vimcmd_replace_one_symbol = '[❮❮❮](bold purple)' 
+vimcmd_replace_symbol     = '[❮❮❮](bold purple)' 
 vimcmd_symbol             = '[](purple)'
 vimcmd_visual_symbol      = '[](bold yellow)' 
 
@@ -162,7 +162,7 @@ format = '\[[$symbol$stack]($style)\]'
 disabled = true
 
 [python]
-format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+disabled = true
 
 [raku]
 format = '\[[$symbol($version-$vm_version)]($style)\]'

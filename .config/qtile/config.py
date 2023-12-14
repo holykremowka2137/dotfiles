@@ -7,27 +7,45 @@ import os, subprocess, colors
 
 mod = "mod1"
 
+@lazy.layout.function
+def increase_gaps(layout, steps = 10):
+    if not hasattr(layout, "margin"):
+        return
+
+    if not isinstance(layout.margin, int):
+        return
+
+    layout.margin = max(layout.margin + step, 0)
+    layout.group.layout_all()
+
 keys = [
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
+
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+
     Key([mod, "control"], "j", lazy.layout.grow_down()),
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     Key([mod, "control"], "h", lazy.layout.grow_left()),
     Key([mod, "control"], "l", lazy.layout.grow_right()),
+
     Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
     Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "n", lazy.layout.normalize()),
 
+    Key([mod], "equal", increase_gaps()),
+    Key([mod], "minus", increase_gaps(step = -10)),
+
     Key([mod], "Return", lazy.spawn("alacritty")),
     Key([mod], "e", lazy.spawn("nemo")),
     Key([mod], "b", lazy.spawn("librewolf")),
+    Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 2")),
@@ -35,6 +53,8 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 2%+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
+    
+    # Key(["Print"], lazy.spawn("screenshot select")),
 
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -45,6 +65,7 @@ keys = [
     Key([mod, "shift"], "q", lazy.spawn("shutdown -h now")),
     Key([mod], "w", lazy.spawn("rofi -show drun")),
     Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
+Key([mod], ),
 ]
 
 groups = []
@@ -218,7 +239,7 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.run('~/.local/bin/autostart')
+    subprocess.run('${HOME}/.config/autostart.sh')
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
