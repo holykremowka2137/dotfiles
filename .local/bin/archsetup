@@ -77,12 +77,12 @@ dotfiles() {
     read -p "Do you want to download your dotfiles from GitHub? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S stow
-        git clone git@github.com:holykremowka2137/dotfiles.git ~/.gitfiles/dotfiles/
-        cd ~/.gitfiles/dotfiles/.config/
+        git clone git@github.com:holykremowka2137/dotfiles.git ~/Repos/dotfiles/
+        cd ~/Repos/dotfiles/.config/
         stow -v --target=${HOME}/.config/ .
-        mkdir ~/.scripts/
-        cd ~/.gitfiles/dotfiles/.scripts/
-        stow -v --target=${HOME}/.scripts/ .
+        mkdir ~/.local/bin/
+        cd ~/Repos/dotfiles/.local/bin/
+        stow -v --target=${HOME}/.local/bin/ .
         echo "Dotfiles are done."
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
