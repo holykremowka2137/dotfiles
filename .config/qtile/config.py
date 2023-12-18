@@ -130,6 +130,7 @@ widget_defaults = dict(
     font = "JetBrains Mono NF Bold",
     fontsize = 15,
     padding = 0,
+    background=catppuccin["black"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -151,7 +152,7 @@ screens = [
                     highlight_color=[catppuccin["pink"], catppuccin["pink"]],
                     inactive=catppuccin["gray"],
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
                 widget.TaskList(
                     icon_size = 25,
                     font = "JetBrains Mono NF",
@@ -175,21 +176,17 @@ screens = [
                 #     },
                 #     name_transform=lambda name: name.upper(),
                 # ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
-                widget.Systray(
-                    background = catppuccin["black"],
-                ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
+                widget.Systray(),
+                widget.Spacer(length = 10),
                 widget.Clock(
                     format = "🕧%I:%M %p",
-                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
                 widget.Volume(
                     fmt = "🔊{}",
-                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
                 widget.Battery(
                     charge_char = "🔌",
                     discharge_char = "🔋",
@@ -197,27 +194,23 @@ screens = [
                     format = "{char}{percent:1.0%}",
                     full_char = "100%",
                     update_interval = 1,
-                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
                 widget.Backlight(
                     fmt = "🔆{}",
                     backlight_name = "intel_backlight",
                     brightness_file = "brightness",
-                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
                 widget.ThermalSensor(
                     tag_sensor = "Core 0",
-                    fmt = "🔥{}",
-                    background = catppuccin["black"],
+                    fmt = "🔥{}"
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
                 widget.Clock(
                     format = "📆%d.%m.%Y",
-                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Spacer(length = 10),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
