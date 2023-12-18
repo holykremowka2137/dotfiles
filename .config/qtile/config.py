@@ -45,7 +45,8 @@ keys = [
     Key([mod], "Return", lazy.spawn("alacritty")),
     Key([mod], "e", lazy.spawn("nemo")),
     Key([mod], "b", lazy.spawn("librewolf")),
-    Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
+    # Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
+    Key([mod], "v", lazy.spawn("alacritty -e nvim")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 2")),
@@ -65,7 +66,6 @@ keys = [
     Key([mod, "shift"], "q", lazy.spawn("shutdown -h now")),
     Key([mod], "w", lazy.spawn("rofi -show drun")),
     Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
-Key([mod], ),
 ]
 
 groups = []
@@ -91,12 +91,27 @@ for i in groups:
         ]
     )
 
-colors = colors.Solarized_dark
+catppuccin = {
+    "flamingo": "#F3CDCD",
+    "mauve": "#DDB6F2",
+    "pink": "#f5c2e7",
+    "maroon": "#e8a2af",
+    "red": "#f28fad",
+    "peach": "#f8bd96",
+    "yellow": "#fae3b0",
+    "green": "#abe9b3",
+    "teal": "#b4e8e0",
+    "blue": "#96cdfb",
+    "sky": "#89dceb",
+    "white": "#d9e0ee",
+    "gray": "#6e6c7e",
+    "black": "#1a1826",
+    }
 
 layouts = [
     layout.Columns(
-        border_focus = colors[9], 
-        border_normal = colors[0], 
+        border_focus = catppuccin["pink"],
+        border_normal = catppuccin["black"], 
         border_on_single = True, 
         border_width = 1, 
         fair = True,
@@ -120,32 +135,35 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper = '~/.config/qtile/wallpapers/wallpaperflare.com_wallpaper2.png',
-        wallpaper_mode = 'fill',
+        wallpaper = "~/.config/qtile/wallpapers/wallpaperflare.com_wallpaper2.png",
+        wallpaper_mode = "fill",
 
         top = bar.Bar(
             [
                 widget.GroupBox(
                     disable_drag = True,
                     # hide_unused = True,
-                    active = colors[9],
-                    highlight_method = 'block',
+                    active = catppuccin["pink"],
+                    highlight_method = "line",
                     fontsize = 20,
-                    font = 'JetBrains Mono NF'
+                    font = "JetBrains Mono NF",
+                    background=catppuccin["black"],
+                    highlight_color=[catppuccin["pink"], catppuccin["pink"]],
+                    inactive=catppuccin["gray"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.TaskList(
                     icon_size = 25,
                     font = "JetBrains Mono NF",
                     fontsize = 17,
-                    foreground = colors[11],
-                    background = colors[0],
+                    foreground = catppuccin["white"],
+                    background = catppuccin["black"],
                     borderwidth = 0,
-                    border = colors[9],
+                    border = catppuccin["pink"],
                     highlight_method = "block",
                     title_width_method = "uniform",
                     urgent_alert_method = "border",
-                    urgent_border = colors[2],
+                    urgent_border = catppuccin["red"],
                     rounded = True,
                     txt_floating = "🗗 ",
                     txt_maximized = "🗖 ",
@@ -157,41 +175,49 @@ screens = [
                 #     },
                 #     name_transform=lambda name: name.upper(),
                 # ),
-                widget.Spacer(length = 10),
-                widget.Systray(),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
+                widget.Systray(
+                    background = catppuccin["black"],
+                ),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.Clock(
                     format = "🕧%I:%M %p",
+                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.Volume(
-                    fmt = '🔊{}',
+                    fmt = "🔊{}",
+                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.Battery(
                     charge_char = "🔌",
                     discharge_char = "🔋",
                     unknown_char = "‼️",
-                    format = '{char}{percent:1.0%}',
+                    format = "{char}{percent:1.0%}",
                     full_char = "100%",
                     update_interval = 1,
+                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.Backlight(
-                    fmt = '🔆{}',
-                    backlight_name = 'intel_backlight',
-                    brightness_file = 'brightness',
+                    fmt = "🔆{}",
+                    backlight_name = "intel_backlight",
+                    brightness_file = "brightness",
+                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.ThermalSensor(
-                    tag_sensor = 'Core 0',
-                    fmt = '🔥{}'
+                    tag_sensor = "Core 0",
+                    fmt = "🔥{}",
+                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
                 widget.Clock(
                     format = "📆%d.%m.%Y",
+                    background = catppuccin["black"],
                 ),
-                widget.Spacer(length = 10),
+                widget.Spacer(length = 10, background=catppuccin["black"],),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
@@ -239,14 +265,14 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.run('${HOME}/.config/autostart.sh')
+    subprocess.run("/home/victoria/.config/qtile/autostart.sh")
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# XXX: Gasp! We"re lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
+# this string if your java app doesn"t work correctly. We may as well just lie
+# and say that we"re a working one by default.
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
+# java that happens to be on java"s whitelist.
 wmname = "qtile"

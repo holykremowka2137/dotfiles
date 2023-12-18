@@ -2,13 +2,14 @@ import:
  # - ~/.config/alacritty/themes/cyberneon.yml
  # - ~/.config/alacritty/themes/decayce.yml
  # - ~/.config/alacritty/themes/ayu-dark.yml
- - ~/.config/alacritty/themes/solarized-dark.yml
+ # - ~/.config/alacritty/themes/solarized-dark.yml
  # - ~/.config/alacritty/themes/gruvbox_dark.yaml
+ - ~/.config/alacritty/themes/catppuccin-mocha.yml
 
 window:
-  # padding:
-  #   x: 5
-  #   y: 5
+  padding:
+    x: 5
+    y: 5
   class:
     instance: Alacritty
     general: Alacritty

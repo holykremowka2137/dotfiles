@@ -1,0 +1,31 @@
+import = [ "~/.config/alacritty/themes/dracula.toml",]
+
+[window]
+padding = { x = 5, y = 5 }
+decorations = "Transparent"
+opacity = 0.9
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+
+[font]
+normal =        { family = "JetBrains Mono NF", style = "Regular" }
+bold =          { style = "Bold" }
+italic =        { style = "Italic" }
+bold_italic =   { style = "Bold Italic" }
+size = 8
+
+[selection]
+save_to_clipboard = true
+
+[shell]
+program = "/bin/fish"
+
+bindings = [
+{ key = C, mods = Control,         action = Copy          },
+{ key = C, mods = Control|Shift,   chars = "\x03"         },
+{ key = V, mods = Control,         action = Paste         },
+{ key = V, mods = Control|Shift,   chars = "\x16"         },
+{ key = F, mods = Control,         action = SearchForward },]

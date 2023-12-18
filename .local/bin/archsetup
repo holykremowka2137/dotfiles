@@ -3,7 +3,6 @@
 sudo pacman -Syyu
 
 which_cpu() {
-    echo
     read -p "What CPU do you have? AMD or intel? [(A)md/(I)ntel]: " choice
     if [ "$choice" == "amd" ] ||  [ "$choice" == "a" ]; then
         sudo pacman -S amd-ucode
@@ -12,7 +11,7 @@ which_cpu() {
         sudo pacman -S intel-ucode
         echo "Intel drivers installed!"
     else
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         which_cpu
     fi
 }
@@ -27,7 +26,7 @@ xvswl() {
         sudo pacman -S wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool
         echo "Wayland installed! This is the future!"
     else
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         xvswl
     fi
 }
@@ -38,19 +37,19 @@ packages () {
     echo
     sudo pacman -S ttf-jetbrains-mono-nerd noto-fonts-extra noto-fonts-emoji noto-fonts-cjk 
     echo
-    echo "Fonts installed!"
+    echo "Done!"
 
     echo  "Installing apps..."
     echo
-    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk ly psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem
+    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem
     echo
-    echo "Apps installed!"
+    echo "Done!"
 
     echo "Installing command-line apps..."
     echo
     sudo pacman -S neovim yt-dlp mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship alsa-utils reflector plocate unzip zip dunst cmatrix cython python-jupymake
     echo
-    echo "Command-line apps installed!"
+    echo "Done!"
 
     echo "Finished!"
 }
@@ -68,7 +67,7 @@ install_nvchad() {
         echo "Skipping."
         echo "All official packages installed."
     else 
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         install_nvchad
     fi
 }
@@ -88,7 +87,7 @@ dotfiles() {
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
     else 
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         dotfiles
     fi
 }
@@ -106,25 +105,25 @@ install_paru() {
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
     else
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         install_paru
     fi
 }
 
 install_aur() {
-  echo
-  echo "Do you want to install software from AUR? [y/n]: "
-  read -p "(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin) " choice
-  if [ "$choice" == "y" ]; then
-    paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin      
-    sudo auto-cpufreq --install
-    echo "AUR packages built."
-  elif [ "$choice" == "n" ]; then
-    echo "skipping"
-  else 
-    echo "Are you sure?"
-    install_aur
-  fi
+    echo
+    echo "Do you want to install software from AUR? [y/n]: "
+    read -p "(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin) " choice
+    if [ "$choice" == "y" ]; then
+        paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin
+        sudo auto-cpufreq --install
+        echo "AUR packages built."
+    elif [ "$choice" == "n" ]; then
+      echo "skipping"
+    else
+      echo "Are you sure about that?"
+      install_aur
+    fi
 }
 
 install_flatpak() {
@@ -136,30 +135,49 @@ install_flatpak() {
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
     else 
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         install_flatpak
     fi
 }
 
-enabling () {
+lightdmvsly () {
     echo
-    echo "Enabling Ly..."
-    sudo systemctl enable ly
-    echo "Ly enabled!"
-    
+    echo "Do you want to install and enable Ly-DM? [y/n]: "
+    read -p "That also means uninstalling LightDM. Do you want to proceed? " choice
+    if [ "$choice" == "y" ]; then
+        echo "Installing Ly and uninstalling LightDM..."
+        sudo pacman -S ly && sudo pacman -Rns lightdm
+        echo "Done!"
+        echo "Enabling Ly..."
+        sudo systemctl enable ly
+        echo "Done!"
+    elif [ "$choice" == "n" ]; then
+        echo "Installing LightDM..."
+        sudo pacman -S lightdm
+        echo "Done!"
+        echo "Enabling LightDM..."
+        sudo systemctl enable lightdm
+        echo "Done!"
+    else
+        echo "Are you sure about that?"
+        lightdmvsly
+    fi
+}
+
+enabling() {
     echo "Enabling Bluetooth..."
     sudo systemctl enable bluetooth
-    echo "Bluetooth enabled!"
+    echo "Done!"
 
-    echo "Enabling `locate` & adding user to groups..."
+    echo "Enabling 'locate' & adding user to groups..."
     sudo updatedb
     sudo usermod -aG locate,wheel,video,tty,dbus $USER
-    echo "`locate` & adding user to groups finished!"
+    echo "Done!"
 
     echo "Remapping caps lock..."
     setxkbmap -option "caps:escape_shifted_capslock"
     sudo localectl set-x11-keymap us '' '' caps:escape_shifted_capslock
-    echo "Finished remapping caps lock!"
+    echo "Done!"
 
     # echo "Exporting variables..."
     # export SUDO_EDITOR
@@ -168,8 +186,8 @@ enabling () {
     # echo "Finished exporting variables!"
 
     echo "Enabling autostart.sh..."
-    chmod +x ~/.scripts/autostart.sh
-    echo "Finished enabling autostart.sh!"
+    chmod +x ~/.config/qtile/autostart.sh
+    echo "Done!"
 }
 
 rebooting() {
@@ -178,10 +196,10 @@ rebooting() {
     if [ "$choice" == "y" ]; then
         reboot
     elif [ "$choice" == "n" ]; then
-        echo "Finished!"
+        echo "Finished script! Well done!"
         echo
     else 
-        echo "Are you sure?"
+        echo "Are you sure about that?"
         rebooting
     fi
 }
@@ -194,5 +212,6 @@ dotfiles
 install_paru
 install_aur
 install_flatpak
+lightdmvsly
 enabling
 rebooting
