@@ -22,7 +22,7 @@ end
 
 alias gc "cd ~/.config/"
 alias gd "cd ~/Documents/"
-alias gdo "cd ~/.gitfiles/dotfiles/"
+alias gdo "cd ~/Repos/dotfiles/"
 alias geb "cd ~/Music/Eurobeat/"
 alias gr "cd ~/Repos/"
 alias glb "cd ~/.local/bin/"

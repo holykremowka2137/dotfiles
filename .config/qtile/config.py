@@ -131,6 +131,7 @@ widget_defaults = dict(
     fontsize = 15,
     padding = 0,
     background=catppuccin["black"],
+    foreground = catppuccin["white"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -145,19 +146,19 @@ screens = [
                     disable_drag = True,
                     # hide_unused = True,
                     active = catppuccin["pink"],
-                    highlight_method = "line",
+                    highlight_method = "block",
                     fontsize = 20,
                     font = "JetBrains Mono NF",
-                    background=catppuccin["black"],
-                    highlight_color=[catppuccin["pink"], catppuccin["pink"]],
-                    inactive=catppuccin["gray"],
+                    # highlight_color = [catppuccin["pink"], catppuccin["pink"]],
+                    inactive = catppuccin["black"],
+                    this_current_screen_border = catppuccin["pink"],
+                    this_screen_border = catppuccin["pink"],
                 ),
                 widget.Spacer(length = 10),
                 widget.TaskList(
                     icon_size = 25,
                     font = "JetBrains Mono NF",
                     fontsize = 17,
-                    foreground = catppuccin["white"],
                     background = catppuccin["black"],
                     borderwidth = 0,
                     border = catppuccin["pink"],
