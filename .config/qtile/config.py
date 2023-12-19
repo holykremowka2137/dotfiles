@@ -5,7 +5,9 @@ from libqtile.lazy import lazy
 # from qtile_extras.widget import BorderDecoration
 import os, subprocess, colors   
 
-mod = "mod1"
+alt = "mod1"
+shift = "shift"
+control = "control"
 
 @lazy.layout.function
 def increase_gaps(layout, steps = 10):
@@ -19,34 +21,34 @@ def increase_gaps(layout, steps = 10):
     layout.group.layout_all()
 
 keys = [
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "h", lazy.layout.left()),
-    Key([mod], "l", lazy.layout.right()),
+    Key([alt], "j", lazy.layout.down()),
+    Key([alt], "k", lazy.layout.up()),
+    Key([alt], "h", lazy.layout.left()),
+    Key([alt], "l", lazy.layout.right()),
 
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key([alt, shift], "j", lazy.layout.shuffle_down()),
+    Key([alt, shift], "k", lazy.layout.shuffle_up()),
+    Key([alt, shift], "h", lazy.layout.shuffle_left()),
+    Key([alt, shift], "l", lazy.layout.shuffle_right()),
 
-    Key([mod, "control"], "j", lazy.layout.grow_down()),
-    Key([mod, "control"], "k", lazy.layout.grow_up()),
-    Key([mod, "control"], "h", lazy.layout.grow_left()),
-    Key([mod, "control"], "l", lazy.layout.grow_right()),
+    Key([alt, control], "j", lazy.layout.grow_down()),
+    Key([alt, control], "k", lazy.layout.grow_up()),
+    Key([alt, control], "h", lazy.layout.grow_left()),
+    Key([alt, control], "l", lazy.layout.grow_right()),
 
-    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
-    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "n", lazy.layout.normalize()),
+    Key([alt, shift, control], "h", lazy.layout.swap_column_left()),
+    Key([alt, shift, control], "l", lazy.layout.swap_column_right()),
+    Key([alt, shift], "Return", lazy.layout.toggle_split()),
+    Key([alt], "n", lazy.layout.normalize()),
 
-    Key([mod], "equal", increase_gaps()),
-    Key([mod], "minus", increase_gaps(step = -10)),
+    Key([alt], "equal", increase_gaps()),
+    Key([alt], "minus", increase_gaps(step = -10)),
 
-    Key([mod], "Return", lazy.spawn("alacritty")),
-    Key([mod], "e", lazy.spawn("nemo")),
-    Key([mod], "b", lazy.spawn("librewolf")),
-    # Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
-    Key([mod], "v", lazy.spawn("alacritty -e nvim")),
+    Key([alt], "Return", lazy.spawn("alacritty")),
+    Key([alt], "e", lazy.spawn("nemo")),
+    Key([alt], "b", lazy.spawn("librewolf")),
+    # Key([alt], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
+    Key([alt], "v", lazy.spawn("alacritty -e nvim")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 2")),
@@ -55,17 +57,18 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     
-    # Key(["Print"], lazy.spawn("screenshot select")),
+    Key([], "Print", lazy.spawn("scrot /home/victoria/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png --select --line mode=edge")),
+    Key([alt], "Print", lazy.spawn("scrot /home/victoria/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png --border")),
 
-    Key([mod], "q", lazy.window.kill()),
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
-    Key([mod], "t", lazy.window.toggle_floating()),
-    Key([mod], "Tab", lazy.next_layout()),
+    Key([alt], "q", lazy.window.kill()),
+    Key([alt], "f", lazy.window.toggle_fullscreen()),
+    Key([alt], "t", lazy.window.toggle_floating()),
+    Key([alt], "Tab", lazy.next_layout()),
 
-    Key([mod, "control"], "r", lazy.reload_config()),
-    Key([mod, "shift"], "q", lazy.spawn("shutdown -h now")),
-    Key([mod], "w", lazy.spawn("rofi -show drun")),
-    Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
+    Key([alt, control], "r", lazy.reload_config()),
+    Key([alt, shift], "q", lazy.spawn("shutdown -h now")),
+    Key([alt], "w", lazy.spawn("rofi -show drun")),
+    Key([alt, shift], "w", lazy.spawn("rofi -show emoji")),
 ]
 
 groups = []
@@ -85,9 +88,9 @@ for i in range(len(group_names)):
 for i in groups:
     keys.extend(
         [
-            Key([mod], i.name, lazy.group[i.name].toscreen()),
-            Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group = True)),
-            Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
+            Key([alt], i.name, lazy.group[i.name].toscreen()),
+            Key([alt, shift], i.name, lazy.window.togroup(i.name, switch_group = True)),
+            Key([alt, control], i.name, lazy.window.togroup(i.name)),
         ]
     )
 
@@ -146,26 +149,27 @@ screens = [
                     disable_drag = True,
                     # hide_unused = True,
                     active = catppuccin["pink"],
-                    highlight_method = "block",
+                    highlight_method = "line",
                     fontsize = 20,
                     font = "JetBrains Mono NF",
-                    # highlight_color = [catppuccin["pink"], catppuccin["pink"]],
-                    inactive = catppuccin["black"],
+                    # highlight_color = [catppuccin["black"], catppuccin["pink"]],
+                    inactive = catppuccin["gray"],
                     this_current_screen_border = catppuccin["pink"],
-                    this_screen_border = catppuccin["pink"],
+                    this_screen_border = catppuccin["green"],
                 ),
                 widget.Spacer(length = 10),
                 widget.TaskList(
-                    icon_size = 25,
+                    icon_size = 30,
                     font = "JetBrains Mono NF",
                     fontsize = 17,
                     background = catppuccin["black"],
                     borderwidth = 0,
                     border = catppuccin["pink"],
-                    highlight_method = "block",
+                    highlight_method = "border",
                     title_width_method = "uniform",
                     urgent_alert_method = "border",
                     urgent_border = catppuccin["red"],
+                    # foreground = catppuccin["sky"],
                     rounded = True,
                     txt_floating = "🗗 ",
                     txt_maximized = "🗖 ",
@@ -226,9 +230,9 @@ screens = [
 
 ### DRAG FLOATING LAYOUTS. ###
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start = lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start = lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Drag([alt], "Button1", lazy.window.set_position_floating(), start = lazy.window.get_position()),
+    Drag([alt], "Button3", lazy.window.set_size_floating(), start = lazy.window.get_size()),
+    Click([alt], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
