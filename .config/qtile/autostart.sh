@@ -1,6 +1,6 @@
 #!/bin/bash
 
 redshift-gtk &
-emacs --daemon &
+# emacs --daemon &
 # gammastep &
 # fcitx -d &

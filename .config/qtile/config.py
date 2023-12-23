@@ -9,16 +9,16 @@ alt = "mod1"
 shift = "shift"
 control = "control"
 
-@lazy.layout.function
-def increase_gaps(layout, steps = 10):
-    if not hasattr(layout, "margin"):
-        return
-
-    if not isinstance(layout.margin, int):
-        return
-
-    layout.margin = max(layout.margin + step, 0)
-    layout.group.layout_all()
+# @lazy.layout.function
+# def increase_gaps(layout, steps = 10):
+#     if not hasattr(layout, "margin"):
+#         return
+#
+#     if not isinstance(layout.margin, int):
+#         return
+#
+#     layout.margin = max(layout.margin + step, 0)
+#     layout.group.layout_all()
 
 keys = [
     Key([alt], "j", lazy.layout.down()),
@@ -41,14 +41,14 @@ keys = [
     Key([alt, shift], "Return", lazy.layout.toggle_split()),
     Key([alt], "n", lazy.layout.normalize()),
 
-    Key([alt], "equal", increase_gaps()),
-    Key([alt], "minus", increase_gaps(step = -10)),
+    # Key([alt], "equal", increase_gaps()),
+    # Key([alt], "minus", increase_gaps(step = -10)),
 
     Key([alt], "Return", lazy.spawn("alacritty")),
     Key([alt], "e", lazy.spawn("nemo")),
     Key([alt], "b", lazy.spawn("librewolf")),
     # Key([alt], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
-    Key([alt], "v", lazy.spawn("alacritty -e nvim")),
+    Key([alt], "v", lazy.spawn("emacsclient -c -a emacs")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 2")),
@@ -147,12 +147,12 @@ screens = [
             [
                 widget.GroupBox(
                     disable_drag = True,
-                    # hide_unused = True,
+                    hide_unused = False,
                     active = catppuccin["pink"],
                     highlight_method = "line",
-                    fontsize = 20,
+                    fontsize = 23,
                     font = "JetBrains Mono NF",
-                    # highlight_color = [catppuccin["black"], catppuccin["pink"]],
+                    highlight_color = [catppuccin["black"], catppuccin["black"]],
                     inactive = catppuccin["gray"],
                     this_current_screen_border = catppuccin["pink"],
                     this_screen_border = catppuccin["green"],
@@ -163,7 +163,7 @@ screens = [
                     border = catppuccin["pink"],
                     borderwidth = 0,
                     font = "JetBrains Mono NF",
-                    fontsize = 17,
+                    fontsize = 18,
                     # foreground = catppuccin["sky"],
                     highlight_method = "border",
                     icon_size = 27,
@@ -218,7 +218,7 @@ screens = [
                 ),
                 widget.Spacer(length = 10),
             ],
-            24,
+            30,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),

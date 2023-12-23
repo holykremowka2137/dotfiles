@@ -17,19 +17,48 @@ set USB16 "/run/media/victoria/3FAC-3165/"
 set -x MANPAGER "nvim +Man!"
 
 function fish_user_key_bindings
-  fish_vi_key_bindings
+    fish_vi_key_bindings
 end
 
+set fish_color_normal cdd6f4
+set fish_color_command 89b4fa
+set fish_color_param f2cdcd
+set fish_color_keyword f38ba8
+set fish_color_quote a6e3a1
+set fish_color_redirection f5c2e7
+set fish_color_end fab387
+set fish_color_comment 7f849c
+set fish_color_error f38ba8
+set fish_color_gray 6c7086
+set fish_color_selection --background=313244
+set fish_color_search_match --background=313244
+set fish_color_option a6e3a1
+set fish_color_operator f5c2e7
+set fish_color_escape eba0ac
+set fish_color_autosuggestion 6c7086
+set fish_color_cancel f38ba8
+set fish_color_cwd f9e2af
+set fish_color_user 94e2d5
+set fish_color_host 89b4fa
+set fish_color_host_remote a6e3a1
+set fish_color_status f38ba8
+set fish_pager_color_progress 6c7086
+set fish_pager_color_prefix f5c2e7
+set fish_pager_color_completion cdd6f4
+set fish_pager_color_description 6c7086
+
 alias gc "cd ~/.config/"
+alias gcn "cd ~/.config/nvim/"
 alias gd "cd ~/Documents/"
-alias gdo "cd ~/Repos/dotfiles/"
-alias geb "cd ~/Music/Eurobeat/"
+alias grd "cd ~/Repos/dotfiles/"
+alias gme "cd ~/Music/Eurobeat/"
 alias gr "cd ~/Repos/"
 alias glb "cd ~/.local/bin/"
-alias glp "cd ~/Music/Luzne_Piosenki/"
+alias gml "cd ~/Music/Luzne_Piosenki/"
 alias gm "cd ~/Music/"
-alias gpi "cd ~/Pictures/"
+alias gp "cd ~/Pictures/"
 alias gpr "cd ~/Projects/"
+alias gprr "cd ~/Projects/Rust/"
 alias gv "cd ~/Videos/"
 alias .. "cd .."
 alias ... "cd ../.."
@@ -52,6 +81,7 @@ alias gadd "git add"
 alias gadda "git add -A"
 alias gclone "git clone"
 alias gcommit "git commit -m"
+alias gdiff "git diff"
 alias glog "git log"
 alias gmerge "git merge"
 alias gpull "git pull"
@@ -104,5 +134,7 @@ alias ytv "yt-dlp -f "bestvideo[ext=mp3]+bestaudio[ext=m4a]/best[ext=mp4]/best""
 
 abbr systemctl "sudo systemctl"
 abbr efish "exec fish"
+abbr updatedb "sudo updatedb"
+alias g. "/|/ grep"
 
 starship init fish | source

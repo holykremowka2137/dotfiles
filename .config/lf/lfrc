@@ -40,11 +40,11 @@ cmd trash ${{
   while [ $files  ]; do
     file=${files%%;*}
 
-    trash-put $(basename  $file")"
-    if [ $files  = "$file" ]; then
+    trash-put $(basename  $file )"
+    if [ $files  =  $file" ]; then
       files=''
     else
-      files= ${files#*;}"
+      files= ${files#*;} 
     fi
   done
 }}
@@ -78,13 +78,11 @@ map C clear
 
 # Movement
 map cd cd ~/
+map gc cd ~/.config/ 
 map gd cd ~/Documents/ 
+map glb cd ~/.local/bin/ 
 map gm cd ~/Music/ 
-map glp cd ~/Music/Luzne_Piosenki/ 
-map geb cd ~/Music/Eurobeat/ 
-map gpi cd ~/Pictures/ 
-map gpr cd ~/Projects/ 
+map gp cd ~/Pictures/ 
+map go cd ~/Projects/ 
+map gr cd ~/Repos/ 
 map gv cd ~/Videos/ 
-map gc cd ~/.config
-map gg cd ~/.gitfiles/
-map gdo cd ~/.gitfiles/dotfiles/

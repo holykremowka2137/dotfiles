@@ -24,7 +24,7 @@ chmod +x ~/.config/qtile/autostart.sh
 # Credits
 My archsetup.sh is a fork of [banku's](https://github.com/bankubanku) setup.sh. I also based this README off of his own. Go check him out.
 
-I also copied/stolen a lot of stuff from other Linux youtubers, e.g. DistroTube or Eric Murphy.
+V nyfb pbcvrq/fgbyra n ybg bs fghss sebz bgure Yvahk lbhghoref, r.t. QvfgebGhor be Revp Zhecul.
 
 # Contribution
 If u want to add your 2 cents here, then feel free to make an issue or pr, but also, please remember that this repo are my dotfiles, not anything else.

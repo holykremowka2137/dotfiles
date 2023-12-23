@@ -11,6 +11,7 @@ which_cpu() {
         sudo pacman -S intel-ucode
         echo "Intel drivers installed!"
     else
+        echo
         echo "Are you sure about that?"
         which_cpu
     fi
@@ -26,6 +27,7 @@ xvswl() {
         sudo pacman -S wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool
         echo "Wayland installed! This is the future!"
     else
+        echo
         echo "Are you sure about that?"
         xvswl
     fi
@@ -41,7 +43,7 @@ packages () {
 
     echo  "Installing apps..."
     echo
-    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem
+    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem obs-studio kvantum
     echo
     echo "Done!"
 
@@ -54,21 +56,41 @@ packages () {
     echo "Finished!"
 }
 
-install_nvchad() {
+NvYoru() {
     echo
-    read -p "Do you want to install NvChad? [y/n]: " choice
+    read -p "Do you want to install NvYoru? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed nvim fd ripgrep npm 
-        git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+        git clone git@github.com:holykremowka2137/NvYoru.git ~/.config/nvim && nvim
         ln -s .local/state/nvim/swap/ ~/nvim-swap
-        echo "NvChad installed!"
+        echo "NvYoru installed!"
         echo "All official packages installed."
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
         echo "All official packages installed."
     else 
+        echo
         echo "Are you sure about that?"
-        install_nvchad
+        NvYoru    
+    fi
+}
+
+doomemacs() {
+    echo
+    read -p "Do you want to install Doom Emacs? [y/n] " choice
+    if [ "$choice" == "y" ]; then
+        sudo pacman -S --needed emacs-nativecomp fd ripgrep npm 
+        git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+        ~/.emacs.d/bin/doom install
+        echo "Doom Emacs installed!"
+        echo "All official packages installed."
+    elif [ "$choice" == "n" ]; then
+        echo "Skipping."
+        echo "All official packages installed."
+    else 
+        echo
+        echo "Are you sure about that?"
+        doomemacs 
     fi
 }
 
@@ -87,6 +109,7 @@ dotfiles() {
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
     else 
+        echo
         echo "Are you sure about that?"
         dotfiles
     fi
@@ -105,6 +128,7 @@ install_paru() {
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
     else
+        echo
         echo "Are you sure about that?"
         install_paru
     fi
@@ -113,16 +137,17 @@ install_paru() {
 install_aur() {
     echo
     echo "Do you want to install software from AUR? [y/n]: "
-    read -p "(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin) " choice
+    read -p "(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git) " choice
     if [ "$choice" == "y" ]; then
-        paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin
+        paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git
         sudo auto-cpufreq --install
         echo "AUR packages built."
     elif [ "$choice" == "n" ]; then
       echo "skipping"
     else
-      echo "Are you sure about that?"
-      install_aur
+        echo
+        echo "Are you sure about that?"
+        install_aur
     fi
 }
 
@@ -135,36 +160,47 @@ install_flatpak() {
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
     else 
+        echo
         echo "Are you sure about that?"
         install_flatpak
     fi
 }
 
-lightdmvsly () {
+DM () {
     echo
-    echo "Do you want to install and enable Ly-DM? [y/n]: "
-    read -p "That also means uninstalling LightDM. Do you want to proceed? " choice
-    if [ "$choice" == "y" ]; then
+    echo "Choose the DM you want from the below list: "
+    echo "Ly-DM [1]"
+    echo "SDDM [2]"
+    echo "LightDM [3]"
+    read -p "Your choice: " choice 
+    if [ "$choice" == "1" ]; then
         echo "Installing Ly and uninstalling LightDM..."
         sudo pacman -S ly && sudo pacman -Rns lightdm
         echo "Done!"
         echo "Enabling Ly..."
         sudo systemctl enable ly
         echo "Done!"
-    elif [ "$choice" == "n" ]; then
-        echo "Installing LightDM..."
-        sudo pacman -S lightdm
+    elif [ "$choice" == "2" ]; then
+        echo "Installing SDDM and uninstalling LightDM..."
+        sudo pacman -S sddm && sudo pacman -Rns lightdm
         echo "Done!"
+        echo "Enabling SDDM..."
+        sudo systemctl enable sddm
+        echo "Done!"
+    elif [ "$choice" == "3" ]; then
         echo "Enabling LightDM..."
         sudo systemctl enable lightdm
         echo "Done!"
+
     else
+        echo 
         echo "Are you sure about that?"
-        lightdmvsly
+        DM
     fi
 }
 
 enabling() {
+    echo
     echo "Enabling Bluetooth..."
     sudo systemctl enable bluetooth
     echo "Done!"
@@ -188,6 +224,10 @@ enabling() {
     echo "Enabling autostart.sh..."
     chmod +x ~/.config/qtile/autostart.sh
     echo "Done!"
+
+    echo "Changing colors of Papirus Icon Theme..."
+    papirus-folders -C cat-mocha-pink --theme Papirus-Dark
+    echo "Done!"
 }
 
 rebooting() {
@@ -199,6 +239,7 @@ rebooting() {
         echo "Finished script! Well done!"
         echo
     else 
+        echo 
         echo "Are you sure about that?"
         rebooting
     fi
@@ -207,11 +248,12 @@ rebooting() {
 which_cpu
 xvswl
 packages
-install_nvchad
+NvYoru
+doomemacs
 dotfiles
 install_paru
 install_aur
 install_flatpak
-lightdmvsly
+DM
 enabling
 rebooting
