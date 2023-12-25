@@ -3,7 +3,7 @@
 sudo pacman -Syyu
 
 which_cpu() {
-    read -p "What CPU do you have? AMD or intel? [(A)md/(I)ntel]: " choice
+    read -rp "What CPU do you have? AMD or intel? [(A)md/(I)ntel]: " choice
     if [ "$choice" == "amd" ] ||  [ "$choice" == "a" ]; then
         sudo pacman -S amd-ucode
         echo "AMD drivers installed!"
@@ -19,7 +19,7 @@ which_cpu() {
 
 xvswl() {
     echo 
-    read -p "Do you want X11 or Wayland? [x/w]: " choice
+    read -rp "Do you want X11 or Wayland? [x/w]: " choice
     if [ "$choice" == "x" ]; then
         sudo pacman -S xorg xorg-xinit xclip picom redshift xdotool 
         echo "Xorg installed!"
@@ -58,7 +58,7 @@ packages () {
 
 NvYoru() {
     echo
-    read -p "Do you want to install NvYoru? [y/n]: " choice
+    read -rp "Do you want to install NvYoru? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed nvim fd ripgrep npm 
         git clone git@github.com:holykremowka2137/NvYoru.git ~/.config/nvim && nvim
@@ -77,7 +77,7 @@ NvYoru() {
 
 doomemacs() {
     echo
-    read -p "Do you want to install Doom Emacs? [y/n] " choice
+    read -rp "Do you want to install Doom Emacs? [y/n] " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed emacs-nativecomp fd ripgrep npm 
         git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
@@ -96,15 +96,15 @@ doomemacs() {
 
 dotfiles() {
     echo 
-    read -p "Do you want to download your dotfiles from GitHub? [y/n]: " choice
+    read -rp "Do you want to download your dotfiles from GitHub? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S stow
         git clone git@github.com:holykremowka2137/dotfiles.git ~/Repos/dotfiles/
         cd ~/Repos/dotfiles/.config/
-        stow -v --target=${HOME}/.config/ .
+        stow -v --target="$HOME"/.config/ .
         mkdir ~/.local/bin/
         cd ~/Repos/dotfiles/.local/bin/
-        stow -v --target=${HOME}/.local/bin/ .
+        stow -v --target="$HOME"/.local/bin/ .
         echo "Dotfiles are done."
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
@@ -117,7 +117,7 @@ dotfiles() {
 
 install_paru() {
     echo
-    read -p "Do you want paru on this machine? [y/n]: " choice
+    read -rp "Do you want paru on this machine? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed base-devel git
         git clone https://aur.archlinux.org/paru.git
@@ -137,7 +137,7 @@ install_paru() {
 install_aur() {
     echo
     echo "Do you want to install software from AUR? [y/n]: "
-    read -p "(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git) " choice
+    read -rp "(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git) " choice
     if [ "$choice" == "y" ]; then
         paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git
         sudo auto-cpufreq --install
@@ -153,7 +153,7 @@ install_aur() {
 
 install_flatpak() {
     echo 
-    read -p "Do you want to install Flatpak? [y/n]: " choice
+    read -rp "Do you want to install Flatpak? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S flatpak flatpak-xdg-utils
         echo "Flatpak installed."
@@ -172,7 +172,7 @@ DM () {
     echo "Ly-DM [1]"
     echo "SDDM [2]"
     echo "LightDM [3]"
-    read -p "Your choice: " choice 
+    read -rp "Your choice: " choice 
     if [ "$choice" == "1" ]; then
         echo "Installing Ly and uninstalling LightDM..."
         sudo pacman -S ly && sudo pacman -Rns lightdm
@@ -207,7 +207,7 @@ enabling() {
 
     echo "Enabling 'locate' & adding user to groups..."
     sudo updatedb
-    sudo usermod -aG locate,wheel,video,tty,dbus $USER
+    sudo usermod -aG locate,wheel,video,tty,dbus "$USER"
     echo "Done!"
 
     echo "Remapping caps lock..."
@@ -232,7 +232,7 @@ enabling() {
 
 rebooting() {
     echo
-    read -p "Do you want to reboot? [y/n]: " choice
+    read -rp "Do you want to reboot? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         reboot
     elif [ "$choice" == "n" ]; then
