@@ -18,7 +18,8 @@ scrolling:
   history: 10000
   multiplier: 3
 
-window_opacity: 1
+window:
+  opacity: 0.85
 
 font:
   normal:
