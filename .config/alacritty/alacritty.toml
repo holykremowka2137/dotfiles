@@ -3,7 +3,7 @@ import = [ "~/.config/alacritty/themes/dracula.toml",]
 [window]
 padding = { x = 5, y = 5 }
 decorations = "Transparent"
-opacity = 0.9
+background_opacity = 0.9
 
 [scrolling]
 history = 10000
@@ -23,9 +23,10 @@ save_to_clipboard = true
 [shell]
 program = "/bin/fish"
 
+[keyboard]
 bindings = [
-{ key = C, mods = Control,         action = Copy          },
-{ key = C, mods = Control|Shift,   chars = "\x03"         },
-{ key = V, mods = Control,         action = Paste         },
-{ key = V, mods = Control|Shift,   chars = "\x16"         },
-{ key = F, mods = Control,         action = SearchForward },]
+{ key = "C", mods = "Control",          action = "Copy"          },
+{ key = "C", mods = "Control|Shift",   chars = "\x03"           },
+{ key = "V", mods = "Control",          "action" = "Paste"         },
+{ key = "V", mods = "Control"|Shift,   "chars" = "\x16"           },
+{ key = "F", mods = "Control",          action = "SearchForward" },]

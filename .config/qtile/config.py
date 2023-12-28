@@ -44,11 +44,11 @@ keys = [
     # Key([alt], "equal", increase_gaps()),
     # Key([alt], "minus", increase_gaps(step = -10)),
 
-    Key([alt], "Return", lazy.spawn("alacritty")),
+    Key([alt], "Return", lazy.spawn("kitty")),
     Key([alt], "e", lazy.spawn("nemo")),
     Key([alt], "b", lazy.spawn("librewolf")),
     # Key([alt], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
-    Key([alt], "v", lazy.spawn("alacritty -e nvim")),
+    Key([alt], "v", lazy.spawn("kitty -e nvim")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 2")),
@@ -140,7 +140,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper = "/home/victoria/.config/qtile/wallpapers/albedo-wallpaper3.png ",
+        wallpaper = "/home/victoria/.config/qtile/wallpapers/albedo-wallpaper3.png",
         wallpaper_mode = "fill",
         top = bar.Bar(
             [

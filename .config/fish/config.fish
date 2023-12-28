@@ -51,6 +51,7 @@ alias gc "cd ~/.config/"
 alias gcn "cd ~/.config/nvim/"
 alias gd "cd ~/Documents/"
 alias grd "cd ~/Repos/dotfiles/"
+alias grdc "cd ~/Repos/dotfiles/.config/"
 alias gme "cd ~/Music/Eurobeat/"
 alias gr "cd ~/Repos/"
 alias glb "cd ~/.local/bin/"
@@ -134,7 +135,7 @@ alias ytv "yt-dlp -f "bestvideo[ext=mp3]+bestaudio[ext=m4a]/best[ext=mp4]/best""
 
 abbr systemctl "sudo systemctl"
 abbr efish "exec fish"
-abbr updatedb "sudo updatedb"
+abbr updb "sudo updatedb"
 alias g. "/|/ grep"
 
 starship init fish | source
