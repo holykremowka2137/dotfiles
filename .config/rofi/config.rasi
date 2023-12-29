@@ -1,53 +1,106 @@
 configuration{
-    modi: "drun,emoji";
-    icon-theme: "Papirus-Dark";
+    modi: "run,drun,emoji";
+    icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "alacritty";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-
-    display-drun:     "Apps: ";
-    display-emoji:    "Emoji: ";
+    display-drun: " Apps: ";
+    display-run: " Run: ";
+    display-emoji: " Emoji: ";
 }
 
 @theme "/dev/null" 
 
 * {
-    background-color:      Black;
-    border-color:          White;
-    text-color:           White;
-    font:            "JetBrains Mono 13";
-}
-window {
-    anchor:     north;
-    location:   north;
-    width:      100%;
-    padding:    4px;
-    children:   [ horibox ];
-}
-horibox {
-    orientation: horizontal;
-    children:   [ prompt, entry, listview ];
-}
-listview {
-    layout:     horizontal;
-    spacing:    8px;
-    lines:      100;
-}
-entry {
-    expand:     false;
-    width:      10em;
-}
-element {
-    padding: 0px 2px;
-}
-element selected {
-    background-color: #FF1493;
+    base: #1e1e2e;
+    pink: #f5c2e7;
+    text: #cdd6f4;
+    red: #f38ba8;
+    overlay0: #6c7086;
+
+    width: 600;
+    font: "JetBrains Mono 14";
 }
 
 element-text, element-icon {
-  background-color: inherit;
-  text-color: inherit;
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    height: 400px;
+    border: 2px;
+    border-color: @pink;
+    background-color: @base;
+}
+
+mainbox {
+    background-color: @base;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @base;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+prompt {
+    background-color: @pink;
+    padding: 6px;
+    text-color: @base;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @text;
+    background-color: @base;
+}
+
+listview {
+    border: 0px 0px 0px;
+    padding: 6px 0px 0px;
+    margin: 10px 0px 0px 20px;
+    columns: 2;
+    background-color: @base;
+}
+
+element {
+    padding: 5px;
+    background-color: @base;
+    text-color: @text;
+}
+
+element-icon {
+    size: 25px;
+}
+
+element selected {
+    background-color: @base;
+    text-color: @red;
+}
+
+message {
+    background-color: @base;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+textbox {
+    padding: 6px;
+    margin: 20px 0px 0px 20px;
+    text-color: @pink;
+    background-color: @base;
 }

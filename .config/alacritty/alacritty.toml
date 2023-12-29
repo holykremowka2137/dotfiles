@@ -1,32 +1,70 @@
-import = [ "~/.config/alacritty/themes/dracula.toml",]
+import = ["/home/victoria/.config/alacritty/themes/catppuccin-mocha.toml"]
+live_config_reload = true
 
-[window]
-padding = { x = 5, y = 5 }
-decorations = "Transparent"
-background_opacity = 0.9
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+size = 8
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrains Mono"
+style = "BoldItalic"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "MediumItalic"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Medium"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0003"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0016"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SearchForward"
+key = "F"
+mods = "Control"
 
 [scrolling]
 history = 10000
 multiplier = 3
 
-
-[font]
-normal =        { family = "JetBrains Mono NF", style = "Regular" }
-bold =          { style = "Bold" }
-italic =        { style = "Italic" }
-bold_italic =   { style = "Bold Italic" }
-size = 8
-
 [selection]
-save_to_clipboard = true
+save_to_clipboard = false
 
 [shell]
-program = "/bin/fish"
+program = "fish"
 
-[keyboard]
-bindings = [
-{ key = "C", mods = "Control",          action = "Copy"          },
-{ key = "C", mods = "Control|Shift",   chars = "\x03"           },
-{ key = "V", mods = "Control",          "action" = "Paste"         },
-{ key = "V", mods = "Control"|Shift,   "chars" = "\x16"           },
-{ key = "F", mods = "Control",          action = "SearchForward" },]
+[window]
+opacity = 0.95
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 5
+y = 5

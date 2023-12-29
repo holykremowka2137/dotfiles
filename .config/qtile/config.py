@@ -3,7 +3,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 # from qtile_extras import widget
 # from qtile_extras.widget import BorderDecoration
-import subprocess #, os,  colors   
+import subprocess #, os
 
 alt = "mod1"
 shift = "shift"
@@ -95,46 +95,44 @@ for i in groups:
     )
 
 catppuccin = {
-    "flamingo": "#F3CDCD",
-    "mauve": "#DDB6F2",
+    "base": "#1e1e2e",
+    "blue": "#89b4fa",
+    "flamingo": "#f2cdcd",
+    "green": "#a6e3a1",
+    "lavender": "#b4befe",
+    "maroon": "#eba0ac",
+    "mauve": "#cba6f7",
+    "overlay0": "#6c7086",
+    "peach": "#fab387",
     "pink": "#f5c2e7",
-    "maroon": "#e8a2af",
-    "red": "#f28fad",
-    "peach": "#f8bd96",
-    "yellow": "#fae3b0",
-    "green": "#abe9b3",
-    "teal": "#b4e8e0",
-    "blue": "#96cdfb",
+    "red": "#f38ba8",
+    "rosewater": "#f5e0dc",
+    "sapphire": "#74c7ec",
     "sky": "#89dceb",
-    "white": "#d9e0ee",
-    "gray": "#6e6c7e",
-    "black": "#1a1826",
-    }
+    "teal": "#94e2d5",
+    "text": "#cdd6f4",
+    "yellow": "#f9e2af",
+}
 
 layouts = [
     layout.Columns(
         border_focus = catppuccin["pink"],
-        border_normal = catppuccin["black"], 
+        border_normal = catppuccin["base"], 
         border_on_single = True, 
-        border_width = 1, 
+        border_width = 2, 
         fair = True,
         margin = 10, 
         wrap_focus_stack = False,
     ),
     layout.Max(),
-    # layout.Floating(
-    #     border_width = 1,
-    #     border_focus = colors[5],
-    #     border_normal = colors[0],
-    # )
 ]
 
 widget_defaults = dict(
-    font = "JetBrains Mono NF Bold",
+    font = "JetBrains Mono Bold",
     fontsize = 15,
     padding = 0,
-    background=catppuccin["black"],
-    foreground = catppuccin["white"],
+    background = catppuccin["base"],
+    foreground = catppuccin["text"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -150,18 +148,18 @@ screens = [
                     active = catppuccin["pink"],
                     highlight_method = "line",
                     fontsize = 23,
-                    font = "JetBrains Mono NF",
-                    highlight_color = [catppuccin["black"], catppuccin["black"]],
-                    inactive = catppuccin["gray"],
+                    font = "JetBrains Mono",
+                    highlight_color = [catppuccin["base"], catppuccin["base"]],
+                    inactive = catppuccin["overlay0"],
                     this_current_screen_border = catppuccin["pink"],
                     this_screen_border = catppuccin["green"],
                 ),
                 widget.Spacer(length = 10),
                 widget.TaskList(
-                    background = catppuccin["black"],
+                    background = catppuccin["base"],
                     border = catppuccin["pink"],
                     borderwidth = 0,
-                    font = "JetBrains Mono NF",
+                    font = "JetBrains Mono",
                     fontsize = 18,
                     # foreground = catppuccin["sky"],
                     highlight_method = "border",
@@ -218,8 +216,13 @@ screens = [
                 widget.Spacer(length = 10),
             ],
             30,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            # border_width = [2, 2, 2, 2],
+            # border_color = [
+            #     catppuccin["pink"],
+            #     catppuccin["pink"],
+            #     catppuccin["pink"],
+            #     catppuccin["pink"]
+            # ]
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
@@ -228,10 +231,13 @@ screens = [
     ),
 ]
 
-### DRAG FLOATING LAYOUTS. ###
 mouse = [
-    Drag([alt], "Button1", lazy.window.set_position_floating(), start = lazy.window.get_position()),
-    Drag([alt], "Button3", lazy.window.set_size_floating(), start = lazy.window.get_size()),
+    Drag([alt], "Button1", lazy.window.set_position_floating(),
+         start = lazy.window.get_position()
+    ),
+    Drag([alt], "Button3", lazy.window.set_size_floating(),
+         start = lazy.window.get_size()
+    ),
     Click([alt], "Button1", lazy.window.bring_to_front()),
 ]
 
@@ -242,6 +248,9 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
+    border_focus = catppuccin["pink"],
+    border_normal = catppuccin["base"], 
+    border_width = 2,
     float_rules = [
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
