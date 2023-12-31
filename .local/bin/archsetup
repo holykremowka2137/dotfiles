@@ -37,7 +37,7 @@ packages () {
     echo
     echo "Installing fonts..."
     echo
-    sudo pacman -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts-extra noto-fonts-emoji noto-fonts-cjk 
+    sudo pacman -S ttf-jetbrains-mono ttf-nerd-fonts-symbols-mono ttf-nerd-fonts-symbols-common noto-fonts-extra noto-fonts-emoji noto-fonts-cjk 
     echo
     echo "Done!"
 

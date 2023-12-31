@@ -2,11 +2,11 @@
 
 set fish_greeting
 
-set -gx VISUAL "alacritty -e nvim"
+set -gx VISUAL "kitty -e nvim"
 set -gx EDITOR "nvim"
 set -gx SUDO_EDITOR "/usr/bin/nvim"
-set -gx TERM "alacritty"
-set -gx TERMINAL "alacritty"
+set -gx TERM "kitty"
+set -gx TERMINAL "kitty"
 
 set -gx GTK_IM_MODULE "fcitx"
 set -gx QT_IM_MODULE "fcitx"
