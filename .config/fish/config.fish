@@ -114,7 +114,7 @@ alias ls "eza -al --color=always --group-directories-first"
 alias la "eza -a --color=always --group-directories-first"
 alias ll "eza -l --color=always --group-directories-first"
 alias lt "eza -aT --color=always --group-directories-first"
-alias l. "eza -al --color=always --group-directories-first | grep"
+alias l. "eza -al --color=always --group-directories-first | grep -i"
 
 abbr rf "rm -rf"
 alias cp "cp -i"
@@ -128,7 +128,7 @@ alias lplf "lf ~/Music/Luzne_Piosenki"
 alias msclf "lf ~/Music"
 
 alias cpu "sudo auto-cpufreq --stats"
-alias grep "grep --color=always"
+alias grep "grep -i --color=always"
 
 alias ytm "yt-dlp -f "bestaudio/best" --embed-thumbnail --add-metadata --extract-audio --audio-format best"
 alias ytv "yt-dlp -f "bestvideo[ext=mp3]+bestaudio[ext=m4a]/best[ext=mp4]/best""
@@ -136,6 +136,6 @@ alias ytv "yt-dlp -f "bestvideo[ext=mp3]+bestaudio[ext=m4a]/best[ext=mp4]/best""
 abbr systemctl "sudo systemctl"
 abbr efish "exec fish"
 abbr updb "sudo updatedb"
-alias g. "/|/ grep"
+alias g. "/|/ grep -i"
 
 starship init fish | source

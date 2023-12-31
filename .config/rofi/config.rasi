@@ -21,7 +21,7 @@ configuration{
     red: #f38ba8;
     overlay0: #6c7086;
 
-    width: 600;
+    width: 640;
     font: "JetBrains Mono 14";
 }
 
@@ -31,7 +31,7 @@ element-text, element-icon {
 }
 
 window {
-    height: 400px;
+    height: 440px;
     border: 2px;
     border-color: @pink;
     background-color: @base;
@@ -87,8 +87,8 @@ element-icon {
 }
 
 element selected {
-    background-color: @base;
-    text-color: @red;
+    background-color: @pink;
+    text-color: @base;
 }
 
 message {
