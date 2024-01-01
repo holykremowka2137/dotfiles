@@ -81,6 +81,7 @@ alias gpush "git push"
 alias grestore "git restore"
 alias gstatus "git status"
 alias gusual "gadda && gcommit "usual" && gpush"
+alias gwords "gadda && gcommit "words" && gpush"
 
 abbr v "nvim"
 abbr valac "nvim ~/.config/alacritty/alacritty.toml"
