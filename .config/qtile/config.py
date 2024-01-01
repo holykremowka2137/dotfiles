@@ -1,9 +1,10 @@
-from libqtile import bar, layout, widget, hook #, extension
+from libqtile import bar, layout, widget, hook, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-# from qtile_extras import widget
+from qtile_extras import widget
+from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 # from qtile_extras.widget import BorderDecoration
-import subprocess #, os
+import subprocess, os
 
 alt = "mod1"
 shift = "shift"
@@ -57,8 +58,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     
-    Key([], "Print", lazy.spawn("scrot /home/victoria/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png --select --line mode=edge")),
-    Key([alt], "Print", lazy.spawn("scrot /home/victoria/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png --border")),
+    Key([alt], "Print", lazy.spawn("flameshot full")),
+    Key([], "Print", lazy.spawn("flameshot gui --path /home/victoria/Pictures/Screenshots/")),
 
     Key([alt], "q", lazy.window.kill()),
     Key([alt], "f", lazy.window.toggle_fullscreen()),
@@ -66,7 +67,7 @@ keys = [
     Key([alt], "Tab", lazy.next_layout()),
 
     Key([alt, control], "r", lazy.reload_config()),
-    Key([alt, shift], "q", lazy.spawn("shutdown -h now")),
+    Key([alt, control], "Delete", lazy.spawn("shutdown -h now")),
     Key([alt], "w", lazy.spawn("rofi -show drun")),
     Key([alt, shift], "w", lazy.spawn("rofi -show emoji")),
 ]
@@ -80,7 +81,7 @@ for i in range(len(group_names)):
     groups.append(
         Group(
             name = group_names[i],
-            # layout=group_layouts[i].lower(),
+            # layout = group_layouts[i].lower(),
             label = group_labels[i],
         )
     )
@@ -128,7 +129,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font = "JetBrains Mono Bold",
+    font = "JetBrains Mono",
     fontsize = 15,
     padding = 0,
     background = catppuccin["base"],
@@ -142,24 +143,25 @@ screens = [
         wallpaper_mode = "fill",
         top = bar.Bar(
             [
-                widget.GroupBox(
+                widget.GroupBox2(
                     disable_drag = True,
                     hide_unused = False,
-                    active = catppuccin["pink"],
-                    highlight_method = "line",
                     fontsize = 23,
+                    padding_x = 4,
                     font = "JetBrains Mono",
-                    highlight_color = [catppuccin["base"], catppuccin["base"]],
-                    inactive = catppuccin["overlay0"],
-                    this_current_screen_border = catppuccin["pink"],
-                    this_screen_border = catppuccin["green"],
+                    rules = [
+                        GroupBoxRule(line_colour = catppuccin["pink"]).when(screen = ScreenRule.THIS),
+                        GroupBoxRule(line_colour = catppuccin["green"]).when(screen = ScreenRule.OTHER),
+                        GroupBoxRule(text_colour = catppuccin["pink"]).when(occupied = True),
+                        GroupBoxRule(text_colour = catppuccin["overlay0"]).when(occupied = False),
+                    ]
                 ),
                 widget.Spacer(length = 10),
                 widget.TaskList(
                     background = catppuccin["base"],
                     border = catppuccin["pink"],
                     borderwidth = 0,
-                    font = "JetBrains Mono",
+                    font = "JetBrains Mono Bold",
                     fontsize = 18,
                     # foreground = catppuccin["sky"],
                     highlight_method = "border",
@@ -174,10 +176,10 @@ screens = [
                     urgent_border = catppuccin["red"],
                 ),
                 # widget.Chord(
-                #     chords_colors={
+                #     chords_colors = {
                 #         "launch": ("#ff0000", "#ffffff"),
                 #     },
-                #     name_transform=lambda name: name.upper(),
+                #     name_transform = lambda name: name.upper(),
                 # ),
                 widget.Spacer(length = 10),
                 widget.Systray(),
@@ -216,7 +218,8 @@ screens = [
                 widget.Spacer(length = 10),
             ],
             30,
-            # border_width = [2, 2, 2, 2],
+            # margin = 4
+            # border_width = [4, 4, 4, 4],
             # border_color = [
             #     catppuccin["pink"],
             #     catppuccin["pink"],
