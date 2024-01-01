@@ -74,8 +74,8 @@ keys = [
 
 groups = []
 group_names  = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-# group_labels = ["一", "ニ", "三", "四", "五", "六", "七", "八", "九", "零"]
+# group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+group_labels = ["一", "ニ", "三", "四", "五", "六", "七", "八", "九", "零"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -146,12 +146,14 @@ screens = [
                 widget.GroupBox2(
                     disable_drag = True,
                     hide_unused = False,
-                    fontsize = 23,
-                    padding_x = 4,
-                    font = "JetBrains Mono",
+                    # border = rounded,
+                    fontsize = 22,
+                    padding_x = 3,
+                    font = "Noto Sans CJK JP",
                     rules = [
-                        GroupBoxRule(line_colour = catppuccin["pink"]).when(screen = ScreenRule.THIS),
-                        GroupBoxRule(line_colour = catppuccin["green"]).when(screen = ScreenRule.OTHER),
+                        GroupBoxRule(block_colour = catppuccin["overlay0"]).when(screen = ScreenRule.THIS, occupied = True),
+                        GroupBoxRule(block_colour = catppuccin["overlay0"], text_colour = catppuccin["text"]).when(screen = ScreenRule.THIS, occupied = False),
+                        GroupBoxRule(block_colour = catppuccin["green"]).when(screen = ScreenRule.OTHER),
                         GroupBoxRule(text_colour = catppuccin["pink"]).when(occupied = True),
                         GroupBoxRule(text_colour = catppuccin["overlay0"]).when(occupied = False),
                     ]
