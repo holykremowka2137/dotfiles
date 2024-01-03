@@ -10,46 +10,44 @@ alt = "mod1"
 shift = "shift"
 control = "control"
 
-# @lazy.layout.function
-# def increase_gaps(layout, steps = 10):
-#     if not hasattr(layout, "margin"):
-#         return
-#
-#     if not isinstance(layout.margin, int):
-#         return
-#
-#     layout.margin = max(layout.margin + step, 0)
-#     layout.group.layout_all()
+@lazy.layout.function
+def increase_gaps(layout, step = 10):
+    if not hasattr(layout, "margin"):
+        return
+    
+    if not isinstance(layout.margin, int):
+        return
+
+    layout.margin = max(layout.margin + step, 0)
+    layout.group.layout_all()
 
 keys = [
-    Key([alt], "j", lazy.layout.down()),
-    Key([alt], "k", lazy.layout.up()),
     Key([alt], "h", lazy.layout.left()),
     Key([alt], "l", lazy.layout.right()),
+    Key([alt], "j", lazy.layout.down()),
+    Key([alt], "k", lazy.layout.up()),
 
+    Key([alt, shift], "h", lazy.layout.swap_left()),
+    Key([alt, shift], "l", lazy.layout.swap_right()),
     Key([alt, shift], "j", lazy.layout.shuffle_down()),
     Key([alt, shift], "k", lazy.layout.shuffle_up()),
-    Key([alt, shift], "h", lazy.layout.shuffle_left()),
-    Key([alt, shift], "l", lazy.layout.shuffle_right()),
 
-    Key([alt, control], "j", lazy.layout.grow_down()),
-    Key([alt, control], "k", lazy.layout.grow_up()),
-    Key([alt, control], "h", lazy.layout.grow_left()),
-    Key([alt, control], "l", lazy.layout.grow_right()),
-
-    Key([alt, shift, control], "h", lazy.layout.swap_column_left()),
-    Key([alt, shift, control], "l", lazy.layout.swap_column_right()),
-    Key([alt, shift], "Return", lazy.layout.toggle_split()),
+    Key([alt], "i", lazy.layout.grow()),
+    Key([alt], "m", lazy.layout.shrink()),
     Key([alt], "n", lazy.layout.normalize()),
+    Key([alt], "r", lazy.layout.reset()),
+    Key([alt], "o", lazy.layout.maximize()),
+    Key([alt, shift], "space", lazy.layout.flip()),
 
-    # Key([alt], "equal", increase_gaps()),
-    # Key([alt], "minus", increase_gaps(step = -10)),
+    Key([alt], "equal", increase_gaps()),
+    Key([alt], "minus", increase_gaps(step = -10)),
 
     Key([alt], "Return", lazy.spawn("kitty")),
     Key([alt], "e", lazy.spawn("nemo")),
     Key([alt], "b", lazy.spawn("librewolf")),
     # Key([alt], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
     Key([alt], "v", lazy.spawn("kitty -e nvim")),
+    Key([alt], "d", lazy.spawn("discord")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -U 2")),
@@ -76,12 +74,13 @@ groups = []
 group_names  = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 # group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 group_labels = ["一", "ニ", "三", "四", "五", "六", "七", "八", "九", "零"]
+group_layouts = ["monadtall", "max", "monadtall", "monadtall", "max", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
         Group(
             name = group_names[i],
-            # layout = group_layouts[i].lower(),
+            layout = group_layouts[i].lower(),
             label = group_labels[i],
         )
     )
@@ -116,16 +115,18 @@ catppuccin = {
 }
 
 layouts = [
-    layout.Columns(
+    layout.MonadTall(
         border_focus = catppuccin["pink"],
         border_normal = catppuccin["base"], 
         border_on_single = True, 
         border_width = 2, 
         fair = True,
-        margin = 10, 
+        margin = 10,
         wrap_focus_stack = False,
     ),
-    layout.Max(),
+    layout.Max(
+        margin = 10,
+    ),
 ]
 
 widget_defaults = dict(
@@ -186,6 +187,8 @@ screens = [
                 widget.Spacer(length = 10),
                 widget.Systray(),
                 widget.Spacer(length = 10),
+                widget.CurrentLayoutIcon(),
+                widget.Spacer(length = 10),
                 widget.Clock(
                     format = "🕧%I:%M %p",
                 ),
@@ -229,10 +232,7 @@ screens = [
             #     catppuccin["pink"]
             # ]
         ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
+        x11_drag_polling_rate = 60,
     ),
 ]
 
