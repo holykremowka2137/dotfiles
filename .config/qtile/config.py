@@ -22,22 +22,44 @@ def increase_gaps(layout, step = 10):
     layout.group.layout_all()
 
 keys = [
-    Key([alt], "h", lazy.layout.left()),
-    Key([alt], "l", lazy.layout.right()),
     Key([alt], "j", lazy.layout.down()),
     Key([alt], "k", lazy.layout.up()),
+    Key([alt], "h", lazy.layout.left()),
+    Key([alt], "l", lazy.layout.right()),
 
-    Key([alt, shift], "h", lazy.layout.swap_left()),
-    Key([alt, shift], "l", lazy.layout.swap_right()),
-    Key([alt, shift], "j", lazy.layout.shuffle_down()),
-    Key([alt, shift], "k", lazy.layout.shuffle_up()),
+    Key([alt, shift], "h",
+        lazy.layout.shuffle_left().when(layout = ["columns"]),
+        lazy.layout.swap_left().when(layout = ["monadtall"]),
+    ),
+    Key([alt, shift], "l",
+        lazy.layout.shuffle_right().when(layout = ["columns"]),
+        lazy.layout.swap_right().when(layout = ["monadtall"]),
+    ),
+    Key([alt, shift], "j",
+        lazy.layout.shuffle_down().when(layout = ["columns"]),
+        lazy.layout.shuffle_down().when(layout = ["monadtall"]),
+    ),
+    Key([alt, shift], "k",
+        lazy.layout.shuffle_up().when(layout = ["columns"]),
+        lazy.layout.shuffle_up().when(layout = ["monadtall"]),
+    ),
 
-    Key([alt], "i", lazy.layout.grow()),
-    Key([alt], "m", lazy.layout.shrink()),
-    Key([alt], "n", lazy.layout.normalize()),
-    Key([alt], "r", lazy.layout.reset()),
-    Key([alt], "o", lazy.layout.maximize()),
-    Key([alt, shift], "space", lazy.layout.flip()),
+    Key([alt, control], "j", lazy.layout.grow_down().when(layout = ["columns"])),
+    Key([alt, control], "k", lazy.layout.grow_up().when(layout = ["columns"])),
+    Key([alt, control], "h", lazy.layout.grow_left().when(layout = ["columns"])),
+    Key([alt, control], "l", lazy.layout.grow_right().when(layout = ["columns"])),
+
+    Key([alt, shift, control], "h", lazy.layout.swap_column_left().when(layout = ["monadtall"])),
+    Key([alt, shift, control], "l", lazy.layout.swap_column_right().when(layout = ["monadtall"])),
+    Key([alt], "Return", lazy.layout.toggle_split().when(layout = ["monadtall"])),
+    Key([alt], "n", lazy.layout.normalize().when(layout = ["monadtall"])),
+
+    Key([alt], "i", lazy.layout.grow().when(layout = ["monadtall"])),
+    Key([alt], "m", lazy.layout.shrink().when(layout = ["monadtall"])),
+    Key([alt], "n", lazy.layout.normalize().when(layout = ["monadtall"])),
+    Key([alt], "r", lazy.layout.reset().when(layout = ["monadtall"])),
+    Key([alt], "o", lazy.layout.maximize().when(layout = ["monadtall"])),
+    Key([alt, shift], "space", lazy.layout.flip().when(layout = ["monadtall"])),
 
     Key([alt], "equal", increase_gaps()),
     Key([alt], "minus", increase_gaps(step = -10)),
@@ -74,7 +96,8 @@ groups = []
 group_names  = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 # group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 group_labels = ["一", "ニ", "三", "四", "五", "六", "七", "八", "九", "零"]
-group_layouts = ["monadtall", "max", "monadtall", "monadtall", "max", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["Columns", "Max", "Columns", "Columns", "Max", "Columns", "Columns", "Columns", "Columns", "Columns"]
+# group_layouts = ["MonadTall", "Max", "MonadTall", "MonadTall", "Max", "MonadTall", "MonadTall", "MonadTall", "MonadTall", "MonadTall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -115,12 +138,20 @@ catppuccin = {
 }
 
 layouts = [
-    layout.MonadTall(
+    layout.Columns(
         border_focus = catppuccin["pink"],
         border_normal = catppuccin["base"], 
         border_on_single = True, 
         border_width = 2, 
         fair = True,
+        margin = 10,
+        wrap_focus_stack = False,
+    ),
+    layout.MonadTall(
+        border_focus = catppuccin["pink"],
+        border_normal = catppuccin["base"], 
+        border_on_single = True, 
+        border_width = 2, 
         margin = 10,
         wrap_focus_stack = False,
     ),
