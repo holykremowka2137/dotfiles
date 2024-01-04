@@ -102,8 +102,8 @@ alias mirrors "sudo reflector --latest 50 --number 20 --sort score --save /etc/p
 
 alias eb "mpv --no-video --term-osd-bar --shuffle ~/Music/Eurobeat"
 alias lp "mpv --no-video --term-osd-bar --shuffle ~/Music/Luzne_Piosenki"
-alias msc "mpv --no-video --term-osd-bar --shuffle ~/Music"
-alias music "mpv --no-video --term-osd-bar --shuffle"
+alias music "mpv --no-video --term-osd-bar --shuffle ~/Music"
+alias msc "mpv --no-video --term-osd-bar --shuffle"
 
 abbr p "paru"
 abbr pf "paru && sudo flatpak update"

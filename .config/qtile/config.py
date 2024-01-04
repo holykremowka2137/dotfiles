@@ -65,7 +65,7 @@ keys = [
     Key([alt], "minus", increase_gaps(step = -10)),
 
     Key([alt], "Return", lazy.spawn("kitty")),
-    Key([alt], "e", lazy.spawn("nemo")),
+    Key([alt], "e", lazy.spawn("thunar")),
     Key([alt], "b", lazy.spawn("librewolf")),
     # Key([alt], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
     Key([alt], "v", lazy.spawn("kitty -e nvim")),
@@ -263,7 +263,7 @@ screens = [
             #     catppuccin["pink"]
             # ]
         ),
-        x11_drag_polling_rate = 60,
+        # x11_drag_polling_rate = 60,
     ),
 ]
 

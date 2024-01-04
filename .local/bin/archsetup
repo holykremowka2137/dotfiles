@@ -43,7 +43,7 @@ packages () {
 
     echo  "Installing apps..."
     echo
-    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji nemo cinnamon-translations nemo-image-converter nemo-preview networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem obs-studio kvantum
+    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted file-roller ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem obs-studio kvantum
     echo
     echo "Done!"
 
@@ -56,22 +56,47 @@ packages () {
     echo "Finished!"
 }
 
-NvYoru() {
+file_manager() {
+    echo 
+    echo "What GUI file manager do you want?" 
+    echo "Thunar [1]"
+    echo "Nemo [2]"
+    echo "Both [3]"
+    read -rp "Your choice: " choice 
+    if [ "$choice" == "1" ]; then
+        echo "Installing thunar..."
+        sudo pacman -S thunar catfish gvfs thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler gobject-introspection intltool gvfs-mtp ffmpegthumbnailer
+        echo "Done!"
+    elif [ "$choice" == "2" ]; then
+        echo "Installing nemo..."
+        sudo pacman -S nemo cinnamon-translations nemo-image-converter nemo-preview
+        echo "Done!"
+    elif [ "$choice" == "3" ]; then
+        echo "Installing both of them..."
+        sudo pacman -S thunar catfish gvfs thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler gobject-introspection intltool gvfs-mtp ffmpegthumbnailer nemo cinnamon-translations nemo-image-converter nemo-preview
+        echo "Done!"
+    else
+        echo 
+        echo "Are you sure about that?"
+        DM
+    fi
+}
+
+Neovim() {
     echo
-    read -rp "Do you want to install NvYoru? [y/n]: " choice
+    read -rp "Do you want to install based Nvim configuration? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed nvim fd ripgrep npm 
-        git clone git@github.com:holykremowka2137/NvYoru.git ~/.config/nvim && nvim
+        git clone git@github.com:holykremowka2137/init.lua.git ~/.config/nvim && nvim
         ln -s .local/state/nvim/swap/ ~/nvim-swap
-        echo "NvYoru installed!"
+        echo "Configuration installed!"
         echo "All official packages installed."
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
-        echo "All official packages installed."
     else 
         echo
         echo "Are you sure about that?"
-        NvYoru    
+        Neovim    
     fi
 }
 
@@ -86,7 +111,6 @@ doomemacs() {
         echo "All official packages installed."
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
-        echo "All official packages installed."
     else 
         echo
         echo "Are you sure about that?"
@@ -248,7 +272,8 @@ rebooting() {
 which_cpu
 xvswl
 packages
-NvYoru
+file_manager
+Neovim
 doomemacs
 dotfiles
 install_paru

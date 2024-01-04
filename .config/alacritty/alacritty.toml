@@ -1,4 +1,11 @@
-import = ["/home/victoria/.config/alacritty/themes/catppuccin-mocha.toml"]
+import = [
+    # "/home/victoria/.config/alacritty/themes/ayu-dark.toml"
+    "/home/victoria/.config/alacritty/themes/catppuccin-mocha.toml"
+    # "/home/victoria/.config/alacritty/themes/cyberneon.toml"
+    # "/home/victoria/.config/alacritty/themes/decayce.toml"
+    # "/home/victoria/.config/alacritty/themes/gruvbox_dark.toml"
+    # "/home/victoria/.config/alacritty/themes/solarized-dark.toml"
+]
 live_config_reload = true
 
 [colors]
