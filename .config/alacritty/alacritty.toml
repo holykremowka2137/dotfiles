@@ -20,11 +20,11 @@ style = "Bold"
 
 [font.bold_italic]
 family = "JetBrains Mono"
-style = "BoldItalic"
+style = "Bold Italic"
 
 [font.italic]
 family = "JetBrains Mono"
-style = "MediumItalic"
+style = "Medium Italic"
 
 [font.normal]
 family = "JetBrains Mono"

@@ -49,7 +49,7 @@ packages () {
 
     echo "Installing command-line apps..."
     echo
-    sudo pacman -S neovim yt-dlp mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship alsa-utils reflector plocate unzip zip dunst cmatrix cython python-jupymake
+    sudo pacman -S neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship alsa-utils reflector plocate unzip zip dunst cmatrix cython python-jupymake
     echo
     echo "Done!"
 

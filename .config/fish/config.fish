@@ -94,6 +94,7 @@ abbr vlf "nvim ~/.config/lf/lfrc"
 abbr vrofi "nvim ~/.config/rofi/config.rasi"
 abbr vstar "nvim ~/.config/starship.toml"
 alias emacs "emacsclient -nc -a emacs"
+#fuck u, leather head
 
 alias mirror "sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrora "sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
@@ -102,11 +103,10 @@ alias mirrors "sudo reflector --latest 50 --number 20 --sort score --save /etc/p
 
 alias eb "mpv --no-video --term-osd-bar --shuffle ~/Music/Eurobeat"
 alias lp "mpv --no-video --term-osd-bar --shuffle ~/Music/Luzne_Piosenki"
-alias music "mpv --no-video --term-osd-bar --shuffle ~/Music"
 alias msc "mpv --no-video --term-osd-bar --shuffle"
 
 abbr p "paru"
-abbr pf "paru && sudo flatpak update"
+abbr pos "paru && sudo flatpak update"
 abbr rns "paru -Rns"
 abbr s "paru -S"
 

@@ -161,7 +161,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font = "JetBrains Mono",
+    font = "JetBrains Mono Medium",
     fontsize = 15,
     padding = 0,
     background = catppuccin["base"],
@@ -249,7 +249,7 @@ screens = [
                 ),
                 widget.Spacer(length = 10),
                 widget.Clock(
-                    format = "📆%d.%m.%Y",
+                    format = "📆%Y.%m.%d",
                 ),
                 widget.Spacer(length = 10),
             ],
