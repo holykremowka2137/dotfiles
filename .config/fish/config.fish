@@ -2,11 +2,11 @@
 
 set fish_greeting
 
-set -gx VISUAL "kitty -e nvim"
+set -gx VISUAL "alacritty -e nvim"
 set -gx EDITOR "nvim"
-set -gx SUDO_EDITOR "/usr/bin/nvim"
-set -gx TERM "kitty"
-set -gx TERMINAL "kitty"
+set -gx SUDO_EDITOR "nvim"
+set -gx TERM "alacritty"
+set -gx TERMINAL "alacritty"
 
 set -gx GTK_IM_MODULE "fcitx"
 set -gx QT_IM_MODULE "fcitx"
@@ -86,9 +86,9 @@ alias gwords "gadda && gcommit "words" && gpush"
 abbr v "nvim"
 abbr valac "nvim ~/.config/alacritty/alacritty.toml"
 abbr vkitty "nvim ~/.config/kitty/kitty.conf"
-abbr vautostart "nvim ~/.config/qtile/autostart.sh"
-abbr vcol "nvim ~/.config/qtile/colors.py"
-abbr vq "nvim ~/.config/qtile/config.py"
+abbr vfoot "nvim ~/.config/foot/foot.ini"
+abbr vsway "nvim ~/.config/sway/config"
+abbr vqtile "nvim ~/.config/qtile/config.py"
 abbr vfish "nvim ~/.config/fish/config.fish"
 abbr vlf "nvim ~/.config/lf/lfrc"
 abbr vrofi "nvim ~/.config/rofi/config.rasi"

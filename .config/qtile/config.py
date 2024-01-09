@@ -1,4 +1,5 @@
 from libqtile import bar, layout, widget, hook, extension
+from libqtile.backend.wayland import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from qtile_extras import widget
@@ -64,11 +65,11 @@ keys = [
     Key([alt], "equal", increase_gaps()),
     Key([alt], "minus", increase_gaps(step = -10)),
 
-    Key([alt], "Return", lazy.spawn("kitty")),
+    Key([alt], "Return", lazy.spawn("alacritty")),
     Key([alt], "e", lazy.spawn("thunar")),
     Key([alt], "b", lazy.spawn("librewolf")),
     # Key([alt], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
-    Key([alt], "v", lazy.spawn("kitty -e nvim")),
+    Key([alt], "v", lazy.spawn("nvim")),
     Key([alt], "d", lazy.spawn("discord")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -A 2")),
@@ -79,7 +80,7 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     
     Key([alt], "Print", lazy.spawn("flameshot full")),
-    Key([], "Print", lazy.spawn("flameshot gui --path /home/victoria/Pictures/Screenshots/")),
+    Key([], "Print", lazy.spawn("grim -g '$(slurp)' - | convert - -shave 1x1 PNG:- | wl-copy")),
 
     Key([alt], "q", lazy.window.kill()),
     Key([alt], "f", lazy.window.toggle_fullscreen()),
@@ -91,6 +92,10 @@ keys = [
     Key([alt], "w", lazy.spawn("rofi -show drun")),
     Key([alt, shift], "w", lazy.spawn("rofi -show emoji")),
 ]
+
+wl_input_rules = {
+    "type:keyboard": InputConfig(kb_options="caps:escape_shifted_capslock"),
+}
 
 groups = []
 group_names  = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
@@ -197,10 +202,9 @@ screens = [
                     borderwidth = 0,
                     font = "JetBrains Mono Bold",
                     fontsize = 18,
-                    # foreground = catppuccin["sky"],
                     highlight_method = "border",
                     icon_size = 27,
-                    # markup_focused = catppuccin["red"],
+                    # markup_focused = '<span foreground = catppuccin["pink"]>{}</span>',
                     rounded = True,
                     title_width_method = "uniform",
                     txt_floating = "🗗 ",
@@ -268,11 +272,11 @@ screens = [
 ]
 
 mouse = [
-    Drag([alt], "Button1", lazy.window.set_position_floating(),
-         start = lazy.window.get_position()
+    Drag([alt], "Button1", lazy.window.set_position(),
+         start = lazy.window.get_position(),
     ),
     Drag([alt], "Button3", lazy.window.set_size_floating(),
-         start = lazy.window.get_size()
+         start = lazy.window.get_size(),
     ),
     Click([alt], "Button1", lazy.window.bring_to_front()),
 ]

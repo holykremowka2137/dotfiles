@@ -1,7 +1,8 @@
 #!/bin/bash
 
-picom -b &
-redshift-gtk &
+# picom -b &
+import-gsettings
+# redshift-gtk &
 # emacs --daemon &
-# gammastep &
+gammastep &
 # fcitx -d &

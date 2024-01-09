@@ -3,6 +3,7 @@
 sudo pacman -Syyu
 
 which_cpu() {
+    echo 
     read -rp "What CPU do you have? AMD or intel? [(A)md/(I)ntel]: " choice
     if [ "$choice" == "amd" ] ||  [ "$choice" == "a" ]; then
         sudo pacman -S amd-ucode
@@ -21,10 +22,11 @@ xvswl() {
     echo 
     read -rp "Do you want X11 or Wayland? [x/w]: " choice
     if [ "$choice" == "x" ]; then
-        sudo pacman -S xorg xorg-xinit xclip picom redshift xdotool 
+        sudo pacman -S xorg xorg-xinit xclip picom redshift xdotool flameshot 
         echo "Xorg installed!"
     elif [ "$choice" == "w" ]; then
-        sudo pacman -S wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool
+        sudo pacman -S wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool xdg-desktop-portal-wlr grim slurp
+        echo
         echo "Wayland installed! This is the future!"
     else
         echo
@@ -43,13 +45,18 @@ packages () {
 
     echo  "Installing apps..."
     echo
-    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted file-roller ark fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem obs-studio kvantum
+    sudo pacman -S vivaldi thunderbird krita ristretto libreoffice-still okular xed steam deluge-gtk psensor alacritty kitty gparted file-roller file-roller fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils signal-desktop totem obs-studio kvantum
     echo
     echo "Done!"
 
     echo "Installing command-line apps..."
     echo
-    sudo pacman -S neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship alsa-utils reflector plocate unzip zip dunst cmatrix cython python-jupymake
+    sudo pacman -S neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship reflector plocate unzip zip dunst cmatrix cython python-jupymake
+    echo
+    echo "Done!"
+
+    echo "Installing pipewire..."
+    sudo pacman -S pipewire pipewire-pulse pipewire-jack wireplumber helvum easyeffects calf yelp pipewire-alsa alsa-utils lib32-pipewire pipewire-audio lib32-pipewire-jack
     echo
     echo "Done!"
 
@@ -196,6 +203,7 @@ DM () {
     echo "Ly-DM [1]"
     echo "SDDM [2]"
     echo "LightDM [3]"
+    echo "Nothing [4]"
     read -rp "Your choice: " choice 
     if [ "$choice" == "1" ]; then
         echo "Installing Ly and uninstalling LightDM..."
@@ -215,7 +223,10 @@ DM () {
         echo "Enabling LightDM..."
         sudo systemctl enable lightdm
         echo "Done!"
-
+    elif [ "$choice" == "4" ]; then
+        echo "Uninstalling LightDM..."
+        sudo pacman -Rns lightdm
+        echo "Done! Enjoy your bloat-free system!"
     else
         echo 
         echo "Are you sure about that?"
@@ -231,7 +242,7 @@ enabling() {
 
     echo "Enabling 'locate' & adding user to groups..."
     sudo updatedb
-    sudo usermod -aG locate,wheel,video,tty,dbus "$USER"
+    sudo usermod -aG locate,wheel,video,tty,dbus,input "$USER"
     echo "Done!"
 
     echo "Remapping caps lock..."
