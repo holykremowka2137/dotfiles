@@ -146,4 +146,4 @@ abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
 
-starship init fish | source
+# starship init fish | source
