@@ -1,3 +1,6 @@
+format = """$username$hostname $directory$character"""
+right_format = '$cmd_duration'
+
 add_newline = false
 
 [line_break]
@@ -6,70 +9,28 @@ disabled = true
 [directory]
 truncation_length = 1
 truncate_to_repo = false 
-style = 'bold blue'
-fish_style_pwd_dir_length = 1
+style = 'bold purple'
+fish_style_pwd_dir_length = 0
+format = '[$path]($style)[$read_only]($read_only_style)[\]](bold red)'
 
 [character]
-error_symbol              = '[󱂑](bold red)' 
-success_symbol            = '[](bold green)' 
-vimcmd_replace_one_symbol = '[󰫿](bold cyan)' 
-vimcmd_replace_symbol     = '[󰫿](bold cyan)' 
-vimcmd_symbol             = '[󰫰](purple)'
-vimcmd_visual_symbol      = '[󱂌](bold yellow)' 
+error_symbol = '\$' 
+success_symbol = '\$' 
 
-[package]
-disabled = true
+[username]
+format = '[\[](bold red)[$user]($style)[@](green)'
+show_always = true
 
-[aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
-
-[bun]
-disabled = true
-
-[c]
-disabled = true
-
-[cmake]
-disabled = true
+[hostname]
+ssh_only = false
+ssh_symbol = '🌐 '
+trim_at = '.'
+format = '[$ssh_symbol$hostname]($style)'
+style = 'bold blue'
+disabled = false
 
 [cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
-
-[cobol]
-disabled = true
-
-[conda]
-format = '\[[$symbol$environment]($style)\]'
-
-[crystal]
-disabled = true
-
-[daml]
-disabled = true
-
-[dart]
-disabled = true
-
-[deno]
-disabled = true
-
-[docker_context]
-format = '\[[$symbol$context]($style)\]'
-
-[dotnet]
-format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
-
-[elixir]
-format = '\[[$symbol($version \(OTP $otp_version\))]($style)\]'
-
-[elm]
-disabled = true
-
-[erlang]
-disabled = true
-
-[fennel]
-disabled = true
+format = '[$duration]($style)'
 
 [fossil_branch]
 format = '\[[$symbol$branch]($style)\]'
@@ -83,41 +44,11 @@ format = '\[[$symbol$branch]($style)\]'
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
 
-[golang]
-disabled = true
-
-[gradle]
-disabled = true
-
 [guix_shell]
 format = '\[[$symbol]($style)\]'
 
-[haskell]
-disabled = true
-
-[haxe]
-disabled = true
-
-[helm]
-disabled = true
-
 [hg_branch]
 format = '\[[$symbol$branch]($style)\]'
-
-[java]
-disabled = true
-
-[julia]
-disabled = true
-
-[kotlin]
-disabled = true
-
-[kubernetes]
-format = '\[[$symbol$context( \($namespace\))]($style)\]'
-
-[lua]
-disabled = true
 
 [memory_usage]
 format = '\[$symbol[$ram( | $swap)]($style)\]'
@@ -193,9 +124,6 @@ format = '\[[$symbol$workspace]($style)\]'
 
 [time]
 format = '\[[$time]($style)\]'
-
-[username]
-format = '\[[$user]($style)\]'
 
 [vagrant]
 disabled = true

@@ -14,11 +14,11 @@ set -gx XMODIFIERS "@im=fcitx"
 
 set USB32 "/run/media/victoria/0012-D687/"
 set USB16 "/run/media/victoria/3FAC-3165/"
-set -x MANPAGER "nvim +Man!"
+# set -x MANPAGER "nvim +Man!"
 
-function fish_user_key_bindings
-    fish_vi_key_bindings
-end
+# function fish_user_key_bindings
+#     fish_vi_key_bindings
+# end
 
 set fish_color_normal cdd6f4
 set fish_color_command 89b4fa
@@ -82,6 +82,7 @@ alias grestore "git restore"
 alias gstatus "git status"
 alias gusual "gadda && gcommit "usual" && gpush"
 alias gwords "gadda && gcommit "words" && gpush"
+alias gsmallchanges "gadda && gcommit "small_changes" && gpush"
 
 abbr v "nvim"
 abbr valac "nvim ~/.config/alacritty/alacritty.toml"
@@ -146,4 +147,4 @@ abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
 
-# starship init fish | source
+starship init fish | source
