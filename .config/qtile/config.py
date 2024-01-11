@@ -98,6 +98,7 @@ keys = [
     Key([alt, control], "F4", lazy.core.change_vt(4)),
     Key([alt, control], "F5", lazy.core.change_vt(5)),
     Key([alt, control], "F6", lazy.core.change_vt(6)),
+    Key([alt, control], "F7", lazy.core.change_vt(7)),
 ]
 
 wl_input_rules = {
@@ -108,8 +109,8 @@ groups = []
 group_names  = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 # group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 group_labels = ["一", "ニ", "三", "四", "五", "六", "七", "八", "九", "零"]
-group_layouts = ["Columns", "Max", "Columns", "Columns", "Max", "Columns", "Columns", "Columns", "Columns", "Columns"]
-# group_layouts = ["MonadTall", "Max", "MonadTall", "MonadTall", "Max", "MonadTall", "MonadTall", "MonadTall", "MonadTall", "MonadTall"]
+# group_layouts = ["Columns", "Max", "Columns", "Columns", "Max", "Columns", "Columns", "Columns", "Columns", "Columns"]
+group_layouts = ["MonadTall", "Max", "MonadTall", "MonadTall", "Max", "MonadTall", "MonadTall", "MonadTall", "MonadTall", "MonadTall"]
 
 for i in range(len(group_names)):
     groups.append(

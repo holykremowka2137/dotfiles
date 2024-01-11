@@ -1,5 +1,5 @@
 format = """$username$hostname $directory$character"""
-right_format = '$cmd_duration'
+right_format = '$cmd_duration$git_status'
 
 add_newline = false
 
@@ -30,19 +30,16 @@ style = 'bold blue'
 disabled = false
 
 [cmd_duration]
-format = '[$duration]($style)'
+format = '([\[$duration\]]($style))'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
 
 [fossil_branch]
 format = '\[[$symbol$branch]($style)\]'
 
-[gcloud]
-format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
-
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
-
-[git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
 
 [guix_shell]
 format = '\[[$symbol]($style)\]'
@@ -56,83 +53,11 @@ format = '\[$symbol[$ram( | $swap)]($style)\]'
 [meson]
 format = '\[[$symbol$project]($style)\]'
 
-[nim]
-disabled = true
-
 [nix_shell]
 format = '\[[$symbol$state( \($name\))]($style)\]'
-
-[nodejs]
-disabled = true
-
-[ocaml]
-format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
-
-[opa]
-disabled = true
-
-[openstack]
-format = '\[[$symbol$cloud(\($project\))]($style)\]'
 
 [os]
 format = '\[[$symbol]($style)\]'
 
-[perl]
-disabled = true
-
-[php]
-disabled = true
-
-[pijul_channel]
-format = '\[[$symbol$channel]($style)\]'
-
-[pulumi]
-format = '\[[$symbol$stack]($style)\]'
-
-[purescript]
-disabled = true
-
-[python]
-disabled = true
-
-[raku]
-format = '\[[$symbol($version-$vm_version)]($style)\]'
-
-[red]
-disabled = true
-
-[ruby]
-disabled = true
-
-[rust]
-disabled = true
-
-[scala]
-disabled = true
-
-[spack]
-format = '\[[$symbol$environment]($style)\]'
-
 [sudo]
 format = '\[[as $symbol]($style)\]'
-
-[swift]
-disabled = true
-
-[terraform]
-format = '\[[$symbol$workspace]($style)\]'
-
-[time]
-format = '\[[$time]($style)\]'
-
-[vagrant]
-disabled = true
-
-[vlang]
-disabled = true
-
-[zig]
-disabled = true
-
-[solidity]
-disabled = true
