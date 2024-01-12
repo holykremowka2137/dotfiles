@@ -93,8 +93,8 @@ Neovim() {
     echo
     read -rp "Do you want to install based Nvim configuration? [y/n]: " choice
     if [ "$choice" == "y" ]; then
-        sudo pacman -S --needed nvim fd ripgrep npm 
-        git clone git@github.com:holykremowka2137/init.lua.git ~/.config/nvim && nvim
+        sudo pacman -S --needed neovim fd ripgrep npm 
+        git clone https://github.com/holykremowka2137/init.lua.git ~/.config/nvim && nvim
         ln -s .local/state/nvim/swap/ ~/nvim-swap
         echo "Configuration installed!"
         echo "All official packages installed."
@@ -130,7 +130,7 @@ dotfiles() {
     read -rp "Do you want to download your dotfiles from GitHub? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S stow
-        git clone git@github.com:holykremowka2137/dotfiles.git ~/Repos/dotfiles/
+        git clone https://github.com/holykremowka2137/dotfiles.git ~/Repos/dotfiles/
         cd ~/Repos/dotfiles/.config/
         stow -v --target="$HOME"/.config/ .
         mkdir ~/.local/bin/
@@ -249,12 +249,6 @@ enabling() {
     setxkbmap -option "caps:escape_shifted_capslock"
     sudo localectl set-x11-keymap us '' '' caps:escape_shifted_capslock
     echo "Done!"
-
-    # echo "Exporting variables..."
-    # export SUDO_EDITOR
-    # export EDITOR
-    # export VISUAL
-    # echo "Finished exporting variables!"
 
     echo "Enabling autostart.sh..."
     chmod +x ~/.config/qtile/autostart.sh

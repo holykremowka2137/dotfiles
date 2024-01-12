@@ -3,7 +3,7 @@ from libqtile.backend.wayland.inputs import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from qtile_extras import widget
-from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
+# from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 # from qtile_extras.widget import BorderDecoration
 import subprocess, os
 
@@ -188,7 +188,7 @@ screens = [
         wallpaper_mode = "fill",
         top = bar.Bar(
             [
-                widget.GroupBox2(
+                widget.GroupBox(
                     disable_drag = True,
                     hide_unused = False,
                     # border = rounded,
@@ -196,11 +196,11 @@ screens = [
                     padding_x = 3,
                     font = "Noto Sans CJK JP",
                     rules = [
-                        GroupBoxRule(block_colour = catppuccin["overlay0"]).when(screen = ScreenRule.THIS, occupied = True),
-                        GroupBoxRule(block_colour = catppuccin["overlay0"], text_colour = catppuccin["text"]).when(screen = ScreenRule.THIS, occupied = False),
-                        GroupBoxRule(block_colour = catppuccin["green"]).when(screen = ScreenRule.OTHER),
-                        GroupBoxRule(text_colour = catppuccin["pink"]).when(occupied = True),
-                        GroupBoxRule(text_colour = catppuccin["overlay0"]).when(occupied = False),
+                        # GroupBoxRule(block_colour = catppuccin["overlay0"]).when(screen = ScreenRule.THIS, occupied = True),
+                        # GroupBoxRule(block_colour = catppuccin["overlay0"], text_colour = catppuccin["text"]).when(screen = ScreenRule.THIS, occupied = False),
+                        # GroupBoxRule(block_colour = catppuccin["green"]).when(screen = ScreenRule.OTHER),
+                        # GroupBoxRule(text_colour = catppuccin["pink"]).when(occupied = True),
+                        # GroupBoxRule(text_colour = catppuccin["overlay0"]).when(occupied = False),
                     ]
                 ),
                 widget.Spacer(length = 10),
