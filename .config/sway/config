@@ -49,7 +49,7 @@ output * bg "/home/victoria/.config/sway/wallpapers/albedo-wallpaper3.png" fill
 #   }
 
 input "type:keyboard" xkb_options caps:escape_shifted_capslock 
-input "type:pointer" accel_profile flat
+# input "type:pointer" accel_profile flat
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -65,8 +65,8 @@ bindsym $mod+v exec $term -e nvim
 
 bindsym Print exec grim -g "$(slurp)" - | convert - -shave 1x1 PNG:- | wl-copy
 
-bindsym XF86MonBrightnessUp exec brillo -A 2
-bindsym XF86MonBrightnessDown exec brillo -U 2
+bindsym XF86MonBrightnessUp exec brightnessctl set 2%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 2%-
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2%-

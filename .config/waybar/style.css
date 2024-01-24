@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-family: FontAwesome, JetBrains Mono Medium, Noto Fonts Emoji;
+    font-size: 15px;
 }
 
 window#waybar {
@@ -49,7 +49,7 @@ button:hover {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 0px;
     background-color: transparent;
     color: #ffffff;
 }

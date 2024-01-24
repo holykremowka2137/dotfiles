@@ -51,7 +51,7 @@ packages () {
 
     echo "Installing command-line apps..."
     echo
-    sudo pacman -S neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship reflector plocate unzip zip dunst cmatrix cython python-jupymake
+    sudo pacman -S neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget lf starship reflector plocate unzip zip dunst cmatrix cython python-jupymake eza
     echo
     echo "Done!"
 
@@ -94,7 +94,7 @@ Neovim() {
     read -rp "Do you want to install based Nvim configuration? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed neovim fd ripgrep npm 
-        git clone https://github.com/holykremowka2137/init.lua.git ~/.config/nvim && nvim
+        git clone https://www.github.com/holykremowka2137/init.lua.git ~/.config/nvim && nvim
         ln -s .local/state/nvim/swap/ ~/nvim-swap
         echo "Configuration installed!"
         echo "All official packages installed."
@@ -112,7 +112,7 @@ doomemacs() {
     read -rp "Do you want to install Doom Emacs? [y/n] " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S --needed emacs-nativecomp fd ripgrep npm 
-        git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+        git clone https://www.github.com/hlissner/doom-emacs ~/.emacs.d
         ~/.emacs.d/bin/doom install
         echo "Doom Emacs installed!"
         echo "All official packages installed."
@@ -130,7 +130,7 @@ dotfiles() {
     read -rp "Do you want to download your dotfiles from GitHub? [y/n]: " choice
     if [ "$choice" == "y" ]; then
         sudo pacman -S stow
-        git clone https://github.com/holykremowka2137/dotfiles.git ~/Repos/dotfiles/
+        git clone https://www.github.com/holykremowka2137/dotfiles.git ~/Repos/dotfiles/
         cd ~/Repos/dotfiles/.config/
         stow -v --target="$HOME"/.config/ .
         mkdir ~/.local/bin/
