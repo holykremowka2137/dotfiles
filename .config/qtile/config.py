@@ -234,9 +234,9 @@ screens = [
                     background = catppuccin["pink"],
                     foreground = catppuccin["base"],
                     fontsize = 30,
-                    **pll
+                    **rd
                 ),
-                # widget.Spacer(length = 5, background = catppuccin["pink"], **plr),
+                widget.Spacer(length = 5, background = catppuccin["pink"], **rd_plr),
                 # widget.TextBox(
                 #     fmt = " ",
                 #     background = catppuccin["pink"],
@@ -274,18 +274,18 @@ screens = [
                 widget.Spacer(length = 10, **rd),
                 widget.Volume(
                     fmt = "🔊{}",
-                    # **rd_plr
+                    **rd_plr
                 ),
                 widget.Backlight(
                     fmt = "🔆{}",
                     backlight_name = "intel_backlight",
                     brightness_file = "brightness",
-                    # **rd_plr
+                    **rd_plr
                 ),
                 widget.ThermalSensor(
                     tag_sensor = "Core 0",
                     fmt = "🔥{}",
-                    # **rd_plr
+                    **rd_plr
                 ),
                 widget.Battery(
                     charge_char = "🔌",
@@ -295,7 +295,7 @@ screens = [
                     full_char = "🔋",
                     update_interval = 1,
                     show_short_text = False,
-                    # **rd_plr
+                    **rd_plr
                 ),
                 widget.CurrentLayout(
                     background = catppuccin["pink"],
