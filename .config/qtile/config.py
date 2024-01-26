@@ -10,11 +10,11 @@ from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 import subprocess, os
 
 alt = "mod1"
-term = "foot"
+term = "alacritty"
 
-# if qtile.core.name == "x11":
+# if qtile.core.name  ==  "x11":
 #     term = "alacritty"
-# elif qtile.core.name == "wayland":
+# elif qtile.core.name  ==  "wayland":
 #     term = "foot"
 
 @lazy.layout.function
@@ -33,6 +33,7 @@ keys = [
     Key([alt], "k", lazy.layout.up()),
     Key([alt], "h", lazy.layout.left()),
     Key([alt], "l", lazy.layout.right()),
+    Key([alt], "space", lazy.group.next_window()),
 
     Key([alt, "shift"], "h",
         lazy.layout.shuffle_left().when(layout = ["columns", "monadtall"]),
@@ -104,7 +105,7 @@ keys = [
 ]
 
 wl_input_rules = {
-    "type:keyboard": InputConfig(kb_options="caps:escape_shifted_capslock"),
+    "type:keyboard": InputConfig(kb_options = "caps:escape_shifted_capslock"),
 }
 
 groups = [
@@ -117,7 +118,7 @@ groups = [
     Group("7", label = "七", layout = "monadtall"),
     Group("8", label = "八", layout = "monadtall"),
     Group("9", label = "九", layout = "monadtall"),
-    Group("0", label = "零", layout = "monadtall"),
+    Group("0", label = "零 ", layout = "monadtall"),
 ]
 
 # groups = [
@@ -193,17 +194,25 @@ layouts = [
 ]
 
 rd = RectDecoration(
-    use_widget_background=True,
-    radius=16,
-    filled=True,
-    group=True,
-    clip=True
+    use_widget_background = True,
+    radius = 15,
+    filled = True,
+    group = True,
 )
 
-pl = PowerLineDecoration(path="forward_slash")
+pll = PowerLineDecoration(path = "back_slash")
+plr = PowerLineDecoration(path = "forward_slash")
 
-rd_pl = {"decorations": [rd, pl]}
-rd_no_pl = {"decorations": [rd]}
+rd = {"decorations": [rd]}
+rd_pll = {"decorations": [rd, pll]}
+pll = {"decorations": [pll]}
+plr = {"decorations": [plr]}
+rd_plr = {"decorations": [rd, plr]}
+
+# if qtile.current_layout.name == "max": 
+# bar_clr = catppuccin["mantle"]
+# if qtile.current_layout.name == "monadtall":
+bar_clr = "#00000000"
 
 widget_defaults = dict(
     background = catppuccin["base"],
@@ -220,11 +229,19 @@ screens = [
         wallpaper_mode = "fill",
         top = bar.Bar(
             [
-                widget.Spacer(
-                    length = 10,
-                    background = "#00000000", 
-                ),    
-                widget.Spacer(length = 10, **rd_no_pl),
+                widget.TextBox(
+                    fmt = " 󰌠 ",
+                    background = catppuccin["pink"],
+                    foreground = catppuccin["base"],
+                    fontsize = 30,
+                    **pll
+                ),
+                # widget.Spacer(length = 5, background = catppuccin["pink"], **plr),
+                # widget.TextBox(
+                #     fmt = " ",
+                #     background = catppuccin["pink"],
+                #     **plr
+                # ),
                 widget.GroupBox2(
                     disable_drag = True,
                     font = "Noto Sans Mono CJK JP",
@@ -238,92 +255,61 @@ screens = [
                         GroupBoxRule(text_colour = catppuccin["pink"]).when(occupied = True),
                         GroupBoxRule(text_colour = catppuccin["overlay0"]).when(occupied = False),
                     ],
-                    **rd_no_pl
+                    **rd
                 ),
-                widget.Spacer(length = 10, **rd_no_pl),
-                widget.Spacer(length = 10, background = "#00000000"),
-                widget.TaskList(
-                    border = catppuccin["pink"],
-                    borderwidth = 0,
-                    font = "JetBrains Mono Bold",
-                    fontsize = 18,
-                    foreground = catppuccin["text"],
-                    highlight_method = "border",
-                    icon_size = 27,
-                    # markup_focused = '<span catppuccin["pink"]>{}</span>',
-                    rounded = True,
-                    title_width_method = "uniform",
-                    txt_floating = "🗗 ",
-                    txt_maximized = "🗖 ",
-                    txt_minimized = "🗕 ",
-                    urgent_alert_method = "border",
-                    urgent_border = catppuccin["red"],
-                    **rd_no_pl
+                widget.TextBox(
+                    fmt = "",
+                    background = catppuccin["base"],
+                    **rd
                 ),
-                # widget.Chord(
-                #     chords_colors = {
-                #         "launch": ("#ff0000", "#ffffff"),
-                #     },
-                #     name_transform = lambda name: name.upper(),
-                # ),
-                widget.Spacer(length = 10, background = "#00000000"),
-                widget.Spacer(length = 10, **rd_no_pl),
-                # widget.Systray(),
-                widget.StatusNotifier(
-                    **rd_pl
-                ),
-                widget.CurrentLayoutIcon(
-                    **rd_pl
-                ),
+                widget.Spacer(length = 460, background = bar_clr),
                 widget.Clock(
-                    format = "🕧%I:%M %p",
-                    **rd_pl
+                    format = " 🗓️%a %d.%m.%Y 🕧%H:%M ",
+                    **rd
                 ),
+                widget.Spacer(background = bar_clr),
+                # widget.Systray(**rd),
+                widget.StatusNotifier(padding = 6, **rd),
+                widget.Spacer(length = 10, background = bar_clr),
+                widget.Spacer(length = 10, **rd),
                 widget.Volume(
                     fmt = "🔊{}",
-                    **rd_pl
-                ),
-                widget.Battery(
-                    charge_char = "🔌",
-                    discharge_char = "🔋",
-                    unknown_char = "‼️",
-                    format = "{char}{percent:1.0%}",
-                    full_char = "100%",
-                    update_interval = 1,
-                    **rd_pl
+                    # **rd_plr
                 ),
                 widget.Backlight(
                     fmt = "🔆{}",
                     backlight_name = "intel_backlight",
                     brightness_file = "brightness",
-                    **rd_pl
+                    # **rd_plr
                 ),
                 widget.ThermalSensor(
                     tag_sensor = "Core 0",
                     fmt = "🔥{}",
-                    **rd_pl
+                    # **rd_plr
                 ),
-                widget.Clock(
-                    format = "📆%Y.%m.%d",
-                    **rd_pl
+                widget.Battery(
+                    charge_char = "🔌",
+                    discharge_char = "🔋",
+                    unknown_char = "‼️",
+                    format = "{char}{percent:2.0%}",
+                    full_char = "🔋",
+                    update_interval = 1,
+                    show_short_text = False,
+                    # **rd_plr
                 ),
-                widget.Spacer(length = 10, **rd_no_pl),
-                widget.Spacer(
-                    length = 10,
-                    background = "#00000000", 
-                ),    
+                widget.CurrentLayout(
+                    background = catppuccin["pink"],
+                    fmt = "{} ",
+                    foreground = catppuccin["base"],
+                    # max_chars = 3,
+                    **rd
+                ),
             ],
             40,
-            background = "00000000",
-            width = [4, 4, 4, 4],
-            # margin = 4
-            # border_width = [4, 4, 4, 4],
-            # border_color = [
-            #     catppuccin["pink"],
-            #     catppuccin["pink"],
-            #     catppuccin["pink"],
-            #     catppuccin["pink"]
-            # ]
+            background = bar_clr,
+            border_color = bar_clr,
+            border_width = [4, 10, 0, 10],
+            # width = [4, 10, 0, 10],
         ),
         # x11_drag_polling_rate = 60,
     ),
@@ -355,6 +341,7 @@ floating_layout = layout.Floating(
         Match(wm_class = "makebranch"),  
         Match(wm_class = "maketag"),  
         Match(wm_class = "ssh-askpass"),  
+        Match(wm_class = "mpv"),  
         Match(title = "branchdialog"),  
         Match(title = "pinentry"),
     ]
