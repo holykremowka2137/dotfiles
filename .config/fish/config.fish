@@ -1,5 +1,8 @@
 #!/usr/bin/fish
 
+set -e fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+
 set fish_greeting
 
 set -gx VISUAL "alacritty -e nvim"
@@ -7,6 +10,8 @@ set -gx EDITOR "nvim"
 set -gx SUDO_EDITOR "nvim"
 set -gx TERM "alacritty"
 set -gx TERMINAL "alacritty"
+set -gx BROWSER "librewolf"
+set -gx FILE_MANAGER "thunar"
 
 set -gx GTK_IM_MODULE "fcitx"
 set -gx QT_IM_MODULE "fcitx"
@@ -31,8 +36,7 @@ set fish_color_comment 7f849c
 set fish_color_error f38ba8
 set fish_color_gray 6c7086
 set fish_color_selection --background=313244
-set fish_color_search_match --background=313244
-set fish_color_option a6e3a1
+set fish_color_search_match --background=313244 set fish_color_option a6e3a1
 set fish_color_operator f5c2e7
 set fish_color_escape eba0ac
 set fish_color_autosuggestion 6c7086
@@ -141,7 +145,6 @@ alias grep "grep -i --color=always"
 alias ytm "yt-dlp -f "bestaudio/best" --embed-thumbnail --add-metadata --extract-audio --audio-format best"
 alias ytv "yt-dlp -f "bestvideo[ext=mp3]+bestaudio[ext=m4a]/best[ext=mp4]/best""
 
-abbr systemctl "sudo systemctl"
 abbr efish "exec fish"
 abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
