@@ -25,6 +25,15 @@ set USB16 "/run/media/victoria/3FAC-3165/"
 #     fish_vi_key_bindings
 # end
 
+function ya
+	set tmp (mktemp -t "yazi-cwd.XXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
+
 set fish_color_normal cdd6f4
 set fish_color_command 89b4fa
 set fish_color_param f2cdcd

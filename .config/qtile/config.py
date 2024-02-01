@@ -1,4 +1,4 @@
-from libqtile import bar, layout, widget, hook, extension, qtile
+from libqtile import bar, layout, widget, hook, qtile#, extension
 from libqtile.backend.wayland.inputs import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -38,18 +38,10 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
     Key([mod], "space", lazy.group.next_window()),
 
-    Key([mod, "shift"], "h",
-        lazy.layout.shuffle_left().when(layout=["columns", "monadtall"]),
-    ),
-    Key([mod, "shift"], "l",
-        lazy.layout.shuffle_right().when(layout=["columns", "monadtall"]),
-    ),
-    Key([mod, "shift"], "j",
-        lazy.layout.shuffle_down().when(layout=["columns", "monadtall"]),
-    ),
-    Key([mod, "shift"], "k",
-        lazy.layout.shuffle_up().when(layout=["columns", "monadtall"]),
-    ),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left().when(layout=["columns", "monadtall"])),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right().when(layout=["columns", "monadtall"])),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down().when(layout=["columns", "monadtall"])),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up().when(layout=["columns", "monadtall"])),
 
     Key([mod, "control"], "j", lazy.layout.grow_down()),
     Key([mod, "control"], "k", lazy.layout.grow_up()),
@@ -86,7 +78,7 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     
-    Key([mod], "Print", lazy.spawn("flameshot full")),
+    Key([mod], "Print", lazy.spawn("grim -g - $HOME/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')", shell=True)),
     Key([], "Print", lazy.spawn("grim -g \"$(slurp)\"'", shell=True)),
 
     Key([mod], "q", lazy.window.kill()),
@@ -213,19 +205,18 @@ rd_ = {"decorations": [rd]}
 rd_pll = {"decorations": [rd, pll]}
 rd_plr = {"decorations": [rd, plr]}
 
-bar_clr = "#00000000"
-
-@hook.subscribe.layout_change
-def bar_clr_change(layout):
-    if layout.name == "max":
-        global bar_clr
-        bar_clr = catppuccin["mantle"]
-
 @hook.subscribe.layout_change
 def layout_change(layout, group):
-    send_notification("qtile", f"{layout.name} is now on group {group.label}")
-    global bar_clr
-    bar_clr = catppuccin["mantle"]
+    global bar_clr 
+    if qtile.current_layout.name == "max":
+        send_notification(f"{layout.name}", f"Is now on group {group.label}")
+        bar_clr = catppuccin["mantle"]
+    if qtile.current_layout.name == "monadtall":
+        bar_clr = "#00000000"
+    elif qtile.current_layout.name == "columns":
+        bar_clr = "#00000000"
+
+bar_clr = catppuccin["mantle"]
 
 widget_defaults = dict(
     background=catppuccin["base"],
@@ -266,7 +257,7 @@ screens = [
                 ),
                 widget.WindowCount(
                     background=catppuccin["pink"],
-                    fmt="{} ",
+                    fmt="{}  ",
                     fontsize=20,
                     foreground=catppuccin["base"],
                     show_zero=True,
@@ -274,7 +265,7 @@ screens = [
                 ),
                 widget.Spacer(background=bar_clr),
                 widget.Clock(
-                    format=" 🗓️%a %d.%m.%Y 🕧%H:%M ",
+                    format="  🗓️%a, %d.%m.%Y 🕧%H:%M  ",
                     **rd_
                 ),
                 widget.Spacer(background=bar_clr),
@@ -283,7 +274,7 @@ screens = [
                 widget.QuickExit(
                     background=catppuccin["pink"],
                     foreground=catppuccin["base"],
-                    fmt=" {}",
+                    fmt="  {}",
                     **rd_
                 ),
                 widget.Spacer(length=1, background=catppuccin["pink"], **rd_plr),
@@ -314,7 +305,7 @@ screens = [
                 ),
                 widget.CurrentLayout(
                     background=catppuccin["pink"],
-                    fmt="{} ",
+                    fmt="{}  ",
                     foreground=catppuccin["base"],
                     #max_chars=3,
                     **rd_
