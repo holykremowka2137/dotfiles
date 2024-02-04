@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $fish_user_paths
 
 set fish_greeting
 
@@ -105,6 +105,7 @@ abbr vsway "nvim ~/.config/sway/config"
 abbr vqtile "nvim ~/.config/qtile/config.py"
 abbr vfish "nvim ~/.config/fish/config.fish"
 abbr vlf "nvim ~/.config/lf/lfrc"
+abbr vyazi "nvim ~/.config/yazi/"
 abbr vrofi "nvim ~/.config/rofi/config.rasi"
 abbr vstar "nvim ~/.config/starship.toml"
 alias emacs "emacsclient -nc -a emacs"
@@ -147,6 +148,10 @@ alias mkdir "mkdir -pv"
 alias eblf "lf ~/Music/Eurobeat"
 alias lplf "lf ~/Music/Luzne_Piosenki"
 alias msclf "lf ~/Music"
+
+alias ebyazi "yazi ~/Music/Eurobeat"
+alias lpyazi "yazi ~/Music/Luzne_Piosenki"
+alias mscyazi "yazi ~/Music"
 
 alias cpu "sudo auto-cpufreq --stats"
 alias grep "grep -i --color=always"

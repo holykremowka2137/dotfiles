@@ -131,11 +131,9 @@ dotfiles() {
     if [ "$choice" == "y" ]; then
         sudo pacman -S stow
         git clone https://www.github.com/holykremowka2137/dotfiles.git ~/Repos/dotfiles/
-        cd ~/Repos/dotfiles/.config/
-        stow -v --target="$HOME"/.config/ .
+        stow -v --target="$HOME"/.config/ ~/Repos/dotfiles/.config/.
         mkdir ~/.local/bin/
-        cd ~/Repos/dotfiles/.local/bin/
-        stow -v --target="$HOME"/.local/bin/ .
+        stow -v --target="$HOME"/.local/bin/ ~/Repos/dotfiles/.local/bin/.
         echo "Dotfiles are done."
     elif [ "$choice" == "n" ]; then
         echo "Skipping."
