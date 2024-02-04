@@ -8,7 +8,7 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
-import os#, subprocess
+import subprocess, os
 
 mod = "mod4"
 terminal = os.getenv("TERM")
@@ -357,5 +357,9 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 auto_minimize = True
+
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.run("/home/victoria/.config/qtile/autostart.sh")
 
 wmname = "Qtile"
