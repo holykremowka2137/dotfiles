@@ -5,11 +5,11 @@ set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $fish_user_paths
 
 set fish_greeting
 
-set -gx VISUAL "alacritty -e nvim"
+set -gx VISUAL "foot -e nvim"
 set -gx EDITOR "nvim"
 set -gx SUDO_EDITOR "nvim"
-set -gx TERM "alacritty"
-set -gx TERMINAL "alacritty"
+set -gx TERM "foot"
+set -gx TERMINAL "foot"
 set -gx BROWSER "librewolf"
 set -gx FILE_MANAGER "thunar"
 

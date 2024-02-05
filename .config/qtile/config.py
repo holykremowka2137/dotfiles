@@ -8,12 +8,15 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
-import subprocess, os
+import subprocess#, os
 
 mod = "mod4"
-terminal = os.getenv("TERM")
-browser = os.getenv("BROWSER")
-file_manager = os.getenv("FILE_MANAGER")
+if qtile.core.name == "x11":
+    terminal = "alacritty"
+elif qtile.core.name == "wayland":
+    terminal = "foot"
+browser = "librewolf"
+file_manager = "thunar"
 
 @lazy.layout.function
 def change_gaps(layout, step):
@@ -78,8 +81,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     
-    Key([mod], "Print", lazy.spawn("grim -g - $HOME/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')", shell=True)),
-    Key([], "Print", lazy.spawn("grim -g \"$(slurp)\"'", shell=True)),
+    Key([mod], "Print", lazy.spawn("grim $HOME/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')", shell=True)),
+    Key([], "Print", lazy.spawn("slurp | grim -g - $HOME/Pictures/Screenshots/$(date +'Screenshot_%Y-%m-%d-%H-%M-%S.png')", shell=True)),
 
     Key([mod], "q", lazy.window.kill()),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -216,7 +219,8 @@ def layout_change(layout, group):
     elif qtile.current_layout.name == "columns":
         bar_clr = "#00000000"
 
-bar_clr = catppuccin["mantle"]
+#bar_clr = catppuccin["mantle"]
+bar_clr = "#00000000"
 
 widget_defaults = dict(
     background=catppuccin["base"],
