@@ -1,38 +1,25 @@
-from libqtile import bar, layout, widget, hook, qtile#, extension
+from libqtile import bar, layout, widget, qtile#, extension
 from libqtile.backend.wayland.inputs import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import send_notification
 
 from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
-import subprocess#, os
+from functions import change_gaps, minimize_all
+from colors import catppuccin
 
 mod = "mod4"
+
 if qtile.core.name == "x11":
     terminal = "alacritty"
 elif qtile.core.name == "wayland":
     terminal = "foot"
+
+editor = terminal + " -e nvim"
 browser = "librewolf"
 file_manager = "thunar"
-
-@lazy.layout.function
-def change_gaps(layout, step):
-    if not hasattr(layout, "margin"):
-        return
-    if not isinstance(layout.margin, int):
-        return
-
-    layout.margin = max(layout.margin + step, 0)
-    layout.group.layout_all()
-
-@lazy.function
-def minimize_all(qtile):
-    for win in qtile.current_group.windows:
-        if hasattr(win, "toggle_minimize"):
-            win.toggle_minimize()
 
 keys = [
     Key([mod], "j", lazy.layout.down()),
@@ -71,7 +58,7 @@ keys = [
     Key([mod], "e", lazy.spawn(file_manager)),
     Key([mod], "b", lazy.spawn(browser)),
     # Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
-    Key([mod], "v", lazy.spawn("alacritty -e nvim")),
+    Key([mod], "v", lazy.spawn(editor)),
     Key([mod], "d", lazy.spawn("discord")),
     
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 2%+")),
@@ -142,35 +129,6 @@ for i in groups:
         ]
     )
 
-catppuccin = {
-    "rosewater": "#f5e0dc",
-    "flamingo": "#f2cdcd",
-    "pink": "#f5c2e7",
-    "mauve": "#cba6f7",
-    "red": "#f38ba8",
-    "maroon": "#eba0ac",
-    "peach": "#fab387",
-    "yellow": "#f9e2af",
-    "green": "#a6e3a1",
-    "teal": "#94e2d5",
-    "sky": "#89dceb",
-    "sapphire": "#74c7ec",
-    "blue": "#89b4fa",
-    "lavender": "#b4befe",
-    "text": "#cdd6f4",
-    "subtext1": "#bac2de",
-    "subtext0": "#a6adc8",
-    "overlay2": "#9399b2",
-    "overlay1": "#7f849c",
-    "overlay0": "#6c7086",
-    "surface2": "#585b70",
-    "surface1": "#45475a",
-    "surface0": "#313244",
-    "base": "#1e1e2e",
-    "mantle": "#181825",
-    "crust": "#11111b",
-}
-
 layouts = [
     layout.Columns(
         border_focus=catppuccin["pink"],
@@ -207,17 +165,6 @@ pl = PowerLineDecoration(path="forward_slash")
 rd_ = {"decorations": [rd]}
 rd_pll = {"decorations": [rd, pll]}
 rd_plr = {"decorations": [rd, plr]}
-
-@hook.subscribe.layout_change
-def layout_change(layout, group):
-    global bar_clr 
-    if qtile.current_layout.name == "max":
-        send_notification(f"{layout.name}", f"Is now on group {group.label}")
-        bar_clr = catppuccin["mantle"]
-    if qtile.current_layout.name == "monadtall":
-        bar_clr = "#00000000"
-    elif qtile.current_layout.name == "columns":
-        bar_clr = "#00000000"
 
 #bar_clr = catppuccin["mantle"]
 bar_clr = "#00000000"
@@ -361,9 +308,5 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 auto_minimize = True
-
-@hook.subscribe.startup_once
-def autostart():
-    subprocess.run("/home/victoria/.config/qtile/autostart.sh")
 
 wmname = "Qtile"
