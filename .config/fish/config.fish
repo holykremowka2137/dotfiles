@@ -164,6 +164,5 @@ abbr efish "exec fish"
 abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
-alias qstart "exec qtile start -b wayland"
 
 starship init fish | source
