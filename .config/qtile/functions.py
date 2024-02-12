@@ -2,11 +2,7 @@ from libqtile import hook, qtile
 from libqtile.lazy import lazy
 from libqtile.utils import send_notification
 
-import subprocess
-
-import colors
-
-colors = colors.catppuccin
+from colors import catppuccin
 
 @lazy.layout.function
 def change_gaps(layout, step):
@@ -34,8 +30,3 @@ def layout_change(layout, group):
         bar_clr = "#00000000"
     elif qtile.current_layout.name == "columns":
         bar_clr = "#00000000"
-
-@hook.subscribe.startup_once
-def autostart():
-    subprocess.run("/home/victoria/.config/qtile/autostart.sh")
-
