@@ -1,21 +1,7 @@
-format = """$username$hostname $directory$character"""
+format = "$username$hostname$directory"
 right_format = '$cmd_duration$git_status'
 
 add_newline = false
-
-[line_break]
-disabled = true
-
-[directory]
-truncation_length = 1
-truncate_to_repo = false 
-style = '#cba6f7'
-fish_style_pwd_dir_length = 1
-format = '[$path]($style)[$read_only]($read_only_style)[\]](bold red)'
-
-[character]
-error_symbol = '\$' 
-success_symbol = '\$' 
 
 [username]
 format = '[\[](bold red)[$user]($style)[@](green)'
@@ -25,9 +11,16 @@ show_always = true
 ssh_only = false
 ssh_symbol = '🌐 '
 trim_at = '.'
-format = '[$ssh_symbol$hostname]($style)'
+format = '[$ssh_symbol$hostname ]($style)'
 style = 'bold blue'
 disabled = false
+
+[directory]
+truncation_length = 1
+truncate_to_repo = false 
+style = '#cba6f7'
+fish_style_pwd_dir_length = 1
+format = '[$path]($style)[$read_only]($read_only_style)[\]](bold red)\$ '
 
 [cmd_duration]
 format = '([\[$duration\]]($style))'
@@ -41,23 +34,8 @@ format = '\[[$symbol$branch]($style)\]'
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
 
-[guix_shell]
-format = '\[[$symbol]($style)\]'
-
 [hg_branch]
 format = '\[[$symbol$branch]($style)\]'
-
-[memory_usage]
-format = '\[$symbol[$ram( | $swap)]($style)\]'
-
-[meson]
-format = '\[[$symbol$project]($style)\]'
-
-[nix_shell]
-format = '\[[$symbol$state( \($name\))]($style)\]'
-
-[os]
-format = '\[[$symbol]($style)\]'
 
 [sudo]
 format = '\[[as $symbol]($style)\]'
