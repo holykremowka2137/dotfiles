@@ -9,8 +9,8 @@ disabled = true
 [directory]
 truncation_length = 1
 truncate_to_repo = false 
-style = 'bold purple'
-fish_style_pwd_dir_length = 0
+style = '#cba6f7'
+fish_style_pwd_dir_length = 1
 format = '[$path]($style)[$read_only]($read_only_style)[\]](bold red)'
 
 [character]
