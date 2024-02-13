@@ -17,11 +17,11 @@ set -gx XMODIFIERS "@im=fcitx"
 
 set USB32 "/run/media/victoria/0012-D687/"
 set USB16 "/run/media/victoria/3FAC-3165/"
-# set -x MANPAGER "nvim +Man!"
+#set -x MANPAGER "nvim +Man!"
 
-# function fish_user_key_bindings
-#     fish_vi_key_bindings
-# end
+function fish_user_key_bindings
+    fish_vi_key_bindings
+end
 
 function ya
 	set tmp (mktemp -t "yazi-cwd.XXXXX")

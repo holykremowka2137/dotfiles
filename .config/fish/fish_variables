@@ -5,6 +5,6 @@ SETUVAR fish_color_cwd_root:red
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_features:qmark\x2dnoglob
-SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_key_bindings:fish_vi_key_bindings
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/home/victoria/\x2elocal/bin\x1e/home/victoria/\x2ecargo/bin
