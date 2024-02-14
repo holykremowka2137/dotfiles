@@ -1,4 +1,4 @@
-format = "$username$hostname$directory"
+format = '$username$hostname$directory'
 right_format = '$cmd_duration$git_status'
 
 add_newline = false
@@ -28,14 +28,5 @@ format = '([\[$duration\]]($style))'
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
 
-[fossil_branch]
-format = '\[[$symbol$branch]($style)\]'
-
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
-
-[hg_branch]
-format = '\[[$symbol$branch]($style)\]'
-
-[sudo]
-format = '\[[as $symbol]($style)\]'
