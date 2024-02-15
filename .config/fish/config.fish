@@ -1,7 +1,7 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $fish_user_paths
+set -g fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $fish_user_paths
 
 set fish_greeting
 
@@ -17,20 +17,8 @@ set -gx XMODIFIERS "@im=fcitx"
 
 set USB32 "/run/media/victoria/0012-D687/"
 set USB16 "/run/media/victoria/3FAC-3165/"
-#set -x MANPAGER "nvim +Man!"
 
-function fish_user_key_bindings
-    fish_vi_key_bindings
-end
-
-function ya
-	set tmp (mktemp -t "yazi-cwd.XXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
-end
+set -g fish_key_bindings fish_vi_key_bindings
 
 set fish_color_normal cdd6f4
 set fish_color_command 89b4fa
@@ -59,6 +47,7 @@ set fish_pager_color_completion cdd6f4
 set fish_pager_color_description 6c7086
 
 alias gc "cd ~/.config/"
+alias gcf "cd ~/.config/fish/"
 alias gcn "cd ~/.config/nvim/"
 alias gcq "cd ~/.config/qtile/"
 alias gd "cd ~/Documents/"
@@ -167,4 +156,4 @@ abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
 
-starship init fish | source
+#starship init fish | source
