@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-sudo pacman -Sy
+sudo pacman -Syyu
 
 function which_cpu
     echo
