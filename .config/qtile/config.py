@@ -1,4 +1,5 @@
-from libqtile import bar, layout, widget, qtile#, extension
+from libqtile import hook, bar, layout, widget#, qtile, extension
+from libqtile.backend.wayland.inputs import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -7,28 +8,13 @@ from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
 from functions import change_gaps, minimize_all
-from colors import catppuccin
+#from colors import catppuccin_latte as catppuccin
+from colors import catppuccin_mocha as catppuccin
 
-import sys, importlib
-
-def reload(module):
-    if module in sys.modules:
-        importlib.reload(sys.modules[module])
-
-
-IS_WAYLAND: bool = qtile.core.name == "wayland"
-
-reload(qtile.core.name)
-if IS_WAYLAND:
-    from wayland import keys_backend, wl_input_rules, terminal, autostart
-else:
-    from x11 import terminal
-
-#my_keys: list[tuple[list[str], str, str]] = []
-#my_keys.extend(keys_backend)
+import subprocess
 
 mod = "mod4"
-
+terminal = "foot"
 editor = terminal + " -e nvim"
 browser = "librewolf"
 file_manager = "thunar"
@@ -92,7 +78,19 @@ keys = [
     Key([mod, "control"], "Delete", lazy.spawn("shutdown -h now")),
     Key([mod], "w", lazy.spawn("rofi -show drun")),
     Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
+
+    Key([mod, "control"], "F1", lazy.core.change_vt(1)),
+    Key([mod, "control"], "F2", lazy.core.change_vt(2)),
+    Key([mod, "control"], "F3", lazy.core.change_vt(3)),
+    Key([mod, "control"], "F4", lazy.core.change_vt(4)),
+    Key([mod, "control"], "F5", lazy.core.change_vt(5)),
+    Key([mod, "control"], "F6", lazy.core.change_vt(6)),
+    Key([mod, "control"], "F7", lazy.core.change_vt(7)),
 ]
+
+wl_input_rules = {
+    "type:keyboard": InputConfig(kb_options="caps:escape_shifted_capslock,altwin:swap_alt_win"),
+}
 
 groups = [
     Group("1", label="一", layout="monadtall"),
@@ -306,9 +304,8 @@ floating_layout = layout.Floating(
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
-
 auto_minimize = True
 
-wmname = "Qtile"
-
-#keys = [Key(mods, key, cmd, desc=desc) for mods, key, cmd, desc in my_keys]
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.run("/home/victoria/.config/qtile/autostart.sh")
