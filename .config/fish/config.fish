@@ -20,6 +20,27 @@ set USB16 "/run/media/victoria/3FAC-3165/"
 
 set -g fish_key_bindings fish_vi_key_bindings
 
+set -g __fish_git_prompt_show_informative_status 1
+set -g __fish_git_prompt_hide_untrackedfiles 1
+
+set -g __fish_git_prompt_color_branch -o magenta
+set -g __fish_git_prompt_showupstream "informative"
+set -g __fish_git_prompt_char_upstream_ahead "↑"
+set -g __fish_git_prompt_char_upstream_behind "↓"
+set -g __fish_git_prompt_char_upstream_prefix ""
+
+set -g __fish_git_prompt_char_stagedstate "●"
+set -g __fish_git_prompt_char_dirtystate "✚"
+set -g __fish_git_prompt_char_untrackedfiles "…"
+set -g __fish_git_prompt_char_conflictedstate "✖"
+set -g __fish_git_prompt_char_cleanstate "✔"
+
+set -g __fish_git_prompt_color_dirtystate     -o red
+set -g __fish_git_prompt_color_stagedstate    -o red
+set -g __fish_git_prompt_color_invalidstate   -o red
+set -g __fish_git_prompt_color_untrackedfiles -o red
+set -g __fish_git_prompt_color_cleanstate     -o red
+
 set fish_color_normal cdd6f4
 set fish_color_command 89b4fa
 set fish_color_param f2cdcd

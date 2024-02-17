@@ -1,10 +1,10 @@
 format = '$username$hostname$directory'
-right_format = '$cmd_duration$git_status'
+right_format = '$cmd_duration$git_status$character'
 
 add_newline = false
 
 [username]
-format = '[\[](bold red)[$user]($style)[@](green)'
+format = '[\[](bold red)[$user]($style)[@](bold green)'
 show_always = true
 
 [hostname]
@@ -18,7 +18,7 @@ disabled = false
 [directory]
 truncation_length = 1
 truncate_to_repo = false 
-style = '#cba6f7'
+style = 'bold #cba6f7'
 fish_style_pwd_dir_length = 1
 format = '[$path]($style)[$read_only]($read_only_style)[\]](bold red)\$ '
 
@@ -30,3 +30,11 @@ format = '([\[$all_status$ahead_behind\]]($style))'
 
 [git_branch]
 format = '\[[$symbol$branch]($style)\]'
+
+[character]
+success_symbol              = '[\[INSERT\]](bold green)'
+error_symbol                = '[\[INSERT\]](bold green)'
+vimcmd_symbol               = '[\[ESCAPE\]](bold red)'
+vimcmd_replace_one_symbol   = '[\[REPLACE\]](bold #89dceb)'
+vimcmd_replace_symbol       = '[\[REPLACE\]](bold #89dceb)'
+vimcmd_visual_symbol        = '[\[VISUAL\]](bold #fab387)'

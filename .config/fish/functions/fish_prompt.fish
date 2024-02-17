@@ -1,3 +1,16 @@
 function fish_prompt
-    echo -n -s (set_color -o red) \[ (set_color yellow) "$USER" (set_color green) \@ (set_color blue) $hostname \  (set_color cba6f7) (prompt_pwd) (set_color red) \] (set_color normal) \$\  
+    set_color -o red
+    echo -n  \[ 
+    set_color yellow
+    echo -n "$USER" 
+    set_color green 
+    echo -n \@ 
+    set_color blue
+    echo -n "$hostname "
+    set_color cba6f7
+    echo -n (prompt_pwd)
+    set_color red
+    echo -n \]
+    set_color normal
+    echo -n \$\  
 end
