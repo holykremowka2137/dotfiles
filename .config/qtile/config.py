@@ -1,9 +1,10 @@
-from libqtile import hook, bar, layout, widget#, qtile, extension
+from libqtile import hook, bar, layout, widget#, CurrentLayoutIconqtile, extension
 from libqtile.backend.wayland.inputs import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 from qtile_extras import widget
+from qtile_extras.widget import CurrentLayoutIcon
 from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
@@ -170,6 +171,7 @@ bar_clr = "#00000000"
 widget_defaults = dict(
     background=catppuccin["base"],
     font="Noto Sans Medium",
+    #font="JetBrains Mono Medium",
     fontsize=16,
     foreground=catppuccin["text"],
     padding=0,
@@ -182,8 +184,9 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
+                widget.Spacer(length=10, background=catppuccin["pink"], **rd_),
                 widget.TextBox(
-                    fmt=" 󰌠",
+                    fmt="󰌠",
                     background=catppuccin["pink"],
                     foreground=catppuccin["base"],
                     fontsize=30,
@@ -206,24 +209,28 @@ screens = [
                 ),
                 widget.WindowCount(
                     background=catppuccin["pink"],
-                    fmt="{}  ",
+                    fmt="{}",
                     fontsize=20,
                     foreground=catppuccin["base"],
                     show_zero=True,
                     **rd_
                 ),
+                widget.Spacer(length=10, background=catppuccin["pink"], **rd_),
                 widget.Spacer(background=bar_clr),
+                widget.Spacer(length=10, **rd_),
                 widget.Clock(
-                    format="  🗓️%a, %d.%m.%Y 🕧%H:%M  ",
+                    format="🗓️%a, %d.%m.%Y 🕧%H:%M",
                     **rd_
                 ),
+                widget.Spacer(length=10, **rd_),
                 widget.Spacer(background=bar_clr),
                 widget.StatusNotifier(padding=6, **rd_),
                 widget.Spacer(length=10, background=bar_clr),
-                widget.QuickExit(
+                widget.Spacer(length=10, background=catppuccin["pink"], **rd_),
+                widget.CurrentLayout(
                     background=catppuccin["pink"],
+                    fmt="{}",
                     foreground=catppuccin["base"],
-                    fmt="  {}",
                     **rd_
                 ),
                 widget.Spacer(length=1, background=catppuccin["pink"], **rd_plr),
@@ -252,13 +259,15 @@ screens = [
                     show_short_text=False,
                     **rd_plr
                 ),
-                widget.CurrentLayout(
+                widget.CurrentLayoutIcon(
                     background=catppuccin["pink"],
-                    fmt="{}  ",
+                    fmt="{}",
+                    scale=0.8,
+                    use_mask=True,
                     foreground=catppuccin["base"],
-                    #max_chars=3,
                     **rd_
                 ),
+                widget.Spacer(length=10, background=catppuccin["pink"], **rd_),
             ],
             36,
             background=bar_clr,
