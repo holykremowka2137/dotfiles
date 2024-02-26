@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 set -e fish_user_paths
-set -g fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $fish_user_paths
+set -g fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $HOME/.config/emacs/bin $fish_user_paths
 
 set fish_greeting
 
@@ -69,22 +69,22 @@ alias .2 "cd ../.."
 alias .3 "cd ../../.."
 alias .4 "cd ../../../.."
 
-alias gadd "git add"
-alias gadd. "git add ."
-alias gbranch "git branch"
-alias gchanges "gadda && gcommit \"changes\" && gpush"
-alias gclone "git clone"
-alias gcommit "git commit -m"
-alias gdiff "git diff"
-alias glog "git log"
-alias gmerge "git merge"
-alias gpull "git pull"
-alias gpush "git push"
-alias grestore "git restore"
-alias gstatus "git status"
-alias gusual "gadda && gcommit \"usual\" && gpush"
-alias gwords "gadda && gcommit \"words\" && gpush"
-alias gsmallchanges "gadda && gcommit \"small changes\" && gpush"
+abbr gadd "git add"
+abbr gadd. "git add ."
+abbr gbranch "git branch"
+abbr gchanges "gadda && gcommit \"changes\" && gpush"
+abbr gclone "git clone"
+abbr gcommit "git commit -m"
+abbr gdiff "git diff"
+abbr glog "git log"
+abbr gmerge "git merge"
+abbr gpull "git pull"
+abbr gpush "git push"
+abbr grestore "git restore"
+abbr gstatus "git status"
+abbr gusual "gadda && gcommit \"usual\" && gpush"
+abbr gwords "gadda && gcommit \"words\" && gpush"
+abbr gsmallchanges "gadda && gcommit \"small changes\" && gpush"
 
 abbr v "nvim"
 abbr vv "nvim ~/.config/nvim/"
@@ -116,10 +116,10 @@ abbr pos "paru && sudo flatpak update"
 abbr rns "paru -Rns"
 abbr s "paru -S"
 
-alias cbuild "cargo build"
-alias ccheck "cargo check"
-alias cnew "cargo new"
-alias crun "cargo run"
+abbr cbuild "cargo build"
+abbr ccheck "cargo check"
+abbr cnew "cargo new"
+abbr crun "cargo run"
 
 alias ls "eza -al --color=always --group-directories-first"
 alias la "eza -a --color=always --group-directories-first"
