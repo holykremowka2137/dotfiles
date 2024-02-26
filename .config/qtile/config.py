@@ -189,7 +189,7 @@ rd_ = {"decorations": [rd]}
 rd_pll = {"decorations": [rd, pll]}
 rd_plr = {"decorations": [rd, plr]}
 
-#bar_clr = mantle"]
+#bar_clr = mantle
 bar_clr = "#00000000"
 
 widget_defaults = dict(
