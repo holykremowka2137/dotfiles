@@ -47,8 +47,8 @@ keys = [
     Key([mod, "shift"], "m", minimize_all()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
 
-    Key([mod], "equal", change_gaps(10)),
-    Key([mod], "minus", change_gaps(-10)),
+    Key([mod], "equal", change_gaps(5)),
+    Key([mod], "minus", change_gaps(-5)),
 
     Key([mod], "Return", lazy.spawn(terminal)),
     Key([mod], "e", lazy.spawn(file_manager)),
@@ -155,7 +155,7 @@ CRUST     = "#11111b"
 layouts = [
     layout.Columns(
         border_focus=PINK,
-        border_normal=BASE, 
+        border_normal=CRUST, 
         border_on_single=False, 
         border_width=2, 
         fair=True,
@@ -166,7 +166,7 @@ layouts = [
     layout.Max(),
     layout.MonadTall(
         border_focus=PINK,
-        border_normal=BASE, 
+        border_normal=CRUST, 
         border_on_single=True, 
         border_width=2, 
         margin=0,
