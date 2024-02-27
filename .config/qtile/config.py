@@ -1,4 +1,4 @@
-from libqtile import hook, bar, layout, widget#, CurrentLayoutIconqtile, extension
+from libqtile import hook, bar, layout, widget, qtile#, extension
 from libqtile.backend.wayland.inputs import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -7,7 +7,7 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
-from functions import change_gaps, minimize_all
+from functions import *
 
 import subprocess
 
@@ -18,17 +18,30 @@ browser = "librewolf"
 file_manager = "thunar"
 
 keys = [
+    # not layout specific
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
     Key([mod], "space", lazy.group.next_window()),
-
+    
     Key([mod, "shift"], "h", lazy.layout.shuffle_left().when(layout=["columns", "monadtall"])),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right().when(layout=["columns", "monadtall"])),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down().when(layout=["columns", "monadtall"])),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up().when(layout=["columns", "monadtall"])),
 
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "t", lazy.window.toggle_floating()),
+    Key([mod], "Tab", lazy.next_layout()),
+
+    Key([mod], "n", 
+        lazy.layout.reset().when(layout="monadtall"),
+        lazy.layout.normalize().when(layout="columns"),
+    ),
+
+    Key([mod], "q", lazy.window.kill()),
+
+    # columns
     Key([mod, "control"], "j", lazy.layout.grow_down()),
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     Key([mod, "control"], "h", lazy.layout.grow_left()),
@@ -36,54 +49,63 @@ keys = [
 
     Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
     Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
-    Key([mod], "Return", lazy.layout.toggle_split()),
-    Key([mod], "n", lazy.layout.normalize()),
+    Key([mod], "grave", lazy.layout.toggle_split()),
 
-    Key([mod], "bracketleft", lazy.layout.grow()),
-    Key([mod], "bracketright", lazy.layout.shrink()),
-    Key([mod], "n", lazy.layout.normalize()),
-    Key([mod], "r", lazy.layout.reset()),
-    Key([mod], "o", lazy.layout.maximize()),
-    Key([mod, "shift"], "m", minimize_all()),
-    Key([mod, "shift"], "space", lazy.layout.flip()),
+    # monadtall
+    Key([mod], "bracketleft", lazy.layout.grow().when(layout="monadtall")),
+    Key([mod], "bracketright", lazy.layout.shrink().when(layout="monadtall")),
+    Key([mod, "shift"], "n", lazy.layout.normalize().when(layout="monadtall")),
+    Key([mod], "o", lazy.layout.maximize().when(layout="monadtall")),
+    Key([mod, "shift"], "space", lazy.layout.flip().when(layout="monadtall")),
 
+    # functions
     Key([mod], "equal", change_gaps(5)),
     Key([mod], "minus", change_gaps(-5)),
 
+    Key([mod, "shift"], "m", minimize_all()),
+
+    # apps shortcuts
     Key([mod], "Return", lazy.spawn(terminal)),
     Key([mod], "e", lazy.spawn(file_manager)),
     Key([mod], "b", lazy.spawn(browser)),
     #Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
     Key([mod], "v", lazy.spawn(editor)),
     Key([mod], "d", lazy.spawn("discord")),
+
+    # menu
+    Key([mod], "w", lazy.spawn("rofi -show drun")),
+    Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
     
+    # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 2%+")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 2%-")),
     
+    # volume
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 2%+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     
+    # screenshots
     Key([mod], "Print", lazy.spawn("grim $HOME/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')", shell=True)),
     Key([], "Print", lazy.spawn("slurp | grim -g - $HOME/Pictures/Screenshots/$(date +'Screenshot_%Y-%m-%d-%H-%M-%S.png')", shell=True)),
 
-    Key([mod], "q", lazy.window.kill()),
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
-    Key([mod], "t", lazy.window.toggle_floating()),
-    Key([mod], "Tab", lazy.next_layout()),
-
     Key([mod, "control"], "r", lazy.reload_config()),
     Key([mod, "control"], "Delete", lazy.spawn("shutdown -h now")),
-    Key([mod], "w", lazy.spawn("rofi -show drun")),
-    Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
+]
 
-    Key([mod, "control"], "F1", lazy.core.change_vt(1)),
-    Key([mod, "control"], "F2", lazy.core.change_vt(2)),
-    Key([mod, "control"], "F3", lazy.core.change_vt(3)),
-    Key([mod, "control"], "F4", lazy.core.change_vt(4)),
-    Key([mod, "control"], "F5", lazy.core.change_vt(5)),
-    Key([mod, "control"], "F6", lazy.core.change_vt(6)),
-    Key([mod, "control"], "F7", lazy.core.change_vt(7)),
+for vt in range(1, 8):
+    keys.append(
+        Key([mod, "control"], f"f{vt}", lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"))
+    )
+
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position(),
+         start=lazy.window.get_position(),
+    ),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size(),
+    ),
+    Click([mod], "Button1", lazy.window.bring_to_front()),
 ]
 
 wl_input_rules = {
@@ -154,23 +176,25 @@ CRUST     = "#11111b"
 
 layouts = [
     layout.Columns(
-        border_focus=PINK,
+        border_focus=GREEN,
+        border_focus_stack=RED,
         border_normal=CRUST, 
+        border_normal_stack=OVERLAY2,
         border_on_single=False, 
-        border_width=2, 
+        border_width=3, 
         fair=True,
+        grow_amount=5,
+        insert_position=1,
         margin=0,
-        wrap_focus_stack=True,
     ),
     # pants? wrestling?
     layout.Max(),
     layout.MonadTall(
-        border_focus=PINK,
+        border_focus=GREEN,
         border_normal=CRUST, 
-        border_on_single=True, 
+        border_on_single=False, 
         border_width=2, 
         margin=0,
-        wrap_focus_stack=False,
     ),
 ]
 
@@ -189,14 +213,14 @@ rd_ = {"decorations": [rd]}
 rd_pll = {"decorations": [rd, pll]}
 rd_plr = {"decorations": [rd, plr]}
 
-#bar_clr = mantle
-bar_clr = "#00000000"
+bar_clr = CRUST
+#bar_clr = "#00000000"
 
 widget_defaults = dict(
     background=BASE,
     font="Noto Sans Medium",
     fontsize=16,
-    foreground=TEXT,
+    foreground=BASE,
     padding=0,
 )
 extension_defaults = widget_defaults.copy()
@@ -207,13 +231,12 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                widget.TextBox(
-                    fmt=" 󰌠",
-                    background=PINK,
-                    foreground=BASE,
-                    fontsize=30,
-                    **rd_plr
-                ),
+                #widget.TextBox(
+                #    fmt=" 󰌠",
+                #    background=GREEN,
+                #    fontsize=30,
+                #    **rd_plr
+                #),
                 widget.GroupBox2(
                     disable_drag=True,
                     fontsize=22,
@@ -223,33 +246,35 @@ screens = [
                         GroupBoxRule(block_colour=OVERLAY0).when(screen=ScreenRule.THIS, occupied=True),
                         GroupBoxRule(block_colour=OVERLAY0, text_colour=TEXT).when(screen=ScreenRule.THIS, occupied=False),
                         GroupBoxRule(block_colour=GREEN).when(screen=ScreenRule.OTHER),
-                        GroupBoxRule(text_colour=PINK).when(occupied=True),
+                        GroupBoxRule(text_colour=GREEN).when(occupied=True),
                         GroupBoxRule(text_colour=OVERLAY0).when(occupied=False),
                     ],
                     **rd_pll
                 ),
                 widget.WindowCount(
-                    background=PINK,
+                    background=GREEN,
                     fmt="{}  ",
                     fontsize=20,
-                    foreground=BASE,
                     show_zero=True,
                     **rd_
                 ),
                 widget.Spacer(background=bar_clr),
                 widget.Clock(
-                    format="  🗓️%a, %d.%m.%Y 🕧%H:%M  ",
+                    format="  󰃭 %a, %d.%m.%Y 󰥔 %H:%M  ",
+                    background=TEXT,
                     **rd_
                 ),
                 widget.Spacer(background=bar_clr),
-                widget.StatusNotifier(padding=6, **rd_),
+                widget.StatusNotifier(
+                    background=bar_clr,
+                    padding=6,
+                ),
                 widget.Spacer(length=10, background=bar_clr),
-                widget.Spacer(length=10, background=PINK, **rd_),
+                widget.Spacer(length=10, background=ROSEWATER, **rd_),
                 widget.WindowName(
-                    background=PINK,
+                    background=ROSEWATER,
                     empty_group_string="  ",
                     fmt="{}",
-                    foreground=BASE,
                     scroll=True,
                     scroll_delay=1,
                     scroll_fixed_width=False,
@@ -258,34 +283,38 @@ screens = [
                     **rd_plr
                 ),
                 widget.Volume(
-                    fmt="  🔊{}",
+                    background=PINK,
+                    fmt="   {}",
                     **rd_plr
                 ),
                 widget.Backlight(
-                    fmt="🔆{}",
+                    fmt=" {}",
                     backlight_name="intel_backlight",
+                    background=MAUVE,
                     brightness_file="brightness",
                     **rd_plr
                 ),
                 widget.ThermalSensor(
                     tag_sensor="Core 0",
-                    fmt="🔥{}",
+                    background=RED,
+                    fmt="󰈸 {}",
                     **rd_plr
                 ),
                 widget.Battery(
-                    charge_char="🔌",
-                    discharge_char="🔋",
-                    unknown_char="‼️",
+                    charge_char="󰂉 ",
+                    discharge_char="󰁾 ",
+                    unknown_char="󱈸󱈸 ",
+                    empty_char="󰁺 ",
                     format="{char}{percent:2.0%}",
-                    full_char="💯",
+                    background=PEACH,
+                    full_char="󰁹 ",
                     update_interval=1,
                     show_short_text=False,
                     **rd_plr
                 ),
                 widget.CurrentLayout(
-                    background=PINK,
+                    background=TEAL,
                     fmt="{}  ",
-                    foreground=BASE,
                 ),
             ],
             36,
@@ -298,16 +327,6 @@ screens = [
     ),
 ]
 
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position(),
-         start=lazy.window.get_position(),
-    ),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size(),
-    ),
-    Click([mod], "Button1", lazy.window.bring_to_front()),
-]
-
 dgroups_key_binder = None
 dgroups_app_rules = []  
 follow_mouse_focus = True
@@ -315,9 +334,9 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=PINK,
-    border_normal=BASE, 
-    border_width=2,
+    border_focus=GREEN,
+    border_normal=CRUST, 
+    border_width=3,
     float_rules=[
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  
