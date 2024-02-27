@@ -125,7 +125,7 @@ wl_input_rules = {
 #    Group("0", label="零", layout="monadtall"),
 #]
 
-groups=[
+groups = [
     Group("1", label="一", layout="columns"),
     Group("2", label="ニ", layout="max", matches=[Match(wm_class="LibreWolf")]),
     Group("3", label="三", layout="columns"),
@@ -231,12 +231,6 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                #widget.TextBox(
-                #    fmt=" 󰌠",
-                #    background=GREEN,
-                #    fontsize=30,
-                #    **rd_plr
-                #),
                 widget.GroupBox2(
                     disable_drag=True,
                     fontsize=22,
@@ -321,9 +315,7 @@ screens = [
             background=bar_clr,
             #border_color=bar_clr,
             #border_width=[2, 2, 2, 2],
-            #width=[4, 10, 0, 10],
         ),
-        #x11_drag_polling_rate=60,
     ),
 ]
 
