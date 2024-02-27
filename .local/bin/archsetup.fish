@@ -317,7 +317,7 @@ function enabling
 
     echo (set_color -oi green)"Changing colors of Papirus Icon Theme..."
     set_color normal
-    papirus-folders -C cat-mocha-pink --theme Papirus-Dark
+    papirus-folders -C cat-mocha-green --theme Papirus-Dark
 end
 
 function rebooting
