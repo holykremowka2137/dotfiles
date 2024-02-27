@@ -22,7 +22,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 
 set -g __fish_git_prompt_color -o red
 set -g __fish_git_prompt_showuntrackedfiles false
-set -g _fish_git_prompt_char_stateseparator '  '
+set -g _fish_git_prompt_char_stateseparator ' '
 set -g __fish_git_prompt_showdirtystate true
 set -g __fish_git_prompt_showupstream informative
 
