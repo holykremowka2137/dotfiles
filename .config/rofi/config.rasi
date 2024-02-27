@@ -2,7 +2,7 @@ configuration{
     modi: "run,drun,emoji";
     icon-theme: "Oranchelo";
     show-icons: true;
-    terminal: "alacritty";
+    terminal: "foot";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;
@@ -16,7 +16,7 @@ configuration{
 
 * {
     base: #1e1e2e;
-    pink: #f5c2e7;
+    green: #a6e3a1;
     text: #cdd6f4;
     red: #f38ba8;
     overlay0: #6c7086;
@@ -33,7 +33,7 @@ element-text, element-icon {
 window {
     height: 440px;
     border: 2px;
-    border-color: @pink;
+    border-color: @green;
     background-color: @base;
 }
 
@@ -49,7 +49,7 @@ inputbar {
 }
 
 prompt {
-    background-color: @pink;
+    background-color: @green;
     padding: 6px;
     text-color: @base;
     border-radius: 3px;
@@ -87,7 +87,7 @@ element-icon {
 }
 
 element selected {
-    background-color: @pink;
+    background-color: @green;
     text-color: @base;
 }
 
@@ -101,6 +101,6 @@ message {
 textbox {
     padding: 6px;
     margin: 20px 0px 0px 20px;
-    text-color: @pink;
+    text-color: @green;
     background-color: @base;
 }
