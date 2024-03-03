@@ -280,10 +280,7 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                widget.TextBox(
-                    background=bar_clr,
-                    fmt="  ",
-                ),
+                widget.TextBox(fmt="  "),
                 widget.GroupBox2(
                     disable_drag=True,
                     fontsize=22,
