@@ -4,4 +4,4 @@ gammastep &
 import-gsettings
 dunst &
 
-$TERM -e nvim ~/Desktop/notes.txt &
+$TERM -e $EDITOR ~/Desktop/notes.txt &
