@@ -6,17 +6,17 @@ set -g fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $HOME/.config/emacs/bin
 set fish_greeting
 
 set -gx VISUAL "foot -e nvim"
-set -gx EDITOR "nvim"
-set -gx SUDO_EDITOR "nvim"
-set -gx TERM "foot"
-set -gx TERMINAL "foot"
+set -gx EDITOR nvim
+set -gx SUDO_EDITOR nvim
+set -gx TERM foot
+set -gx TERMINAL foot
 
-set -gx GTK_IM_MODULE "fcitx"
-set -gx QT_IM_MODULE "fcitx"
+set -gx GTK_IM_MODULE fcitx
+set -gx QT_IM_MODULE fcitx
 set -gx XMODIFIERS "@im=fcitx"
 
-set USB32 "/run/media/victoria/0012-D687/"
-set USB16 "/run/media/victoria/3FAC-3165/"
+set USB32 /run/media/victoria/0012-D687/
+set USB16 /run/media/victoria/3FAC-3165/
 
 set -g fish_key_bindings fish_vi_key_bindings
 
@@ -63,7 +63,7 @@ abbr gpush "git push"
 abbr grestore "git restore"
 abbr gstatus "git status"
 
-abbr v "nvim"
+abbr v nvim
 abbr vv "nvim ~/.config/nvim/"
 abbr valac "nvim ~/.config/alacritty/alacritty.toml"
 abbr vbash "nvim ~/.bashrc"
@@ -88,7 +88,7 @@ alias eb "mpv --no-video --term-osd-bar --shuffle ~/Music/Eurobeat"
 alias lp "mpv --no-video --term-osd-bar --shuffle ~/Music/Luzne_Piosenki"
 alias msc "mpv --no-video --term-osd-bar --shuffle"
 
-abbr p "paru"
+abbr p paru
 abbr pos "paru && sudo flatpak update"
 abbr rns "paru -Rns"
 abbr s "paru -S"
@@ -140,5 +140,7 @@ abbr ebash "exec bash"
 abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
+
+abbr ff fastfetch
 
 #starship init fish | source
