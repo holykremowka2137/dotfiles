@@ -52,9 +52,8 @@ alias .4 "cd ../../../.."
 abbr gadd "git add"
 abbr gadd. "git add ."
 abbr gbranch "git branch"
-abbr gchanges "gadda && gcommit \"changes\" && gpush"
 abbr gclone "git clone"
-abbr gcommit "git commit -m"
+abbr gcommit "git commit -m \""
 abbr gdiff "git diff"
 abbr glog "git log"
 abbr gmerge "git merge"
@@ -141,6 +140,7 @@ abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
 
+alias q "systemctl --user restart dbus && exec qtile start -b wayland"
 abbr ff fastfetch
 
 #starship init fish | source
