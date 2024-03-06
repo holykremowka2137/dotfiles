@@ -1,0 +1,14 @@
+#!/usr/bin/env fish
+
+set output "$HOME/Pictures/Screenshots/$(date +'Screenshot_%Y-%m-%d-%H-%M-%S.png')"
+
+switch $argv[1]
+	case select -s
+		slurp | grim -g - "$output" || exit
+	case window -w
+		grim "$output" || exit
+	case '*'
+		grim "$output" || exit
+end
+
+dunstify "Screenshot taken."
