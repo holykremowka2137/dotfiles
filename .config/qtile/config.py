@@ -115,22 +115,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse set Master toggle")),
     # screenshots
-    Key(
-        [mod],
-        "Print",
-        lazy.spawn(
-            "grim $HOME/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')",
-            shell=True,
-        ),
-    ),
-    Key(
-        [],
-        "Print",
-        lazy.spawn(
-            "slurp | grim -g - $HOME/Pictures/Screenshots/$(date +'Screenshot_%Y-%m-%d-%H-%M-%S.png')",
-            shell=True,
-        ),
-    ),
+    Key(["Shift"], "Print", lazy.spawn("scrnsht select", shell=True)),
+    Key([], "Print", lazy.spawn("scrnsht", shell=True)),
     Key([mod, "control"], "r", lazy.reload_config()),
     Key([mod, "control"], "Delete", lazy.spawn("shutdown -h now")),
 ]
@@ -378,4 +364,4 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.run("/home/victoria/.local/bin/autostart.sh")
+    subprocess.run("/home/victoria/.local/bin/autostart.fish")
