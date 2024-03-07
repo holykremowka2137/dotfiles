@@ -1,6 +1,6 @@
 from libqtile import hook, bar, layout, widget, qtile  # , extension
 from libqtile.backend.wayland.inputs import InputConfig
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
 from qtile_extras import widget
@@ -99,14 +99,27 @@ keys = [
     Key([mod, "shift"], "m", minimize_all()),
     # apps shortcuts
     Key([mod], "Return", lazy.spawn(terminal)),
-    Key([mod], "e", lazy.spawn(file_manager)),
-    Key([mod], "b", lazy.spawn(browser)),
-    # Key([mod], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
-    Key([mod], "v", lazy.spawn(editor)),
-    Key([mod], "d", lazy.spawn("discord")),
+    KeyChord(
+        [mod],
+        "a",
+        [
+            Key([], "e", lazy.spawn(file_manager)),
+            Key([], "b", lazy.spawn(browser)),
+            # Key([], "v", lazy.spawn("emacsclient -c -a 'emacs' ")),
+            Key([], "v", lazy.spawn(editor)),
+            Key([], "d", lazy.spawn("discord")),
+            Key(["shift"], "d", lazy.spawn("killall Discord", shell=True)),
+        ],
+    ),
     # menu
-    Key([mod], "w", lazy.spawn("rofi -show drun")),
-    Key([mod, "shift"], "w", lazy.spawn("rofi -show emoji")),
+    KeyChord(
+        [mod],
+        "w",
+        [
+            Key([], "w", lazy.spawn("rofi -show drun")),
+            Key([], "e", lazy.spawn("rofi -show emoji")),
+        ],
+    ),
     # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 2%+")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 2%-")),
@@ -184,6 +197,8 @@ for i in groups:
             Key([mod], i.name, lazy.group[i.name].toscreen()),
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
             Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
+            Key([mod], "comma", lazy.screen.prev_group()),
+            Key([mod], "period", lazy.screen.next_group()),
         ]
     )
 
@@ -217,8 +232,8 @@ CRUST = "#11111b"
 layout_theme = {
     "border_width": 3,
     "margin": 0,
-    "border_focus": "#a6e3a1",
-    "border_normal": "#11111b",
+    "border_focus": GREEN,
+    "border_normal": CRUST,
 }
 
 layouts = [
