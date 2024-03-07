@@ -186,9 +186,12 @@ function dotfiles
         case y
             sudo pacman -S --noconfirm stow
             git clone https://www.github.com/holykremowka2137/dotfiles.git ~/Repos/dotfiles/
-            stow -v --target="$HOME"/.config/ ~/Repos/dotfiles/.config/.
+            cd ~/Repos/dotfiles/.config/
+            stow -v --target="$HOME"/.config/ .
             mkdir ~/.local/bin/
-            stow -v --target="$HOME"/.local/bin/ ~/Repos/dotfiles/.local/bin/.
+            cd ~/Repos/dotfiles/.local/bin/
+            stow -v --target="$HOME"/.local/bin/ .
+            cd
             echo (set_color -oi green)"Dotfiles are done."
             set_color normal
         case n
