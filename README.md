@@ -25,7 +25,7 @@ chmod +x ~/.config/qtile/autostart.sh
 If you want to use my Qtile config, then first and foremost you have to install several dependencies: `fish`, `grim`, `brightnessctl`, `amixer`, `rofi`, `slurp`, Noto fonts, `foot`, `nvim`, `thunar` and `librewolf`
 
 # Credits
-My archsetup.sh is a fork of [banku's](https://github.com/bankubanku) setup.sh. I also based this README off of his own. Go check him out.
+My `archsetup` script is a fork of [banku's](https://github.com/bankubanku) setup.sh. I also based this README off of his own. Go check him out.
 
 V nyfb pbcvrq/fgbyra n ybg bs fghss sebz bgure Yvahk lbhghoref, r.t. QvfgebGhor be Revp Zhecul.
 
