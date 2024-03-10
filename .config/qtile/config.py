@@ -15,7 +15,7 @@ terminal = "foot"
 editor = terminal + " -e nvim"
 browser = "librewolf"
 file_manager = "thunar"
-home = os.path.expanduser('~')
+home = os.path.expanduser("~")
 
 
 @lazy.layout.function
