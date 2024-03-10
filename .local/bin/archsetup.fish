@@ -195,11 +195,35 @@ function dotfiles
             echo (set_color -oi green)"Dotfiles are done."
             set_color normal
         case n
-            echo (set_color -o green)"Skipping."
+            stow
         case '*'
             echo
             echo (set_color -oi green)"Are you sure about that?"
             dotfiles
+    end
+end
+
+function stow
+    echo 
+    echo (set_color -oi green)"Do you want to stow your dotfiles? [y/n]"
+    read choice
+    switch $choice
+        case y
+            sudo pacman -S --noconfirm stow
+            cd ~/Repos/dotfiles/.config/
+            stow -v --target="$HOME"/.config/ .
+            mkdir ~/.local/bin/
+            cd ~/Repos/dotfiles/.local/bin/
+            stow -v --target="$HOME"/.local/bin/ .
+            cd
+            echo (set_color -oi green)"Stowing is done."
+            set_color normal
+        case n
+            echo (set_color -o green)"Skipping."
+        case '*'
+            echo
+            echo (set_color -oi green)"Are you sure about that?"
+            stow
     end
 end
 
