@@ -4,19 +4,19 @@ function fish_default_mode_prompt
         switch $fish_bind_mode
             case default
                 set_color -o red
-                echo '[ESCAPE]'
+                echo ' E'
             case insert
                 set_color -o green
-                echo '[INSERT]'
+                echo ' I'
             case replace_one
                 set_color -o 89dceb
-                echo '[REPLACE]'
+                echo ' R'
             case replace
                 set_color -o 89dceb
-                echo '[REPLACE]'
+                echo ' R'
             case visual
-                set_color -o fab387
-                echo '[VISUAL]'
+                set_color -o blue
+                echo ' V'
         end
         set_color normal
     end
