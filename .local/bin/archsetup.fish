@@ -233,7 +233,7 @@ function install_paru
     read choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm --needed base-devel git
+            sudo pacman -S --noconfirm --needed base-devel git rust
             git clone https://aur.archlinux.org/paru.git
             cd paru
             makepkg -si
