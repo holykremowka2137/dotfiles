@@ -109,7 +109,10 @@ keys = [
             Key([], "v", lazy.spawn(editor)),
             Key([], "d", lazy.spawn("discord")),
             Key(["shift"], "d", lazy.spawn("killall Discord", shell=True)),
+            Key([], "s", lazy.spawn("steam")),
+            Key(["shift"], "s", lazy.spawn("killall steam", shell=True)),
         ],
+        name="LAUNCHING APPS",
     ),
     # menu
     KeyChord(
@@ -119,6 +122,7 @@ keys = [
             Key([], "w", lazy.spawn("rofi -show drun")),
             Key([], "e", lazy.spawn("rofi -show emoji")),
         ],
+        name="MENU",
     ),
     # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 2%+")),
@@ -161,7 +165,8 @@ mouse = [
 
 wl_input_rules = {
     "type:keyboard": InputConfig(
-        kb_options="caps:escape_shifted_capslock,altwin:swap_alt_win"
+        kb_layout="us",
+        kb_options="caps:escape_shifted_capslock,altwin:swap_alt_win",
     ),
 }
 
@@ -229,12 +234,12 @@ BASE = "#1e1e2e"
 MANTLE = "#181825"
 CRUST = "#11111b"
 
-layout_theme = {
-    "border_width": 3,
-    "margin": 0,
-    "border_focus": GREEN,
-    "border_normal": CRUST,
-}
+layout_theme = dict(
+    border_width=1,
+    margin=0,
+    border_focus=GREEN,
+    border_normal=CRUST,
+)
 
 layouts = [
     layout.Columns(
@@ -262,8 +267,6 @@ rl = {"decorations": [rl]}
 rr = {"decorations": [rr]}
 
 bar_clr = BASE
-# bar_clr = "#1e1e2ef2"
-# bar_clr = MANTLE
 # bar_clr = "#00000000"
 
 widget_defaults = dict(
@@ -281,7 +284,7 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                widget.TextBox(fmt="  "),
+                widget.TextBox(fmt=" "),
                 widget.GroupBox2(
                     disable_drag=True,
                     fontsize=22,
@@ -300,7 +303,21 @@ screens = [
                     ],
                     **bs,
                 ),
-                widget.WindowCount(background=GREEN, fontsize=20, show_zero=True, **rl),
+                widget.WindowCount(
+                    background=GREEN,
+                    font="Noto Sans Bold",
+                    fontsize=22,
+                    show_zero=True,
+                    **rl,
+                ),
+                widget.Spacer(background=bar_clr, length=10, **rr),
+                widget.Chord(
+                    background=SKY,
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
+                    },
+                    **rl,
+                ),
                 widget.Spacer(background=bar_clr, **rr),
                 widget.Clock(background=TEXT, format="󰃭 %a, %d.%m.%Y 󰥔 %H:%M", **rl),
                 widget.Spacer(background=bar_clr),
@@ -312,6 +329,7 @@ screens = [
                 widget.WindowName(
                     background=ROSEWATER,
                     empty_group_string="  ",
+                    format="{name}",
                     scroll=True,
                     scroll_delay=1,
                     scroll_fixed_width=False,
@@ -342,9 +360,9 @@ screens = [
                     update_interval=1,
                     **fs,
                 ),
-                widget.CurrentLayout(background=TEAL, fmt="{}  "),
+                widget.CurrentLayout(background=TEAL, fmt="{} "),
             ],
-            36,
+            34,
             background=bar_clr,
             # border_color=bar_clr,
             # border_width=[2, 2, 2, 2],
