@@ -8,12 +8,14 @@ from qtile_extras.widget.decorations import PowerLineDecoration
 from qtile_extras.widget.groupbox2 import GroupBoxRule, ScreenRule
 
 import subprocess
+import os
 
 mod = "mod4"
 terminal = "foot"
 editor = terminal + " -e nvim"
 browser = "librewolf"
 file_manager = "thunar"
+home = os.path.expanduser('~')
 
 
 @lazy.layout.function
@@ -280,7 +282,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        wallpaper="/home/victoria/.config/qtile/wallpapers/albedo-wallpaper3.png",
+        wallpaper=home + "/.config/qtile/wallpapers/albedo-wallpaper3.png",
         wallpaper_mode="fill",
         top=bar.Bar(
             [
@@ -397,4 +399,4 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.run("/home/victoria/.local/bin/autostart.fish")
+    subprocess.run(home + "/.local/bin/autostart.fish")
