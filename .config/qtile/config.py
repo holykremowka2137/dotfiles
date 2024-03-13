@@ -126,6 +126,11 @@ keys = [
         ],
         name="MENU",
     ),
+    Key(
+        [mod, "control"],
+        "Delete",
+        lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"),
+    ),
     # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 2%+")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 2%-")),
@@ -136,8 +141,8 @@ keys = [
     # screenshots
     Key(["Shift"], "Print", lazy.spawn("scrnsht select", shell=True)),
     Key([], "Print", lazy.spawn("scrnsht", shell=True)),
+    # reloading config
     Key([mod, "control"], "r", lazy.reload_config()),
-    Key([mod, "control"], "Delete", lazy.spawn("shutdown -h now")),
 ]
 
 for vt in range(1, 8):
