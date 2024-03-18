@@ -2,14 +2,17 @@
 
 sudo pacman -Syyu
 
+function prompt
+    echo (set_color -o yellow)"Your choice: "(set_color normal)
+end
+
 function which_cpu
     echo
     echo (set_color -oi green)"Which CPU do you have?"
     set_color normal
     echo (set_color green)"1. AMD"
     echo (set_color green)"2. Intel"
-    echo (set_color -o yellow)"Your choice:"
-    read choice
+    read -p prompt choice
     switch $choice
         case 1
             sudo pacman -S --noconfirm amd-ucode
@@ -28,8 +31,7 @@ function xvswl
     set_color normal
     echo (set_color green)"1. X11"
     echo (set_color green)"2. Wayland"
-    echo (set_color -o yellow)"Your choice:"
-    read choice
+    read -p prompt choice
     switch $choice
         case 1
             sudo pacman -S --noconfirm xorg xorg-xinit xclip picom redshift xdotool flameshot
@@ -74,8 +76,7 @@ function file_manager
     echo (set_color green)"2. Nemo"
     echo (set_color green)"3. Yazi"
     echo (set_color green)"4. All of 'em"
-    echo (set_color -o yellow)"Your choice: "
-    read choice
+    read -p prompt choice
     switch $choice
         case 1
             echo (set_color -oi green)"Installing Thunar..."
@@ -110,8 +111,7 @@ function terminals
     echo (set_color green)"2. Alacritty"
     echo (set_color green)"3. Kitty"
     echo (set_color green)"4. All of 'em"
-    echo (set_color -o yellow)"Your choice: "
-    read choice
+    read -p prompt choice
     switch $choice
         case 1
             echo (set_color -oi green)"Installing Foot..."
@@ -139,7 +139,7 @@ end
 function Neovim
     echo
     echo (set_color -oi green)"Do you want to install based Nvim configuration? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm --needed neovim fd ripgrep npm
@@ -160,7 +160,7 @@ end
 function doomemacs
     echo
     echo (set_color -oi green)"Do you want to install Doom Emacs? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm --needed emacs-nativecomp fd ripgrep npm
@@ -181,7 +181,7 @@ end
 function dotfiles
     echo
     echo (set_color -oi green)"Do you want to download your dotfiles from GitHub? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm stow
@@ -206,7 +206,7 @@ end
 function stow
     echo 
     echo (set_color -oi green)"Do you want to stow your dotfiles? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm stow
@@ -230,7 +230,7 @@ end
 function install_paru
     echo
     echo (set_color -oi green)"Do you want paru on this machine? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm --needed base-devel git rust
@@ -254,7 +254,7 @@ function install_aur
     echo (set_color -oi green)"Do you want to install software from AUR? [y/n]"
     set_color normal
     echo (set_color -o green)"(software in question: catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git)"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             paru -S --noconfirm catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git
@@ -272,7 +272,7 @@ end
 function install_flatpak
     echo
     echo (set_color -oi green)"Do you want to install Flatpak? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm flatpak flatpak-xdg-utils
@@ -295,8 +295,7 @@ function DM
     echo (set_color green)"2. SDDM"
     echo (set_color green)"3. LightDM"
     echo (set_color green)"4. Nothing"
-    echo (set_color -o yellow)"Your choice: "
-    read choice
+    read -p prompt choice
     switch $choice
         case 1
             echo (set_color -oi green)"Installing Ly and uninstalling LightDM..."
@@ -350,7 +349,7 @@ end
 function rebooting
     echo
     echo (set_color -oi green)"Do you want to reboot? [y/n]"
-    read choice
+    read -p prompt choice
     switch $choice
         case y
             reboot
