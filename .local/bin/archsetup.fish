@@ -204,7 +204,7 @@ function dotfiles
 end
 
 function stow
-    echo 
+    echo
     echo (set_color -oi green)"Do you want to stow your dotfiles? [y/n]"
     read -p prompt choice
     switch $choice
@@ -233,13 +233,26 @@ function install_paru
     read -p prompt choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm --needed base-devel git rust
-            git clone https://aur.archlinux.org/paru.git
-            cd paru
-            makepkg -si
-            echo (set_color -oi green)"Paru built."
+            echo
+            echo (set_color -oi green)"Which version of Rust do you want?"
             set_color normal
-            install_aur
+            echo (set_color green)"1. rust"
+            echo (set_color green)"2. rustup"
+            read -p prompt choice2
+            switch $choice2
+                case 1
+                    sudo pacman -S --noconfirm --needed base-devel git rust
+                    git clone https://aur.archlinux.org/paru.git
+                    cd paru
+                    makepkg -si
+                    install_aur
+                case 2
+                    sudo pacman -S --noconfirm --needed base-devel git rustup
+                    git clone https://aur.archlinux.org/paru.git
+                    cd paru
+                    makepkg -si
+                    install_aur
+            end
         case n
             echo (set_color -o green)"Skipping."
         case '*'
