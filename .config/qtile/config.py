@@ -126,11 +126,11 @@ keys = [
         ],
         name="MENU",
     ),
-    Key(
-        [mod, "control"],
-        "Delete",
-        lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"),
-    ),
+    # Key(
+    #     [mod, "control"],
+    #     "Delete",
+    #     lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"),
+    # ),
     # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 2%+")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 2%-")),
@@ -143,6 +143,8 @@ keys = [
     Key([], "Print", lazy.spawn("scrnsht", shell=True)),
     # reloading config
     Key([mod, "control"], "r", lazy.reload_config()),
+    # shuting computer down
+    Key([mod, "control"], "Delete", lazy.spawn("shutdown -h now")),
 ]
 
 for vt in range(1, 8):
@@ -242,7 +244,7 @@ MANTLE = "#181825"
 CRUST = "#11111b"
 
 layout_theme = dict(
-    border_width=1,
+    border_width=2,
     margin=0,
     border_focus=GREEN,
     border_normal=CRUST,
@@ -400,7 +402,6 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
-
 
 @hook.subscribe.startup_once
 def autostart():
