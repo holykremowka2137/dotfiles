@@ -1,24 +1,13 @@
 #!/usr/bin/env fish
 
-set -e fish_user_paths
-set -g fish_user_paths $HOME/.local/bin $HOME/.cargo/bin $HOME/.config/emacs/bin $fish_user_paths
-
-set fish_greeting
-
 set -gx VISUAL "foot -e nvim"
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx TERM foot
 set -gx TERMINAL foot
 
-set -gx GTK_IM_MODULE fcitx
-set -gx QT_IM_MODULE fcitx
-set -gx XMODIFIERS "@im=fcitx"
-
 set USB32 /run/media/victoria/0012-D687/
 set USB16 /run/media/victoria/3FAC-3165/
-
-set -g fish_key_bindings fish_vi_key_bindings
 
 set -g __fish_git_prompt_color -o red
 set -g __fish_git_prompt_showuntrackedfiles false
@@ -113,21 +102,20 @@ alias mv "mv -i"
 alias rm "rm -i"
 alias mkdir "mkdir -pv"
 
-alias ebthunar "thunar ~/Music/Eurobeat"
-alias lpthunar "thunar ~/Music/Luzne_Piosenki"
-alias mscthunar "thunar ~/Music"
+alias thunareb "thunar ~/Music/Eurobeat"
+alias thunarlp "thunar ~/Music/Luzne_Piosenki"
+alias thunarmsc "thunar ~/Music"
 
 alias eblf "lf ~/Music/Eurobeat"
 alias lplf "lf ~/Music/Luzne_Piosenki"
 alias msclf "lf ~/Music"
 
-alias ebyazi "yazi ~/Music/Eurobeat"
-alias lpyazi "yazi ~/Music/Luzne_Piosenki"
-alias mscyazi "yazi ~/Music"
-
-alias ebya "yazi ~/Music/Eurobeat"
-alias lpya "yazi ~/Music/Luzne_Piosenki"
-alias mscya "yazi ~/Music"
+alias yazieb "yazi ~/Music/Eurobeat"
+alias yazilp "yazi ~/Music/Luzne_Piosenki"
+alias yazimsc "yazi ~/Music"
+alias yaeb "yazi ~/Music/Eurobeat"
+alias yalp "yazi ~/Music/Luzne_Piosenki"
+alias yamsc "yazi ~/Music"
 
 alias cpu "sudo auto-cpufreq --stats"
 alias grep "grep -i --color=always"
@@ -141,7 +129,7 @@ abbr updb "sudo updatedb"
 abbr pq "python ~/.config/qtile/config.py"
 alias alias. "alias | grep"
 
-alias q "systemctl --user restart dbus && exec qtile start -b wayland"
+alias q "dbus-run-session qtile start -b wayland"
 abbr ff fastfetch
 
-#starship init fish | source
+source ~/Repos/dotfiles/.local/bin/startup.fish
