@@ -53,19 +53,17 @@ function packages
 
     echo (set_color -oi green)"Installing apps..."
     set_color normal
-    sudo pacman -S --noconfirm vivaldi thunderbird krita ristretto libreoffice-still xed steam deluge-gtk psensor gparted file-roller file-roller fcitx-im fcitx-mozc fcitx-configtool lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils totem obs-studio kvantum
+    sudo pacman -S --noconfirm ristretto libreoffice-still xed steam deluge-gtk psensor gparted file-roller file-roller lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils totem obs-studio kvantum
 
     echo (set_color -oi green)"Installing command-line apps..."
     set_color normal
-    sudo pacman -S --noconfirm neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db sagemath ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget reflector plocate unzip zip dunst cmatrix cython python-jupymake eza
+    sudo pacman -S --noconfirm neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget reflector plocate unzip zip dunst cmatrix cython python-jupymake eza
 
     # deep, dark fantasy
 
     echo (set_color -oi green)"Installing pipewire..."
     set_color normal
     sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-jack wireplumber helvum easyeffects calf yelp pipewire-alsa alsa-utils lib32-pipewire pipewire-audio lib32-pipewire-jack
-
-    echo (set_color -oi green)"Finished!"
 end
 
 function file_manager
@@ -138,15 +136,13 @@ end
 
 function Neovim
     echo
-    echo (set_color -oi green)"Do you want to install based Nvim configuration? [y/n]"
+    echo (set_color -oi green)"Do you want to install LazyVim Neovim configuration? [y/n]"
     read -p prompt choice
     switch $choice
         case y
             sudo pacman -S --noconfirm --needed neovim fd ripgrep npm
-            git clone https://www.github.com/holykremowka2137/init.lua.git ~/.config/nvim && nvim
+            git clone https://www.github.com/holykremowka2137/LazyVim.git ~/.config/nvim && nvim
             ln -s .local/state/nvim/swap/ ~/nvim-swap
-            echo (set_color -oi green)"Configuration installed!"
-            echo (set_color -oi green)"All official packages installed."
             set_color normal
         case n
             echo (set_color -o green)"Skipping."
@@ -166,8 +162,6 @@ function doomemacs
             sudo pacman -S --noconfirm --needed emacs-nativecomp fd ripgrep npm
             git clone https://www.github.com/hlissner/doom-emacs ~/.emacs.d
             ~/.emacs.d/bin/doom install
-            echo (set_color -oi green)"Doom Emacs installed!"
-            echo (set_color -oi green)"All official packages installed."
             set_color normal
         case n
             echo (set_color -o green)"Skipping."
@@ -192,10 +186,8 @@ function dotfiles
             cd ~/Repos/dotfiles/.local/bin/
             stow -v --target="$HOME"/.local/bin/ .
             cd
-            echo (set_color -oi green)"Dotfiles are done."
-            set_color normal
         case n
-            stow
+            stowing
         case '*'
             echo
             echo (set_color -oi green)"Are you sure about that?"
@@ -203,7 +195,7 @@ function dotfiles
     end
 end
 
-function stow
+function stowing
     echo
     echo (set_color -oi green)"Do you want to stow your dotfiles? [y/n]"
     read -p prompt choice
@@ -216,8 +208,6 @@ function stow
             cd ~/Repos/dotfiles/.local/bin/
             stow -v --target="$HOME"/.local/bin/ .
             cd
-            echo (set_color -oi green)"Stowing is done."
-            set_color normal
         case n
             echo (set_color -o green)"Skipping."
         case '*'
@@ -272,7 +262,6 @@ function install_aur
         case y
             paru -S --noconfirm catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git
             sudo auto-cpufreq --install
-            echo (set_color -oi green)"AUR packages built."
         case n
             echo (set_color -oi green)"skipping"
         case '*'
