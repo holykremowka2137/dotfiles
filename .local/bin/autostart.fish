@@ -1,7 +1,11 @@
 #!/usr/bin/env fish
 
-gammastep & 
+gammastep & disown
 import-gsettings
-dunst &
+dunst & disown
 
-$TERM -e $EDITOR ~/Desktop/notes.txt &
+# eos-welcome & disown
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & disown
+
+$TERM -e $EDITOR ~/Desktop/notes.txt & disown
