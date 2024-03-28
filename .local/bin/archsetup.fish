@@ -15,9 +15,9 @@ function which_cpu
     read -p prompt choice
     switch $choice
         case 1
-            sudo pacman -S --noconfirm amd-ucode
+            sudo pacman -S amd-ucode
         case 2
-            sudo pacman -S --noconfirm intel-ucode
+            sudo pacman -S intel-ucode
         case '*'
             echo
             echo (set_color -oi green)"Are you sure about that?"
@@ -34,9 +34,9 @@ function xvswl
     read -p prompt choice
     switch $choice
         case 1
-            sudo pacman -S --noconfirm xorg xorg-xinit xclip picom redshift xdotool flameshot
+            sudo pacman -S xorg xorg-xinit xclip picom redshift xdotool flameshot
         case 2
-            sudo pacman -S --noconfirm wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool xdg-desktop-portal-wlr grim slurp
+            sudo pacman -S wayland wlroots pywlroots python-pywayland python-xkbcommon xorg-xwayland wl-clipboard gammastep ydotool xdg-desktop-portal-wlr grim slurp
             echo
         case '*'
             echo
@@ -49,21 +49,21 @@ function packages
     echo
     echo (set_color -oi green)"Installing fonts..."
     set_color normal
-    sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-nerd-fonts-symbols-mono ttf-nerd-fonts-symbols-common noto-fonts-extra noto-fonts-emoji noto-fonts-cjk
+    sudo pacman -S ttf-jetbrains-mono ttf-nerd-fonts-symbols-mono ttf-nerd-fonts-symbols-common noto-fonts-extra noto-fonts-emoji noto-fonts-cjk
 
     echo (set_color -oi green)"Installing apps..."
     set_color normal
-    sudo pacman -S --noconfirm ristretto libreoffice-still xed steam deluge-gtk psensor gparted file-roller file-roller lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils totem obs-studio kvantum
+    sudo pacman -S ristretto libreoffice-still xed steam deluge-gtk psensor gparted file-roller file-roller lxappearance rofi rofi-emoji networkmanager hunspell-en_US bluez bluez-utils totem obs-studio kvantum polkit-gnome
 
     echo (set_color -oi green)"Installing command-line apps..."
     set_color normal
-    sudo pacman -S --noconfirm neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget reflector plocate unzip zip dunst cmatrix cython python-jupymake eza
+    sudo pacman -S neovim yt-dlp python-pycryptodome mpv python-pip python-pygame man-db ufw ffmpeg brotli python-mutagen python-pyxattr fish p7zip unrar tar rsync neofetch uwufetch htop exfat-utils fuse-exfat ntfs-3g flac jasper aria2 curl wget reflector plocate unzip zip dunst cmatrix cython python-jupymake eza
 
     # deep, dark fantasy
 
     echo (set_color -oi green)"Installing pipewire..."
     set_color normal
-    sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-jack wireplumber helvum easyeffects calf yelp pipewire-alsa alsa-utils lib32-pipewire pipewire-audio lib32-pipewire-jack
+    sudo pacman -S pipewire pipewire-pulse pipewire-jack wireplumber helvum easyeffects calf yelp pipewire-alsa alsa-utils lib32-pipewire pipewire-audio lib32-pipewire-jack
 end
 
 function file_manager
@@ -79,21 +79,21 @@ function file_manager
         case 1
             echo (set_color -oi green)"Installing Thunar..."
             set_color normal
-            sudo pacman -S --noconfirm thunar catfish gvfs thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler gobject-introspection intltool gvfs-mtp ffmpegthumbnailer
+            sudo pacman -S thunar catfish gvfs thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler gobject-introspection intltool gvfs-mtp ffmpegthumbnailer
         case 2
             echo (set_color -oi green)"Installing Nemo..."
             set_color normal
-            sudo pacman -S --noconfirm nemo cinnamon-translations nemo-image-converter nemo-preview
+            sudo pacman -S nemo cinnamon-translations nemo-image-converter nemo-preview
         case 3
             echo (set_color -oi green)"Installing Yazi"
             set_color normal
-            sudo pacman -S --noconfirm yazi ffmpegthumbnailer unarchiver jq poppler fd ripgrep fzf zoxide
+            sudo pacman -S yazi ffmpegthumbnailer unarchiver jq poppler fd ripgrep fzf zoxide
         case 4
             echo (set_color -oi green)"Installing all of them..."
             set_color normal
-            sudo pacman -S --noconfirm thunar catfish gvfs thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler gobject-introspection intltool gvfs-mtp ffmpegthumbnailer
-            sudo pacman -S --noconfirm nemo cinnamon-translations nemo-image-converter nemo-preview
-            sudo pacman -S --noconfirm yazi ffmpegthumbnailer unarchiver jq poppler fd ripgrep fzf zoxide
+            sudo pacman -S thunar catfish gvfs thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler gobject-introspection intltool gvfs-mtp ffmpegthumbnailer
+            sudo pacman -S nemo cinnamon-translations nemo-image-converter nemo-preview
+            sudo pacman -S yazi ffmpegthumbnailer unarchiver jq poppler fd ripgrep fzf zoxide
         case '*'
             echo
             echo (set_color -oi green)"Are you sure about that?"
@@ -114,19 +114,19 @@ function terminals
         case 1
             echo (set_color -oi green)"Installing Foot..."
             set_color normal
-            sudo pacman -S --noconfirm foot
+            sudo pacman -S foot
         case 2
             echo (set_color -oi green)"Installing Alacritty..."
             set_color normal
-            sudo pacman -S --noconfirm alacritty
+            sudo pacman -S alacritty
         case 3
             echo (set_color -oi green)"Installing Kitty..."
             set_color normal
-            sudo pacman -S --noconfirm kitty
+            sudo pacman -S kitty
         case 4
             echo (set_color -oi green)"Installing all of them..."
             set_color normal
-            sudo pacman -S --noconfirm alacritty kitty foot
+            sudo pacman -S alacritty kitty foot
         case '*'
             echo
             echo (set_color -oi green)"Are you sure about that?"
@@ -140,7 +140,7 @@ function Neovim
     read -p prompt choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm --needed neovim fd ripgrep npm
+            sudo pacman -S --needed neovim fd ripgrep npm
             git clone https://www.github.com/holykremowka2137/LazyVim.git ~/.config/nvim && nvim
             ln -s .local/state/nvim/swap/ ~/nvim-swap
             set_color normal
@@ -159,7 +159,7 @@ function doomemacs
     read -p prompt choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm --needed emacs-nativecomp fd ripgrep npm
+            sudo pacman -S --needed emacs-nativecomp fd ripgrep npm
             git clone https://www.github.com/hlissner/doom-emacs ~/.emacs.d
             ~/.emacs.d/bin/doom install
             set_color normal
@@ -178,7 +178,7 @@ function dotfiles
     read -p prompt choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm stow
+            sudo pacman -S stow
             git clone https://www.github.com/holykremowka2137/dotfiles.git ~/Repos/dotfiles/
             cd ~/Repos/dotfiles/.config/
             stow -v --target="$HOME"/.config/ .
@@ -201,7 +201,7 @@ function stowing
     read -p prompt choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm stow
+            sudo pacman -S stow
             cd ~/Repos/dotfiles/.config/
             stow -v --target="$HOME"/.config/ .
             mkdir ~/.local/bin/
@@ -231,13 +231,13 @@ function install_paru
             read -p prompt choice2
             switch $choice2
                 case 1
-                    sudo pacman -S --noconfirm --needed base-devel git rust
+                    sudo pacman -S --needed base-devel git rust
                     git clone https://aur.archlinux.org/paru.git
                     cd paru
                     makepkg -si
                     install_aur
                 case 2
-                    sudo pacman -S --noconfirm --needed base-devel git rustup
+                    sudo pacman -S --needed base-devel git rustup
                     git clone https://aur.archlinux.org/paru.git
                     cd paru
                     makepkg -si
@@ -260,7 +260,7 @@ function install_aur
     read -p prompt choice
     switch $choice
         case y
-            paru -S --noconfirm catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git
+            paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha papirus-folders-catppuccin-git qtile-extras brillo auto-cpufreq librewolf-bin kvantum-theme-catppuccin-git
             sudo auto-cpufreq --install
         case n
             echo (set_color -oi green)"skipping"
@@ -277,7 +277,7 @@ function install_flatpak
     read -p prompt choice
     switch $choice
         case y
-            sudo pacman -S --noconfirm flatpak flatpak-xdg-utils
+            sudo pacman -S flatpak flatpak-xdg-utils
             echo (set_color -oi green)"Flatpak installed."
             set_color normal
         case n
@@ -302,14 +302,14 @@ function DM
         case 1
             echo (set_color -oi green)"Installing Ly and uninstalling LightDM..."
             set_color normal
-            sudo pacman -S --noconfirm ly && sudo pacman -Rns --noconfirm lightdm
+            sudo pacman -S ly && sudo pacman -Rns lightdm
             echo (set_color -oi green)"Enabling Ly..."
             set_color normal
             sudo systemctl enable ly
         case 2
             echo (set_color -oi green)"Installing SDDM and uninstalling LightDM..."
             set_color normal
-            sudo pacman -S --noconfirm sddm && sudo pacman -Rns --noconfirm lightdm
+            sudo pacman -S sddm && sudo pacman -Rns lightdm
             echo (set_color -oi green)"Enabling SDDM..."
             set_color normal
             sudo systemctl enable sddm
@@ -320,7 +320,7 @@ function DM
         case 4
             echo (set_color -oi green)"Uninstalling LightDM..."
             set_color normal
-            sudo pacman -Rns --noconfirm lightdm
+            sudo pacman -Rns lightdm
         case '*'
             echo
             echo (set_color -oi green)"Are you sure about that?"
