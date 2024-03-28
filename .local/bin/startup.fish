@@ -45,19 +45,19 @@ if status -i
 
         function prompt1
             echo -ns (set_color brwhite) \
-                "Do you want to update your system? [Y/n] " \
+                "Update? [Y/n] " \
                 (set_color normal)
         end
 
         function prompt2
             echo -ns (set_color brwhite) \
-                "Do you want to reboot? [y/N] " \
+                "Reboot? [y/N] " \
                 (set_color normal)
         end
 
         function prompt3
             echo -ns (set_color brwhite) \
-                "Do you want to start Qtile? [Y/n] " \
+                "Qtile? [Y/n] " \
                 (set_color normal)
         end
 
