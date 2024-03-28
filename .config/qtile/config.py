@@ -346,12 +346,12 @@ screens = [
                     width=200,
                     **fs,
                 ),
-                widget.Volume(background=PINK, fmt=" {}", **fs),
+                widget.Volume(background=PINK, fmt="  {}", **fs),
                 widget.Backlight(
                     background=MAUVE,
                     backlight_name="intel_backlight",
                     brightness_file="brightness",
-                    fmt=" {}",
+                    fmt="  {}",
                     **fs,
                 ),
                 widget.ThermalSensor(
