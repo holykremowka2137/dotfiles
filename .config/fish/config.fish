@@ -133,4 +133,10 @@ alias alias. "alias | grep"
 alias q "dbus-run-session qtile start -b wayland"
 abbr ff fastfetch
 
-source ~/Repos/dotfiles/.local/bin/startup.fish
+#source ~/.local/bin/startup.fish
+
+if status -i
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        dbus-run-session qtile start -b wayland
+    end
+end
